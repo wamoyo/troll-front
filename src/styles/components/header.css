@@ -1,0 +1,41 @@
+/* Header component styles */
+
+header.cp-header {
+  background: #1a1a1a;
+  color: white;
+  padding: 1rem 0;
+  border-bottom: 3px solid #f28337;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo .brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+  }
+
+  nav {
+    display: flex;
+    gap: 2rem;
+  }
+
+  nav a {
+    color: white;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  nav a:hover {
+    color: #f28337;
+    text-decoration: none;
+  }
+
+  nav a.active {
+    color: #f28337;
+    border-bottom: 2px solid #f28337;
+  }
+}

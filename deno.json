@@ -1,0 +1,7 @@
+{
+  "tasks": {
+    "dev": "deno run --allow-read --allow-write --allow-net --watch dev.js",
+    "build": "deno run --allow-read --allow-write build.js",
+    "deploy": "deno run --allow-read --allow-write --allow-net --allow-env --allow-run deploy.js"
+  }
+}

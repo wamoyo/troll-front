@@ -1,0 +1,56 @@
+/* Home page styles */
+
+section#pg-index {
+  .hero {
+    background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
+    color: white;
+    padding: 6rem 0;
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .hero .tagline {
+    font-size: 1.5rem;
+    color: #f28337;
+    margin-bottom: 2rem;
+  }
+
+  .cta-button {
+    display: inline-block;
+    background: #f28337;
+    color: white;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: 3px solid #f28337;
+    transition: all 0.3s;
+  }
+
+  .cta-button:hover {
+    background: transparent;
+    color: #f28337;
+    text-decoration: none;
+  }
+
+  .intro {
+    padding: 4rem 0;
+    text-align: center;
+  }
+
+  .intro h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #1a1a1a;
+  }
+
+  .intro p {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    color: #666;
+  }
+}
