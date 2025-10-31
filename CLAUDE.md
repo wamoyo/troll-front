@@ -208,10 +208,46 @@ function sitemap () {
 export default sitemap
 ```
 
-## TODO
+## Important Notes
 
-- [ ] File watching for auto-rebuild
+### Session Status (Oct 31, 2025)
+- ✅ Basic SSG fully implemented and working
+- ✅ Two-slot layout system (head + body)
+- ✅ CSS namespace pattern with element types (body#ly-*, section#pg-*, element.cp-*)
+- ✅ Component system with parameters
+- ✅ Root files and generators working
+- ✅ Git repo initialized with first commit
+- 🚀 Ready to build real pages and deploy
+
+### Key Conventions Established
+
+**File Comments:** Every HTML-generating file (layouts, components, pages) has CSS location comment at top:
+```javascript
+// CSS: src/styles/components/header.css
+```
+
+**CSS Namespacing:** Always include element type in selectors:
+- Layouts: `body#ly-standard { }`
+- Pages: `section#pg-index { }`
+- Components: `header.cp-header { }`, `div.cp-team-card { }`
+
+**Generator Pattern:** Return `{ filename, content }`
+```javascript
+export default function sitemap() {
+  return { filename: 'sitemap.xml', content: '...' }
+}
+```
+
+**Clean URLs:** Not yet implemented - need to decide on localhost vs S3/CloudFront approach
+
+### Next Steps / TODO
+
+- [ ] File watching for auto-rebuild (dev mode)
 - [ ] Smart rebuilding (hash-based, track dependencies)
-- [ ] Static asset copying (images, fonts, etc)
-- [ ] Deploy script for S3
+- [ ] Deploy script for S3 + CloudFront cache invalidation
+- [ ] Clean URLs solution (about.html vs about/index.html)
 - [ ] Minification for production builds
+- [ ] Build actual site pages (products, resources, contact, etc)
+- [ ] Add real content to data.js (products, team details)
+- [ ] Service worker (sw.js) if needed
+- [ ] Image optimization pipeline
