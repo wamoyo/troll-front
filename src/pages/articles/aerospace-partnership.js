@@ -57,7 +57,7 @@ export default function page () {
       <h2>What This Means for the Industry</h2>
       <p>This partnership validates CNT materials as a viable solution for demanding aerospace applications. We expect this to accelerate adoption across the industry, from commercial aviation to space exploration.</p>
       <p>We're already in discussions with other aerospace companies about similar applications, and we're excited about the possibilities ahead.</p>
-      <p>If you're working on aerospace applications or other industries where weight reduction and performance are critical, <a href="/contact.html">contact us</a> to discuss how our CNT materials can help.</p>
+      <p>If you're working on aerospace applications or other industries where weight reduction and performance are critical, <a href="/contact">contact us</a> to discuss how our CNT materials can help.</p>
     `
   })
 }

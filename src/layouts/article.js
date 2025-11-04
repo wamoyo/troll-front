@@ -32,7 +32,7 @@ export default function article (meta, { head = '', body, scripts = ''}) {
           </div>
 
           <footer class="article-footer">
-            <a href="/articles.html" class="back-link">← Back to Articles</a>
+            <a href="/articles" class="back-link">← Back to Articles</a>
           </footer>
         </div>
       </article>

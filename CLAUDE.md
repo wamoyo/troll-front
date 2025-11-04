@@ -9,6 +9,7 @@ Custom Deno-based static site generator using JavaScript template literals.
 - **Three sections** - imports → front matter (optional) → function
 - **Split CSS** - One file per layout/component/page
 - **Import maps** - `@utils/`, `@data/`, `@components/`, `@layouts/`
+- **Clean URLs** - Output as directory/index.html for extensionless URLs
 
 ## Directory Structure
 
@@ -71,7 +72,7 @@ export default function standard ({ options = {}, head, body, scripts }) {
       ${head || ''}
     </head>
     <body id="ly-standard">
-      ${header({ currentPath: options.currentPath }).body}
+      ${header(options.currentPath).body}
       ${body || ''}
       ${footer().body}
       ${scripts || ''}
@@ -84,21 +85,24 @@ export default function standard ({ options = {}, head, body, scripts }) {
 
 ### Article Layout
 
-Extends standard layout, wraps content in article structure.
+Extends standard layout, wraps content in article structure. Automatically includes articleSeo.
 
 ```javascript
 // CSS: src/styles/layouts/article.css
 
 import html from '@utils/html.js'
-import standardLayout from '@layouts/standard.js'
+import standard from '@layouts/standard.js'
+import articleSeo from '@components/article-seo.js'
 import data from '@data/site.js'
 
 // Pure: wraps body in article structure with metadata
-export default function article (article, { head = html``, body, scripts = html`` } = {}) {
-  return standardLayout({
+export default function article (meta, { head = '', body, scripts = ''}) {
+  return standard({
     head: html`
-      <title>${article.title} - ${data.site.name}</title>
-      <meta name="description" content="${article.description}">
+      <title>${meta.title} - ${data.site.name}</title>
+      <meta name="description" content="${meta.description}">
+      <link rel="canonical" href="${meta.url}">
+      ${articleSeo(meta).head}
       <link rel="stylesheet" href="/styles/layouts/article.css">
       ${head}
     `,
@@ -106,15 +110,15 @@ export default function article (article, { head = html``, body, scripts = html`
       <article id="ly-article">
         <div class="container">
           <header class="article-header">
-            <h1>${article.title}</h1>
+            <h1>${meta.title}</h1>
             <div class="article-meta">
-              <span class="date">${article.date}</span>
-              <span class="author">By ${article.author}</span>
+              <span class="date">${meta.date}</span>
+              <span class="author">By ${meta.author}</span>
             </div>
           </header>
           <div class="article-content">${body}</div>
           <footer class="article-footer">
-            <a href="/articles.html" class="back-link">← Back to Articles</a>
+            <a href="/articles" class="back-link">← Back to Articles</a>
           </footer>
         </div>
       </article>
@@ -143,7 +147,7 @@ var nav = [
 ]
 
 // Pure: returns header with nav
-export default function header ({ currentPath = '/' } = {}) {
+export default function header (currentPath) {
   return {
     head: html`<link rel="stylesheet" href="/styles/components/header.css">`,
     body: html`
@@ -153,7 +157,7 @@ export default function header ({ currentPath = '/' } = {}) {
           <nav>
             ${nav.map(item => html`
               <a href="${item.href}" class="${item.href === currentPath ? 'active' : ''}">${item.label}</a>
-            `).join('')}
+            `).join('\n            ')}
           </nav>
         </div>
       </header>
@@ -167,18 +171,25 @@ export default function header ({ currentPath = '/' } = {}) {
 
 ### Regular Pages
 
-Use **options** to pass `currentPath` for nav highlighting. Header/footer automatic.
+Use **options** to pass `currentPath` for nav highlighting. Use `meta` for SEO data, `pageData` for page-specific content.
 
 ```javascript
 // CSS: src/styles/pages/about.css
 
 import html from '@utils/html.js'
-import standardLayout from '@layouts/standard.js'
+import standard from '@layouts/standard.js'
+import pageSeo from '@components/page-seo.js'
 import data from '@data/site.js'
 
-// Front matter - page data only
-var pageData = {
+// Front matter
+var meta = {
   title: 'About Us',
+  description: `Learn about ${data.site.company}...`,
+  url: 'https://trollhair.com/about'
+}
+
+var pageData = {
+  subtitle: 'Our story...',
   stats: [
     { number: '99.9%', label: 'Purity' },
     { number: '15+', label: 'Years Experience' }
@@ -187,24 +198,27 @@ var pageData = {
 
 // Pure: returns complete page
 export default function page () {
-  return standardLayout({
+  return standard({
     options: {
       currentPath: '/about'
     },
     head: html`
-      <title>${pageData.title} - ${data.site.name}</title>
+      <title>${meta.title} - ${data.site.name}</title>
+      <meta name="description" content="${meta.description}">
+      <link rel="canonical" href="${meta.url}">
+      ${pageSeo(meta).head}
       <link rel="stylesheet" href="/styles/pages/about.css">
     `,
     body: html`
       <section id="pg-about">
-        <h1>${pageData.title}</h1>
+        <h1>${meta.title}</h1>
         <div class="stats">
           ${pageData.stats.map(stat => html`
             <div class="stat">
               <div class="number">${stat.number}</div>
               <div class="label">${stat.label}</div>
             </div>
-          `).join('')}
+          `).join('\n          ')}
         </div>
       </section>
     `
@@ -214,25 +228,26 @@ export default function page () {
 
 ### Article Pages
 
-Pass article object, just supply body content. Layout handles title, date, author, header, footer.
+Pass `meta` object with article metadata. Layout handles title, date, author, SEO, header, footer.
 
 ```javascript
 // CSS: src/styles/layouts/article.css
 
 import html from '@utils/html.js'
-import articleLayout from '@layouts/article.js'
+import article from '@layouts/article.js'
 
-// Front matter - article metadata
-var article = {
+// Front matter
+var meta = {
   title: 'Breakthrough in CNT Synthesis',
   date: '2025-10-15',
   author: 'Dr. Sarah Chen',
-  description: 'Our new CVD process achieves 99.9% purity...'
+  description: 'Our new CVD process achieves 99.9% purity...',
+  url: 'https://trollhair.com/articles/breakthrough-cnt-synthesis'
 }
 
 // Pure: returns complete article page
 export default function page () {
-  return articleLayout(article, {
+  return article(meta, {
     body: html`
       <p class="lead">Article intro paragraph...</p>
       <h2>Section Heading</h2>
@@ -272,11 +287,28 @@ deno task build
 
 1. Recursively find all `src/pages/**/*.js` files
 2. Import and call each page function
-3. Write HTML to `site/` (mirrors src/pages structure)
+3. Write HTML to `site/` as directory/index.html for clean URLs
 4. Copy CSS, assets, root files
 5. Run generators
 
-Nested pages work: `pages/articles/foo.js` → `site/articles/foo.html`
+**Clean URL Structure:**
+- `pages/index.js` → `site/index.html`
+- `pages/about.js` → `site/about/index.html`
+- `pages/articles/index.js` → `site/articles/index.html`
+- `pages/articles/foo.js` → `site/articles/foo/index.html`
+
+**Result:** Clean URLs without .html extensions (`/about`, `/articles/foo`)
+
+## SEO Components
+
+Content-type specific SEO components handle Schema.org, Open Graph, and Twitter Cards.
+
+**page-seo.js** - For regular pages (WebPage schema)
+**article-seo.js** - For articles (Article schema with author/dates)
+
+Both accept a data object and return `{ head }` with structured data and social meta tags.
+
+Pages handle basic meta (title, description, canonical), SEO components handle the rest.
 
 ## File Conventions
 
@@ -285,3 +317,4 @@ Nested pages work: `pages/articles/foo.js` → `site/articles/foo.html`
 - **Pages**: Export `page()` function returning layout call
 - **Data**: Export default object
 - **CSS**: Mirrors source structure exactly
+- **Front matter naming**: Use `meta` for SEO data, `pageData` for page-specific content

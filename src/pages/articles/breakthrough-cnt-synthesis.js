@@ -46,7 +46,7 @@ export default function page () {
         <li>Neural interfaces for medical devices</li>
         <li>Space-rated electronics for satellite systems</li>
       </ul>
-      <p>If you're working on applications that require ultra-high purity CNT materials, we'd love to hear from you. <a href="/contact.html">Contact us</a> to request samples or discuss your project requirements.</p>
+      <p>If you're working on applications that require ultra-high purity CNT materials, we'd love to hear from you. <a href="/contact">Contact us</a> to request samples or discuss your project requirements.</p>
     `
   })
 }

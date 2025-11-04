@@ -38,7 +38,14 @@ for (var pagePath of pages) {
   var html = pageFunction()
 
   // Determine output path
-  var outputPath = pagePath.replace('.js', '.html')
+  var outputPath
+  if (pagePath.endsWith('index.js')) {
+    // index.js → index.html (same directory)
+    outputPath = pagePath.replace('index.js', 'index.html')
+  } else {
+    // about.js → about/index.html
+    outputPath = pagePath.replace('.js', '/index.html')
+  }
   var fullOutputPath = join(siteDir, outputPath)
 
   // Ensure output directory exists
