@@ -1,4 +1,11 @@
 {
+  "imports": {
+    "@/": "./",
+    "@data/": "./src/data/",
+    "@utils/": "./src/utils/",
+    "@components/": "./src/components/",
+    "@layouts/": "./src/layouts/"
+  },
   "tasks": {
     "dev": "deno run --allow-read --allow-write --allow-net --watch dev.js",
     "build": "deno run --allow-read --allow-write build.js",

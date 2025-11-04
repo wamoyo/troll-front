@@ -1,22 +1,31 @@
 // CSS: src/styles/pages/index.css
 
-import html from '../utils/html.js'
-import standardLayout from '../layouts/standard.js'
-import header from '../components/header.js'
-import footer from '../components/footer.js'
-import data from '../../data.js'
+import html from '@utils/html.js'
+import standard from '@layouts/standard.js'
+import pageSeo from '@components/page-seo.js'
+import data from '@data/site.js'
+
+// Front matter
+var meta = {
+  title: `${data.site.name} - ${data.site.tagline}`,
+  description: 'High-performance carbon nanotube materials from Industrial CNT LLC. Request samples today.',
+  url: 'https://trollhair.com'
+}
 
 // Pure: returns complete HTML page
-function page () {
-  return standardLayout({
+export default function page () {
+  return standard({
+    options: {
+      currentPath: '/'
+    },
     head: html`
-      <title>${data.site.name} - ${data.site.tagline}</title>
-      <meta name="description" content="High-performance carbon nanotube materials from Industrial CNT LLC. Request samples today.">
+      <title>${meta.title}</title>
+      <meta name="description" content="${meta.description}">
+      <link rel="canonical" href="${meta.url}">
+      ${pageSeo(meta).head}
       <link rel="stylesheet" href="/styles/pages/index.css">
     `,
     body: html`
-      ${header('/')}
-
       <section id="pg-index">
         <section class="hero">
           <div class="container">
@@ -33,10 +42,6 @@ function page () {
           </div>
         </section>
       </section>
-
-      ${footer()}
     `
   })
 }
-
-export default page

@@ -6,36 +6,49 @@ import { join } from "https://deno.land/std@0.208.0/path/mod.ts"
 var siteDir = "./site"
 var srcDir = "./src"
 
-// Get all page files
+// Recursively get all page files
 var pages = []
-for await (var entry of Deno.readDir(`${srcDir}/pages`)) {
-  if (entry.isFile && entry.name.endsWith('.js')) {
-    pages.push(entry.name)
+
+async function findPages(dir, relativePath = '') {
+  for await (var entry of Deno.readDir(dir)) {
+    var entryPath = relativePath ? `${relativePath}/${entry.name}` : entry.name
+    var fullPath = `${dir}/${entry.name}`
+
+    if (entry.isDirectory) {
+      await findPages(fullPath, entryPath)
+    } else if (entry.isFile && entry.name.endsWith('.js')) {
+      pages.push(entryPath)
+    }
   }
 }
+
+await findPages(`${srcDir}/pages`)
 
 console.log(`Building ${pages.length} pages...`)
 
 // Build each page
-for (var pageName of pages) {
-  var pagePath = `${srcDir}/pages/${pageName}`
+for (var pagePath of pages) {
+  var fullPagePath = `${srcDir}/pages/${pagePath}`
 
   // Import the page module
-  var pageModule = await import(`./${pagePath}`)
+  var pageModule = await import(`./${fullPagePath}`)
   var pageFunction = pageModule.default
 
   // Generate HTML
   var html = pageFunction()
 
   // Determine output path
-  var outputName = pageName.replace('.js', '.html')
-  var outputPath = join(siteDir, outputName)
+  var outputPath = pagePath.replace('.js', '.html')
+  var fullOutputPath = join(siteDir, outputPath)
+
+  // Ensure output directory exists
+  var outputDir = fullOutputPath.substring(0, fullOutputPath.lastIndexOf('/'))
+  await ensureDir(outputDir)
 
   // Write HTML file
-  await ensureDir(siteDir)
-  await Deno.writeTextFile(outputPath, html)
+  await Deno.writeTextFile(fullOutputPath, html)
 
-  console.log(`  ✓ ${pageName} → ${outputName}`)
+  console.log(`  ✓ ${pagePath} → ${outputPath}`)
 }
 
 // Copy CSS files

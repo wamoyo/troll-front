@@ -1,8 +1,8 @@
-import data from '../../data.js'
+import data from '@data/site.js'
 
 // Pure: generates sitemap.xml
 // Returns { filename, content }
-function sitemap () {
+export default function sitemap () {
   var pages = [
     { loc: '/', changefreq: 'weekly', priority: '1.0' },
     { loc: '/about', changefreq: 'monthly', priority: '0.8' }
@@ -24,5 +24,3 @@ ${entries}
     content: xml
   }
 }
-
-export default sitemap

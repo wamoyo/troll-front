@@ -1,23 +1,38 @@
 // CSS: src/styles/components/header.css
 
-import html from '../utils/html.js'
-import nav from './nav.js'
-import data from '../../data.js'
+import html from '@utils/html.js'
+import data from '@data/site.js'
 
-// Pure: returns header HTML with navigation
-// currentPath parameter passed to nav for active highlighting
-function header (currentPath = '/') {
-  return html`<header class="cp-header">
-  <link rel="stylesheet" href="/styles/components/header.css">
-  <div class="container">
-    <div class="logo">
-      <a href="/">
-        <span class="brand">${data.site.name}</span>
-      </a>
-    </div>
-    ${nav(currentPath)}
-  </div>
-</header>`
+// Front matter
+var nav = [
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Articles", href: "/articles" },
+  { label: "Contact", href: "/contact" }
+]
+
+// Pure: returns header component with head, body, scripts
+export default function header (currentPath) {
+  return {
+    head: html`
+      <link rel="stylesheet" href="/styles/components/header.css">
+    `,
+    body: html`
+      <header class="cp-header">
+        <div class="container">
+          <div class="logo">
+            <a href="/">
+              <span class="brand">${data.site.name}</span>
+            </a>
+          </div>
+          <nav>
+            ${nav.map(item => html`
+              <a href="${item.href}" class="${item.href === currentPath ? 'active' : ''}">${item.label}</a>
+            `).join('\n            ')}
+          </nav>
+        </div>
+      </header>
+    `,
+    scripts: html`<script src="/scripts/nav.js"></script>`
+  }
 }
-
-export default header

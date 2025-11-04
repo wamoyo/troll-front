@@ -1,101 +1,102 @@
 // CSS: src/styles/pages/about.css
 
-import html from '../utils/html.js'
-import standardLayout from '../layouts/standard.js'
-import header from '../components/header.js'
-import footer from '../components/footer.js'
-import seo from '../components/seo.js'
-import teamCard from '../components/team-card.js'
-import button from '../components/button.js'
-import data from '../../data.js'
+import html from '@utils/html.js'
+import standard from '@layouts/standard.js'
+import pageSeo from '@components/page-seo.js'
+import teamCard from '@components/team-card.js'
+import data from '@data/site.js'
+
+// Front matter
+var meta = {
+  title: 'About Us',
+  description: `Learn about ${data.site.company} and the team behind ${data.site.name} carbon nanotube materials.`,
+  url: 'https://trollhair.com/about'
+}
+
+var pageData = {
+  subtitle: 'Pioneering the future of carbon nanotube technology',
+  story: {
+    heading: 'Our Story',
+    intro: `${data.site.company} was founded with a singular mission: to make high-performance carbon nanotube materials accessible to industries that need them most.`,
+    mission: 'From aerospace to automotive, our CNT materials are enabling breakthrough innovations in strength, conductivity, and performance.'
+  },
+  stats: [
+    { number: '99.9%', label: 'Purity' },
+    { number: '15+', label: 'Years Experience' },
+    { number: '500+', label: 'Clients Worldwide' }
+  ],
+  team: {
+    heading: 'Our Team',
+    intro: 'World-class scientists and engineers dedicated to advancing CNT technology',
+    members: data.team
+  },
+  cta: {
+    heading: `Ready to Experience ${data.site.name}?`,
+    text: 'Request a sample and see the difference our CNT materials can make',
+    buttonText: 'Get Samples',
+    buttonHref: '/contact'
+  }
+}
 
 // Pure: returns complete about page HTML
-function page () {
-  // Generate team cards from data
-  var teamCards = data.team.map(member =>
-    teamCard({
-      name: member.name,
-      title: member.title,
-      bio: member.bio,
-      image: member.image
-    })
-  ).join('\n        ')
-
-  return standardLayout({
+export default function page () {
+  return standard({
+    options: {
+      currentPath: '/about'
+    },
     head: html`
-      <title>About ${data.site.name} - Meet Our Team</title>
-      <meta name="description" content="Learn about ${data.site.company} and the team behind ${data.site.name} carbon nanotube materials.">
-
-      ${seo({
-        type: 'website',
-        title: `About ${data.site.name}`,
-        description: `Meet the team at ${data.site.company} creating the future of carbon nanotube materials`,
-        url: `${data.site.url}/about`,
-        image: '/images/about-og.jpg'
-      })}
-
+      <title>${meta.title} - ${data.site.name}</title>
+      <meta name="description" content="${meta.description}">
+      <link rel="canonical" href="${meta.url}">
+      ${pageSeo(meta).head}
+      ${teamCard().head}
       <link rel="stylesheet" href="/styles/pages/about.css">
     `,
     body: html`
-      ${header('/about')}
-
       <section id="pg-about">
         <section class="about-hero">
           <div class="container">
-            <h1>About ${data.site.name}</h1>
-            <p class="subtitle">Pioneering the future of carbon nanotube technology</p>
+            <h1>${meta.title}</h1>
+            <p class="subtitle">${pageData.subtitle}</p>
           </div>
         </section>
 
         <section class="about-story">
           <div class="container">
-            <h2>Our Story</h2>
-            <p>${data.site.company} was founded with a singular mission: to make high-performance carbon nanotube materials accessible to industries that need them most.</p>
-            <p>From aerospace to automotive, our CNT materials are enabling breakthrough innovations in strength, conductivity, and performance.</p>
+            <h2>${pageData.story.heading}</h2>
+            <p>${pageData.story.intro}</p>
+            <p>${pageData.story.mission}</p>
 
             <div class="stats">
-              <div class="stat">
-                <div class="stat-number">99.9%</div>
-                <div class="stat-label">Purity</div>
-              </div>
-              <div class="stat">
-                <div class="stat-number">15+</div>
-                <div class="stat-label">Years Experience</div>
-              </div>
-              <div class="stat">
-                <div class="stat-number">500+</div>
-                <div class="stat-label">Clients Worldwide</div>
-              </div>
+              ${pageData.stats.map(stat => html`
+                <div class="stat">
+                  <div class="stat-number">${stat.number}</div>
+                  <div class="stat-label">${stat.label}</div>
+                </div>
+              `).join('')}
             </div>
           </div>
         </section>
 
         <section class="team">
           <div class="container">
-            <h2>Our Team</h2>
-            <p class="section-intro">World-class scientists and engineers dedicated to advancing CNT technology</p>
+            <h2>${pageData.team.heading}</h2>
+            <p class="section-intro">${pageData.team.intro}</p>
 
-            <div class="team-grid">
-              ${teamCards}
+          <div class="team-grid">
+              ${pageData.team.members.map(member => teamCard(member).body).join('')}
             </div>
           </div>
         </section>
 
         <section class="cta">
           <div class="container">
-            <h2>Ready to Experience ${data.site.name}?</h2>
-            <p>Request a sample and see the difference our CNT materials can make</p>
-            <div class="cta-buttons">
-              ${button({ text: 'Get Samples', href: '/contact', style: 'primary' })}
-              ${button({ text: 'View Products', href: '/products', style: 'secondary' })}
-            </div>
+            <h2>${pageData.cta.heading}</h2>
+            <p>${pageData.cta.text}</p>
+            <a href="${pageData.cta.buttonHref}" class="cta-button">${pageData.cta.buttonText}</a>
           </div>
         </section>
       </section>
-
-      ${footer()}
     `
   })
 }
-
-export default page

@@ -1,253 +1,287 @@
 # Troll Hair Frontend - SSG Architecture
 
-Custom Deno-based static site generator using JavaScript template literals for templating.
+Custom Deno-based static site generator using JavaScript template literals.
 
 ## Core Principles
 
-- **Pure functions everywhere** - Components and pages are pure functions
-- **No templating engine** - Just JS template literals with `html` tag for syntax highlighting
-- **Split CSS** - One file per layout/component/page (HTTP/2 friendly)
-- **Flat asset structure** - Fonts, images, audios, videos at src root (not nested in assets/)
-- **Smart rebuilding** - Only rebuild changed files (TODO: not yet implemented)
+- **Pure functions** - Layouts, components, pages are pure functions
+- **No templating engine** - JS template literals with `html` tag
+- **Three sections** - imports → front matter (optional) → function
+- **Split CSS** - One file per layout/component/page
+- **Import maps** - `@utils/`, `@data/`, `@components/`, `@layouts/`
 
-## Architecture
+## Directory Structure
 
-### Template System
-
-**`html` utility** (`src/utils/html.js`): Tagged template literal that concatenates strings
-```javascript
-html`<div>${content}</div>`  // Returns string
+```
+troll-front/
+├── src/
+│   ├── data/          # Site-wide data (site.js)
+│   ├── layouts/       # standard.js, article.js
+│   ├── components/    # header.js, footer.js, team-card.js
+│   ├── pages/         # Pages → HTML files (supports nesting)
+│   ├── styles/        # Mirrors: layouts/, components/, pages/
+│   ├── scripts/       # Client-side JS
+│   ├── root/          # Copied to site root
+│   └── generators/    # sitemap.xml, feed.xml
+├── site/              # Built output
+└── build.js           # Recursively builds all pages
 ```
 
-**Layouts**: Two-slot pattern (head + body)
+## THE THREE SECTION RULE
+
+Every file has exactly three sections:
+
+1. **Imports** - Dependencies
+2. **Front matter** (optional) - Data only, NO vars, NO component instantiation
+3. **Function** - Return statement ONLY
+
+**Never:**
+- Declare component instances in front matter
+- Put logic in the function
+- Use `var` for anything except data
+
+**Always:**
+- Call components inline in templates
+- Keep functions pure with only return statements
+
+## Layouts
+
+### Standard Layout
+
+Includes header/footer automatically. Uses **options pattern** for customization.
+
 ```javascript
-function standard ({ head, body }) {
-  return html`<!DOCTYPE html>...<head>${head}</head><body>${body}</body>`
+// CSS: src/styles/layouts/standard.css
+
+import html from '@utils/html.js'
+import header from '@components/header.js'
+import footer from '@components/footer.js'
+
+// Pure: complete HTML document with header/footer
+export default function standard ({ options = {}, head, body, scripts }) {
+  return html`
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width">
+      <link rel="stylesheet" href="/styles/layouts/standard.css">
+      ${header().head}
+      ${footer().head}
+      ${head || ''}
+    </head>
+    <body id="ly-standard">
+      ${header({ currentPath: options.currentPath }).body}
+      ${body || ''}
+      ${footer().body}
+      ${scripts || ''}
+      ${header().scripts}
+    </body>
+    </html>
+  `
 }
 ```
 
-**Pages**: Choose layout, fill slots
+### Article Layout
+
+Extends standard layout, wraps content in article structure.
+
 ```javascript
-function page () {
+// CSS: src/styles/layouts/article.css
+
+import html from '@utils/html.js'
+import standardLayout from '@layouts/standard.js'
+import data from '@data/site.js'
+
+// Pure: wraps body in article structure with metadata
+export default function article (article, { head = html``, body, scripts = html`` } = {}) {
   return standardLayout({
-    head: html`<title>...</title>`,
-    body: html`${header()}<main>...</main>`
+    head: html`
+      <title>${article.title} - ${data.site.name}</title>
+      <meta name="description" content="${article.description}">
+      <link rel="stylesheet" href="/styles/layouts/article.css">
+      ${head}
+    `,
+    body: html`
+      <article id="ly-article">
+        <div class="container">
+          <header class="article-header">
+            <h1>${article.title}</h1>
+            <div class="article-meta">
+              <span class="date">${article.date}</span>
+              <span class="author">By ${article.author}</span>
+            </div>
+          </header>
+          <div class="article-content">${body}</div>
+          <footer class="article-footer">
+            <a href="/articles.html" class="back-link">← Back to Articles</a>
+          </footer>
+        </div>
+      </article>
+    `,
+    scripts: html`${scripts}`
   })
 }
 ```
 
-**Components**: Pure functions with parameters
+## Components
+
+Components return `{ head, body, scripts }` (all optional).
+
 ```javascript
-function teamCard ({ name, title, bio }) {
-  return html`<div>...</div>`
+// CSS: src/styles/components/header.css
+
+import html from '@utils/html.js'
+import data from '@data/site.js'
+
+// Front matter - nav links
+var nav = [
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Articles", href: "/articles" },
+  { label: "Contact", href: "/contact" }
+]
+
+// Pure: returns header with nav
+export default function header ({ currentPath = '/' } = {}) {
+  return {
+    head: html`<link rel="stylesheet" href="/styles/components/header.css">`,
+    body: html`
+      <header class="cp-header">
+        <div class="container">
+          <div class="logo"><a href="/">${data.site.name}</a></div>
+          <nav>
+            ${nav.map(item => html`
+              <a href="${item.href}" class="${item.href === currentPath ? 'active' : ''}">${item.label}</a>
+            `).join('')}
+          </nav>
+        </div>
+      </header>
+    `,
+    scripts: html`<script src="/scripts/nav.js"></script>`
+  }
 }
 ```
 
-### Data Flow
+## Pages
 
-1. `data.js` exports site data
-2. Components/pages import data
-3. Components take parameters for dynamic content
-4. Build script imports pages, calls functions, writes HTML
+### Regular Pages
 
-### CSS Strategy
+Use **options** to pass `currentPath` for nav highlighting. Header/footer automatic.
 
-**Directory Structure:**
-```
-src/
-├── layouts/         # Page layouts
-│   └── standard.js
-├── components/      # Reusable components
-│   ├── header.js
-│   └── footer.js
-├── pages/           # Pages (become HTML files)
-│   ├── index.js
-│   └── about.js
-├── styles/          # CSS mirrors structure above
-│   ├── layouts/
-│   ├── components/
-│   └── pages/
-├── fonts/           # Font files
-├── images/          # Images
-├── audios/          # Audio files
-├── videos/          # Video files
-├── scripts/         # Client-side JavaScript files
-├── root/            # Files copied to site root (robots.txt, favicon.ico, manifest.json)
-│   ├── robots.txt
-│   ├── manifest.json
-│   └── favicon.ico
-└── generators/      # JS files that generate content for site root
-    ├── sitemap.js   # Generates sitemap.xml
-    └── feed.js      # Generates feed.xml
-
-site/                # Built website (goes to S3)
-```
-
-**Namespace Pattern** - Prevents CSS collisions:
-- **Layouts**: `<body id="ly-{filename}">`, CSS nested under `#ly-{filename} { }`
-- **Pages**: Wrapped in `<section id="pg-{filename}">`, CSS nested under `#pg-{filename} { }`
-- **Components**: Wrapped in `.cp-{filename}` class, CSS nested under `.cp-{filename} { }`
-
-Examples:
 ```javascript
-// src/layouts/standard.js applies ID to body:
-<body id="ly-standard">...</body>
+// CSS: src/styles/pages/about.css
 
-// src/pages/about.js wraps content in:
-<section id="pg-about">...</section>
+import html from '@utils/html.js'
+import standardLayout from '@layouts/standard.js'
+import data from '@data/site.js'
 
-// src/components/header.js wraps in class:
-<header class="cp-header">...</header>
+// Front matter - page data only
+var pageData = {
+  title: 'About Us',
+  stats: [
+    { number: '99.9%', label: 'Purity' },
+    { number: '15+', label: 'Years Experience' }
+  ]
+}
+
+// Pure: returns complete page
+export default function page () {
+  return standardLayout({
+    options: {
+      currentPath: '/about'
+    },
+    head: html`
+      <title>${pageData.title} - ${data.site.name}</title>
+      <link rel="stylesheet" href="/styles/pages/about.css">
+    `,
+    body: html`
+      <section id="pg-about">
+        <h1>${pageData.title}</h1>
+        <div class="stats">
+          ${pageData.stats.map(stat => html`
+            <div class="stat">
+              <div class="number">${stat.number}</div>
+              <div class="label">${stat.label}</div>
+            </div>
+          `).join('')}
+        </div>
+      </section>
+    `
+  })
+}
 ```
 
-```css
-/* src/styles/layouts/standard.css */
-body#ly-standard {
-  .container { max-width: 1200px; }
-  a { color: #0066cc; }
+### Article Pages
+
+Pass article object, just supply body content. Layout handles title, date, author, header, footer.
+
+```javascript
+// CSS: src/styles/layouts/article.css
+
+import html from '@utils/html.js'
+import articleLayout from '@layouts/article.js'
+
+// Front matter - article metadata
+var article = {
+  title: 'Breakthrough in CNT Synthesis',
+  date: '2025-10-15',
+  author: 'Dr. Sarah Chen',
+  description: 'Our new CVD process achieves 99.9% purity...'
 }
 
-/* src/styles/pages/about.css */
-section#pg-about {
-  .hero { padding: 4rem 0; }
-  .team-grid { display: grid; }
-}
-
-/* src/styles/components/header.css */
-header.cp-header {
-  background: #1a1a1a;
-  nav { display: flex; }
+// Pure: returns complete article page
+export default function page () {
+  return articleLayout(article, {
+    body: html`
+      <p class="lead">Article intro paragraph...</p>
+      <h2>Section Heading</h2>
+      <p>Article content...</p>
+    `
+  })
 }
 ```
-
-This makes CSS collision-free, semantic, and maintainable. HTTP/2 makes multiple small CSS files faster than one large bundle.
-
-### Build Process
-
-1. Read all files in `src/pages/*.js`
-2. Import each page module
-3. Call page function → get HTML string
-4. Write to `site/*.html`
-5. Copy all CSS files to `site/styles/`
-6. Copy all static assets (fonts, images, audios, videos, scripts) to `site/`
-7. Copy all files from `src/root/` to `site/` (robots.txt, favicon.ico, etc)
-8. Run all generators in `src/generators/` and write output to `site/` (sitemap.xml, feed.xml)
 
 ## Key Patterns
 
-**Component with parameters:**
+### CSS Namespacing
+
+- **Layouts**: `body#ly-standard { ... }`
+- **Pages**: `section#pg-about { ... }`
+- **Components**: `header.cp-header { ... }`
+
+### File Comment
+
+Every file starts with: `// CSS: src/styles/[path].css`
+
+### Options Pattern
+
+Layouts accept `options` as first parameter for customization without breaking `{ head, body, scripts }` pattern:
+
 ```javascript
-function card ({ title, content }) {
-  return html`<div class="card">
-    <link rel="stylesheet" href="/styles/components/card.css">
-    <h3>${title}</h3>
-    <p>${content}</p>
-  </div>`
-}
+standard({ options: { currentPath: '/about' }, head, body, scripts })
 ```
 
-**Mapping data to components:**
-```javascript
-var cards = data.items.map(item => card(item)).join('\n')
-return html`<div class="grid">${cards}</div>`
+Options are optional with sensible defaults.
+
+## Build Process
+
+```bash
+deno task build
 ```
 
-**Active nav highlighting:**
-```javascript
-function nav (currentPath) {
-  return data.nav.map(item => {
-    var active = item.href === currentPath ? 'active' : ''
-    return html`<a href="${item.href}" class="${active}">${item.label}</a>`
-  }).join('\n')
-}
-```
+1. Recursively find all `src/pages/**/*.js` files
+2. Import and call each page function
+3. Write HTML to `site/` (mirrors src/pages structure)
+4. Copy CSS, assets, root files
+5. Run generators
+
+Nested pages work: `pages/articles/foo.js` → `site/articles/foo.html`
 
 ## File Conventions
 
-- **Layouts**: `src/layouts/[name].js` - Export function taking `{ head, body }`
-- **Components**: `src/components/[name].js` - Export pure function
-- **Pages**: `src/pages/[name].js` - Export function returning HTML (becomes `[name].html`)
-- **Styles**: Mirror structure in `src/styles/` (layout.css, components/*, pages/*)
-- **Data**: `data.js` at root - Export object with site data
-
-## Adding New Pages
-
-1. Create `src/pages/my-page.js`
-2. Create `src/styles/pages/my-page.css`
-3. Import layout, components, data
-4. Export page function
-5. Run `deno task build`
-
-Result: `site/my-page.html`
-
-## Adding Static Assets
-
-Place files directly in `src/fonts/`, `src/images/`, `src/audios/`, or `src/videos/`. They'll be copied to `site/` on build.
-
-Reference in HTML: `/images/logo.png`, `/fonts/custom.woff2`, etc.
-
-## Root Files & Generators
-
-**Static root files** (robots.txt, favicon.ico, manifest.json):
-- Place in `src/root/`
-- Copied directly to `site/` root
-
-**Generated root files** (sitemap.xml, feed.xml):
-- Create generator in `src/generators/`
-- Generator exports function returning `{ filename, content }`
-- Example:
-```javascript
-// src/generators/sitemap.js
-function sitemap () {
-  var xml = '<?xml version="1.0"?>...'
-  return {
-    filename: 'sitemap.xml',
-    content: xml
-  }
-}
-export default sitemap
-```
-
-## Important Notes
-
-### Session Status (Oct 31, 2025)
-- ✅ Basic SSG fully implemented and working
-- ✅ Two-slot layout system (head + body)
-- ✅ CSS namespace pattern with element types (body#ly-*, section#pg-*, element.cp-*)
-- ✅ Component system with parameters
-- ✅ Root files and generators working
-- ✅ Git repo initialized with first commit
-- 🚀 Ready to build real pages and deploy
-
-### Key Conventions Established
-
-**File Comments:** Every HTML-generating file (layouts, components, pages) has CSS location comment at top:
-```javascript
-// CSS: src/styles/components/header.css
-```
-
-**CSS Namespacing:** Always include element type in selectors:
-- Layouts: `body#ly-standard { }`
-- Pages: `section#pg-index { }`
-- Components: `header.cp-header { }`, `div.cp-team-card { }`
-
-**Generator Pattern:** Return `{ filename, content }`
-```javascript
-export default function sitemap() {
-  return { filename: 'sitemap.xml', content: '...' }
-}
-```
-
-**Clean URLs:** Not yet implemented - need to decide on localhost vs S3/CloudFront approach
-
-### Next Steps / TODO
-
-- [ ] File watching for auto-rebuild (dev mode)
-- [ ] Smart rebuilding (hash-based, track dependencies)
-- [ ] Deploy script for S3 + CloudFront cache invalidation
-- [ ] Clean URLs solution (about.html vs about/index.html)
-- [ ] Minification for production builds
-- [ ] Build actual site pages (products, resources, contact, etc)
-- [ ] Add real content to data.js (products, team details)
-- [ ] Service worker (sw.js) if needed
-- [ ] Image optimization pipeline
+- **Layouts**: Accept `{ options, head, body, scripts }`, return HTML
+- **Components**: Return `{ head, body, scripts }` (all optional)
+- **Pages**: Export `page()` function returning layout call
+- **Data**: Export default object
+- **CSS**: Mirrors source structure exactly

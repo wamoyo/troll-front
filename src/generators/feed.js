@@ -1,8 +1,8 @@
-import data from '../../data.js'
+import data from '@data/site.js'
 
 // Pure: generates RSS feed (feed.xml)
 // Returns { filename, content }
-function feed () {
+export default function feed () {
   // Placeholder - add your actual content/blog posts here
   var items = []
 
@@ -30,5 +30,3 @@ ${itemsXml}
     content: xml
   }
 }
-
-export default feed

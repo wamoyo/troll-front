@@ -9,13 +9,6 @@ export default {
     email: "info@trollhair.com",
     phone: "+1 (555) CNT-HAIR"
   },
-  nav: [
-    { label: "Home", href: "/" },
-    { label: "Products", href: "/products" },
-    { label: "Resources", href: "/resources" },
-    { label: "About", href: "/about" },
-    { label: "Contact", href: "/contact" }
-  ],
   team: [
     {
       name: "Dr. Sarah Chen",

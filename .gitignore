@@ -1,8 +1,8 @@
 # Build output
 site/
 
-# Temporary files
-temp/
+# Archive files
+archive/
 
 # Deno cache
 .deno/
