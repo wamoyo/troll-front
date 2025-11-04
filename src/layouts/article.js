@@ -3,15 +3,11 @@
 import html from '@utils/html.js'
 import standard from '@layouts/standard.js'
 import articleSeo from '@components/article-seo.js'
-import data from '@data/site.js'
 
 // Pure: article layout that extends standard layout, wraps body in article structure
 export default function article (meta, { head = '', body, scripts = ''}) {
   return standard({
     head: html`
-      <title>${meta.title} - ${data.site.name}</title>
-      <meta name="description" content="${meta.description}">
-      <link rel="canonical" href="${meta.url}">
       ${articleSeo(meta).head}
       <link rel="stylesheet" href="/styles/layouts/article.css">
       ${head}

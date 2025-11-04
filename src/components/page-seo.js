@@ -3,10 +3,13 @@
 import html from '@utils/html.js'
 import data from '@data/site.js'
 
-// Pure: returns SEO meta tags for generic pages
+// Pure: returns SEO meta tags for generic pages (including title, description, canonical)
 export default function pageSeo (page) {
   return {
     head: html`
+      <title>${page.title}</title>
+      <meta name="description" content="${page.description}">
+      <link rel="canonical" href="${page.url}">
       <script type="application/ld+json">
         {
           "@context": "http://schema.org",

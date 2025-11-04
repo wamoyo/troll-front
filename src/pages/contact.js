@@ -7,7 +7,7 @@ import data from '@data/site.js'
 
 // Front matter
 var meta = {
-  title: `Contact ${data.site.name} - Get in Touch`,
+  title: `Contact - ${data.site.name}`,
   description: `Contact ${data.site.company} to request samples, discuss your project, or learn more about our carbon nanotube materials.`,
   url: 'https://trollhair.com/contact'
 }
@@ -19,9 +19,6 @@ export default function page () {
       currentPath: '/contact'
     },
     head: html`
-      <title>${meta.title}</title>
-      <meta name="description" content="${meta.description}">
-      <link rel="canonical" href="${meta.url}">
       ${pageSeo(meta).head}
       <link rel="stylesheet" href="/styles/pages/contact.css">
     `,

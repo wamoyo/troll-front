@@ -3,10 +3,13 @@
 import html from '@utils/html.js'
 import data from '@data/site.js'
 
-// Pure: returns SEO meta tags for articles
+// Pure: returns SEO meta tags for articles (including title, description, canonical)
 export default function articleSeo (article) {
   return {
     head: html`
+      <title>${article.title} - ${data.site.name}</title>
+      <meta name="description" content="${article.description}">
+      <link rel="canonical" href="${article.url}">
       <script type="application/ld+json">
         {
           "@context": "http://schema.org",

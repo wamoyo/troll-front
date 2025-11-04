@@ -7,7 +7,7 @@ import data from '@data/site.js'
 
 // Front matter
 var meta = {
-  title: 'Articles',
+  title: `Articles - ${data.site.name}`,
   description: `News, updates, and insights from ${data.site.company} about carbon nanotube technology and applications.`,
   url: 'https://trollhair.com/articles'
 }
@@ -36,9 +36,6 @@ export default function page () {
       currentPath: '/articles'
     },
     head: html`
-      <title>${meta.title} - ${data.site.name}</title>
-      <meta name="description" content="${meta.description}">
-      <link rel="canonical" href="${meta.url}">
       ${pageSeo(meta).head}
       <link rel="stylesheet" href="/styles/pages/articles.css">
     `,

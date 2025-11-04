@@ -19,9 +19,6 @@ export default function page () {
       currentPath: '/'
     },
     head: html`
-      <title>${meta.title}</title>
-      <meta name="description" content="${meta.description}">
-      <link rel="canonical" href="${meta.url}">
       ${pageSeo(meta).head}
       <link rel="stylesheet" href="/styles/pages/index.css">
     `,

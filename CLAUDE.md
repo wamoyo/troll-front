@@ -93,15 +93,11 @@ Extends standard layout, wraps content in article structure. Automatically inclu
 import html from '@utils/html.js'
 import standard from '@layouts/standard.js'
 import articleSeo from '@components/article-seo.js'
-import data from '@data/site.js'
 
 // Pure: wraps body in article structure with metadata
 export default function article (meta, { head = '', body, scripts = ''}) {
   return standard({
     head: html`
-      <title>${meta.title} - ${data.site.name}</title>
-      <meta name="description" content="${meta.description}">
-      <link rel="canonical" href="${meta.url}">
       ${articleSeo(meta).head}
       <link rel="stylesheet" href="/styles/layouts/article.css">
       ${head}
@@ -183,7 +179,7 @@ import data from '@data/site.js'
 
 // Front matter
 var meta = {
-  title: 'About Us',
+  title: `About Us - ${data.site.name}`,
   description: `Learn about ${data.site.company}...`,
   url: 'https://trollhair.com/about'
 }
@@ -203,9 +199,6 @@ export default function page () {
       currentPath: '/about'
     },
     head: html`
-      <title>${meta.title} - ${data.site.name}</title>
-      <meta name="description" content="${meta.description}">
-      <link rel="canonical" href="${meta.url}">
       ${pageSeo(meta).head}
       <link rel="stylesheet" href="/styles/pages/about.css">
     `,
@@ -301,14 +294,15 @@ deno task build
 
 ## SEO Components
 
-Content-type specific SEO components handle Schema.org, Open Graph, and Twitter Cards.
+Content-type specific SEO components handle all SEO markup including title, meta description, canonical URL, Schema.org, Open Graph, and Twitter Cards.
 
 **page-seo.js** - For regular pages (WebPage schema)
+- Expects `meta.title` to include full title with site name
+
 **article-seo.js** - For articles (Article schema with author/dates)
+- Automatically appends site name to article title
 
-Both accept a data object and return `{ head }` with structured data and social meta tags.
-
-Pages handle basic meta (title, description, canonical), SEO components handle the rest.
+Both accept a data object and return `{ head }` with complete SEO markup. Pages only need to call the SEO component and add any additional head content (stylesheets, scripts, etc).
 
 ## File Conventions
 
