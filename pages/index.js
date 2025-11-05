@@ -1,4 +1,4 @@
-// CSS: src/styles/pages/index.css
+// CSS: styles/pages/index.css
 
 import html from '@utils/html.js'
 import standard from '@layouts/standard.js'

@@ -15,17 +15,16 @@ Custom Deno-based static site generator using JavaScript template literals.
 
 ```
 troll-front/
-├── src/
-│   ├── data/          # Site-wide data (site.js)
-│   ├── layouts/       # standard.js, article.js
-│   ├── components/    # header.js, footer.js, team-card.js
-│   ├── pages/         # Pages → HTML files (supports nesting)
-│   ├── styles/        # Mirrors: layouts/, components/, pages/
-│   ├── scripts/       # Client-side JS
-│   ├── root/          # Copied to site root
-│   └── generators/    # sitemap.xml, feed.xml
-├── site/              # Built output
-└── build.js           # Recursively builds all pages
+├── data/          # Site-wide data (site.js)
+├── layouts/       # standard.js, article.js
+├── components/    # header.js, footer.js, team-card.js
+├── pages/         # Pages → HTML files (supports nesting)
+├── styles/        # Mirrors: layouts/, components/, pages/
+├── scripts/       # Client-side JS
+├── root/          # Copied to site root
+├── generators/    # sitemap.xml, feed.xml
+├── site/          # Built output
+└── build.js       # Recursively builds all pages
 ```
 
 ## THE THREE SECTION RULE
@@ -52,7 +51,7 @@ Every file has exactly three sections:
 Includes header/footer automatically. Uses **options pattern** for customization.
 
 ```javascript
-// CSS: src/styles/layouts/standard.css
+// CSS: styles/layouts/standard.css
 
 import html from '@utils/html.js'
 import header from '@components/header.js'
@@ -88,7 +87,7 @@ export default function standard ({ options = {}, head, body, scripts }) {
 Extends standard layout, wraps content in article structure. Automatically includes articleSeo.
 
 ```javascript
-// CSS: src/styles/layouts/article.css
+// CSS: styles/layouts/article.css
 
 import html from '@utils/html.js'
 import standard from '@layouts/standard.js'
@@ -129,7 +128,7 @@ export default function article (meta, { head = '', body, scripts = ''}) {
 Components return `{ head, body, scripts }` (all optional).
 
 ```javascript
-// CSS: src/styles/components/header.css
+// CSS: styles/components/header.css
 
 import html from '@utils/html.js'
 import data from '@data/site.js'
@@ -170,7 +169,7 @@ export default function header (currentPath) {
 Use **options** to pass `currentPath` for nav highlighting. Use `meta` for SEO data, `pageData` for page-specific content.
 
 ```javascript
-// CSS: src/styles/pages/about.css
+// CSS: styles/pages/about.css
 
 import html from '@utils/html.js'
 import standard from '@layouts/standard.js'
@@ -224,7 +223,7 @@ export default function page () {
 Pass `meta` object with article metadata. Layout handles title, date, author, SEO, header, footer.
 
 ```javascript
-// CSS: src/styles/layouts/article.css
+// CSS: styles/layouts/article.css
 
 import html from '@utils/html.js'
 import article from '@layouts/article.js'
@@ -260,7 +259,7 @@ export default function page () {
 
 ### File Comment
 
-Every file starts with: `// CSS: src/styles/[path].css`
+Every file starts with: `// CSS: styles/[path].css`
 
 ### Options Pattern
 
@@ -278,7 +277,7 @@ Options are optional with sensible defaults.
 deno task build
 ```
 
-1. Recursively find all `src/pages/**/*.js` files
+1. Recursively find all `pages/**/*.js` files
 2. Import and call each page function
 3. Write HTML to `site/` as directory/index.html for clean URLs
 4. Copy CSS, assets, root files

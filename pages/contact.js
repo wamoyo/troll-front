@@ -1,4 +1,4 @@
-// CSS: src/styles/pages/contact.css
+// CSS: styles/pages/contact.css
 
 import html from '@utils/html.js'
 import standard from '@layouts/standard.js'

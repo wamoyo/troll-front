@@ -1,4 +1,4 @@
-// CSS: src/styles/layouts/standard.css
+// CSS: styles/layouts/standard.css
 
 import html from '@utils/html.js'
 import header from '@components/header.js'

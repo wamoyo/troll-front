@@ -4,7 +4,7 @@ import { ensureDir } from "https://deno.land/std@0.208.0/fs/mod.ts"
 import { join } from "https://deno.land/std@0.208.0/path/mod.ts"
 
 var siteDir = "./site"
-var srcDir = "./src"
+var srcDir = "."
 
 // Recursively get all page files
 var pages = []

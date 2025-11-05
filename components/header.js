@@ -1,4 +1,4 @@
-// CSS: src/styles/components/header.css
+// CSS: styles/components/header.css
 
 import html from '@utils/html.js'
 import data from '@data/site.js'

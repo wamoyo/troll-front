@@ -1,10 +1,10 @@
 {
   "imports": {
     "@/": "./",
-    "@data/": "./src/data/",
-    "@utils/": "./src/utils/",
-    "@components/": "./src/components/",
-    "@layouts/": "./src/layouts/"
+    "@data/": "./data/",
+    "@utils/": "./utils/",
+    "@components/": "./components/",
+    "@layouts/": "./layouts/"
   },
   "tasks": {
     "dev": "deno run --allow-read --allow-write --allow-net --watch dev.js",

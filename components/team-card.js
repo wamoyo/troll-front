@@ -1,4 +1,4 @@
-// CSS: src/styles/components/team-card.css
+// CSS: styles/components/team-card.css
 
 import html from '@utils/html.js'
 
