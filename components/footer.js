@@ -12,8 +12,12 @@ export default function footer () {
     body: html`
       <footer class="cp-footer">
         <div class="container">
-          <p>&copy; ${new Date().getFullYear()} ${data.site.company}. All rights reserved.</p>
-          <p class="tagline">${data.site.tagline}</p>
+          <p class="social">Connect with us on <a href="${data.social.linkedin}" target="_blank" rel="noopener">LinkedIn</a></p>
+          <p class="copyright">&copy; ${new Date().getFullYear()} Copyright ${data.site.company}</p>
+          <p class="legal">
+            <a href="/terms">Terms &amp; Conditions</a> |
+            <a href="/privacy">Privacy Policy</a>
+          </p>
         </div>
       </footer>
     `

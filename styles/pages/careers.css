@@ -1,0 +1,287 @@
+/* Careers page styles */
+
+section#pg-careers {
+  background: #000;
+  color: white;
+  padding: 4rem 0;
+  min-height: calc(100vh - 80px);
+
+  .container {
+    max-width: 900px;
+  }
+
+  h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 2.5rem;
+  }
+
+  h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    margin-top: 3rem;
+  }
+
+  h3 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .intro {
+    margin-bottom: 2.5rem;
+  }
+
+  .intro p {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+  }
+
+  .tagline {
+    font-size: 1.375rem;
+    font-style: italic;
+    margin-top: 1.5rem;
+  }
+
+  .process {
+    margin-bottom: 2.5rem;
+  }
+
+  .process ol {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    padding-left: 1.5rem;
+  }
+
+  .process li {
+    margin-bottom: 0.75rem;
+  }
+
+  .process a {
+    color: #e22c3b;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .process a:hover {
+    text-decoration: underline;
+  }
+
+  .philosophy {
+    margin-bottom: 3rem;
+  }
+
+  .philosophy p {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+  }
+
+  .compensation {
+    font-style: italic;
+    margin-top: 1.5rem;
+  }
+
+  .job-listings {
+    margin-top: 3rem;
+  }
+
+  .job-application-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  select,
+  input[type="text"],
+  input[type="email"],
+  input[type="url"],
+  textarea {
+    width: 100%;
+    padding: 1rem;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    font-family: 'Ubuntu', system-ui, -apple-system, sans-serif;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+  }
+
+  select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='white' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+  }
+
+  select option {
+    background: #1a1a1a;
+    color: white;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  input:focus,
+  textarea:focus,
+  select:focus {
+    outline: none;
+    border-color: #e22c3b;
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 150px;
+  }
+
+  #job-descriptions {
+    margin: 1.5rem 0;
+  }
+
+  .job-description {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 1.5rem;
+  }
+
+  .job-description h3 {
+    margin-top: 0;
+    margin-bottom: 1.25rem;
+  }
+
+  .job-priority,
+  .job-metrics {
+    margin-bottom: 1rem;
+  }
+
+  .job-detail {
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .submit-button {
+    background: #e22c3b;
+    color: white;
+    padding: 1rem 2.5rem;
+    border: none;
+    font-size: 1.125rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.3s;
+    align-self: flex-start;
+  }
+
+  .submit-button:hover {
+    background: #c91f2e;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    padding: 3rem 0;
+
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    h2 {
+      font-size: 2rem;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+    }
+
+    .intro p,
+    .process ol,
+    .philosophy p {
+      font-size: 1rem;
+    }
+
+    .tagline {
+      font-size: 1.125rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    padding: 2rem 0;
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    h2 {
+      font-size: 1.75rem;
+      margin-top: 2rem;
+    }
+
+    h3 {
+      font-size: 1.375rem;
+    }
+
+    .job-description {
+      padding: 1.5rem;
+    }
+
+    .submit-button {
+      width: 100%;
+      padding: 0.875rem 2rem;
+    }
+  }
+
+  @media (max-width: 320px) {
+    padding: 1.5rem 0;
+
+    h1 {
+      font-size: 1.75rem;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+    }
+
+    .intro p,
+    .process ol,
+    .philosophy p {
+      font-size: 0.9375rem;
+    }
+
+    select,
+    input[type="text"],
+    input[type="email"],
+    input[type="url"],
+    textarea {
+      padding: 0.875rem;
+      font-size: 0.9375rem;
+    }
+
+    .job-description {
+      padding: 1.25rem;
+    }
+  }
+}

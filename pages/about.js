@@ -3,40 +3,37 @@
 import html from '@utils/html.js'
 import standard from '@layouts/standard.js'
 import pageSeo from '@components/page-seo.js'
-import teamCard from '@components/team-card.js'
 import data from '@data/site.js'
 
 // Front matter
 var meta = {
   title: `About Us - ${data.site.name}`,
-  description: `Learn about ${data.site.company} and the team behind ${data.site.name} carbon nanotube materials.`,
+  description: 'We created Troll Hair to bring the world\'s strongest material, carbon nanotubes, out of the lab and into the marketplace.',
   url: 'https://trollhair.com/about'
 }
 
-var pageData = {
-  subtitle: 'Pioneering the future of carbon nanotube technology',
-  story: {
-    heading: 'Our Story',
-    intro: `${data.site.company} was founded with a singular mission: to make high-performance carbon nanotube materials accessible to industries that need them most.`,
-    mission: 'From aerospace to automotive, our CNT materials are enabling breakthrough innovations in strength, conductivity, and performance.'
+var team = [
+  {
+    name: 'Brad Edwards',
+    linkedin: 'https://www.linkedin.com/in/drbradedwards/',
+    bio: 'is our founder and CEO. He was commissioned by NASA to conduct the original feasibility study on the Space Elevator. Here he is on <a href="https://www.bloomberg.com/news/articles/2022-02-17/building-a-space-elevator-may-be-getting-closer-to-reality" target="_blank" rel="noopener">Bloomberg</a>. This project set him on a path to study and innovate the manufacturing and application of carbon nanotubes with...'
   },
-  stats: [
-    { number: '99.9%', label: 'Purity' },
-    { number: '15+', label: 'Years Experience' },
-    { number: '500+', label: 'Clients Worldwide' }
-  ],
-  team: {
-    heading: 'Our Team',
-    intro: 'World-class scientists and engineers dedicated to advancing CNT technology',
-    members: data.team
+  {
+    name: 'Rick Beed',
+    linkedin: 'https://www.linkedin.com/in/rick-beed-379722119/',
+    bio: ', our chief engineer. Rick is a prolific engineer. He has worked on autonomous underwater drones, a variety of state-of-the-art sensors and tools, and dozens of applications of carbon nanotubes including for the F35 stealth aircraft.'
   },
-  cta: {
-    heading: `Ready to Experience ${data.site.name}?`,
-    text: 'Request a sample and see the difference our CNT materials can make',
-    buttonText: 'Get Samples',
-    buttonHref: '/contact'
+  {
+    name: 'Lee Nolan',
+    linkedin: 'https://www.linkedin.com/in/leland-nolan-803451/',
+    bio: 'is our Chief Operations Officer. Lee has built companies across Europe and the US, gone public on NASDAQ, and leads the effort to expand our business to serve an array of industries.'
+  },
+  {
+    name: 'Constantinos Michailidis',
+    linkedin: 'https://www.linkedin.com/in/costamichailidis/',
+    bio: 'is our Chief Revenue Officer. An AI expert and scientific innovation consultant, Constantinos serves as a champion for our customers, here to make sure our business adds as much value to yours as possible.'
   }
-}
+]
 
 // Pure: returns complete about page HTML
 export default function page () {
@@ -46,53 +43,33 @@ export default function page () {
     },
     head: html`
       ${pageSeo(meta).head}
-      ${teamCard().head}
       <link rel="stylesheet" href="/styles/pages/about.css">
     `,
     body: html`
       <section id="pg-about">
-        <section class="about-hero">
-          <div class="container">
-            <h1>${meta.title}</h1>
-            <p class="subtitle">${pageData.subtitle}</p>
-          </div>
-        </section>
+        <div class="container">
+          <h1>About Us</h1>
 
-        <section class="about-story">
-          <div class="container">
-            <h2>${pageData.story.heading}</h2>
-            <p>${pageData.story.intro}</p>
-            <p>${pageData.story.mission}</p>
+          <section class="intro">
+            <p>We created Troll Hair here at Industrial CNT with the purpose of bringing the world's strongest material, <a href="/articles/carbon-nanotubes-material-of-future">carbon nanotubes</a>, out of the lab and into the marketplace.</p>
+          </section>
 
-            <div class="stats">
-              ${pageData.stats.map(stat => html`
-                <div class="stat">
-                  <div class="stat-number">${stat.number}</div>
-                  <div class="stat-label">${stat.label}</div>
-                </div>
-              `).join('')}
-            </div>
-          </div>
-        </section>
+          <section class="strength-spec">
+            <p class="spec-highlight"><em>Troll Hair clocks in at over 100 gigapascals of tensile strength.</em></p>
+            <p>That's roughly 27 times stronger than Kevlar (carbon fiber). This signals a transformational shift and enables entirely new use cases. Imagine stronger construction materials, dramatically lighter vehicles, new space craft, and more.</p>
+          </section>
 
-        <section class="team">
-          <div class="container">
-            <h2>${pageData.team.heading}</h2>
-            <p class="section-intro">${pageData.team.intro}</p>
+          <section class="team">
+            <h2>Our Team</h2>
+            ${team.map(member => html`
+              <p><a href="${member.linkedin}" target="_blank" rel="noopener">${member.name}</a> ${member.bio}</p>
+            `).join('\n          ')}
+          </section>
 
-          <div class="team-grid">
-              ${pageData.team.members.map(member => teamCard(member).body).join('')}
-            </div>
-          </div>
-        </section>
-
-        <section class="cta">
-          <div class="container">
-            <h2>${pageData.cta.heading}</h2>
-            <p>${pageData.cta.text}</p>
-            <a href="${pageData.cta.buttonHref}" class="cta-button">${pageData.cta.buttonText}</a>
-          </div>
-        </section>
+          <section class="cta">
+            <p>We cannot wait to see what you can build with our incredible new material! Learn all about it in <a href="/articles">our articles</a>, or visit <a href="/products">our shop</a>.</p>
+          </section>
+        </div>
       </section>
     `
   })

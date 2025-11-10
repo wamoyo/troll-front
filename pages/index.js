@@ -7,8 +7,8 @@ import data from '@data/site.js'
 
 // Front matter
 var meta = {
-  title: `${data.site.name} - ${data.site.tagline}`,
-  description: 'High-performance carbon nanotube materials from Industrial CNT LLC. Request samples today.',
+  title: `${data.site.name} - Titanium Strength Plastics`,
+  description: 'Our Carbon Nanotubes enable ultra high strength plastics for 3D Printing, Injection Molding, Extrusion, and more...',
   url: 'https://trollhair.com'
 }
 
@@ -26,16 +26,14 @@ export default function page () {
       <section id="pg-index">
         <section class="hero">
           <div class="container">
-            <h1>Welcome to ${data.site.name}</h1>
-            <p class="tagline">${data.site.tagline}</p>
-            <a href="#samples" class="cta-button">Get Samples</a>
-          </div>
-        </section>
-
-        <section class="intro">
-          <div class="container">
-            <h2>Revolutionary Carbon Nanotube Technology</h2>
-            <p>Industrial CNT LLC manufactures high-performance carbon nanotube materials for advanced applications.</p>
+            <div class="hero-content">
+              <h1>Titanium Strength Plastics</h1>
+              <p class="hero-description">Our <em>Carbon Nanotubes</em> enable ultra high strength plastics for 3D Printing, Injection Molding, Extrusion, and more...</p>
+              <a href="/samples" class="cta-button">Get Samples</a>
+            </div>
+            <div class="hero-image">
+              <img src="/images/hero-3d-printed-carbon-nanotube.png" alt="Red 3D printed geometric object demonstrating carbon nanotube enhanced plastic">
+            </div>
           </div>
         </section>
       </section>

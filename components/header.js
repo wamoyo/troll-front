@@ -7,6 +7,9 @@ import data from '@data/site.js'
 var nav = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
+  { label: "Products", href: "/products" },
+  { label: "Samples", href: "/samples" },
+  { label: "Careers", href: "/careers" },
   { label: "Articles", href: "/articles" },
   { label: "Contact", href: "/contact" }
 ]
@@ -22,7 +25,8 @@ export default function header (currentPath) {
         <div class="container">
           <div class="logo">
             <a href="/">
-              <span class="brand">${data.site.name}</span>
+              <img src="/images/logo-icon.png" alt="Troll Hair Logo" class="logo-icon">
+              <span class="brand"><span class="brand-troll">Troll</span> <span class="brand-hair">Hair</span></span>
             </a>
           </div>
           <nav>

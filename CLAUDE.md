@@ -311,3 +311,8 @@ Both accept a data object and return `{ head }` with complete SEO markup. Pages 
 - **Data**: Export default object
 - **CSS**: Mirrors source structure exactly
 - **Front matter naming**: Use `meta` for SEO data, `pageData` for page-specific content
+
+## TODO
+
+- **Self-host fonts**: Currently using Google Fonts for Ubuntu. Should download and use @font-face to serve fonts locally for better performance and privacy.
+- **Optimize logo for header**: Need to create a smaller version of logo-icon.png specifically sized for header use

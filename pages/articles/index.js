@@ -14,18 +14,18 @@ var meta = {
 
 var articles = [
   {
-    title: 'Breakthrough in CNT Synthesis Achieves 99.9% Purity',
-    url: '/articles/breakthrough-cnt-synthesis',
-    date: '2025-10-15',
-    author: 'Dr. Sarah Chen',
-    excerpt: 'Our new CVD process has achieved unprecedented purity levels, opening doors for next-generation applications in quantum computing and advanced electronics.'
+    title: 'Carbon Nanotubes: The Material Of The Future',
+    url: '/articles/carbon-nanotubes-material-of-future',
+    date: 'November 21, 2024',
+    author: 'Troll Hair Team',
+    excerpt: 'Carbon nanotubes (CNTs) are tubular molecules of carbon with incredible properties, including immense tensile strength, conduction, chemical resistance, and more.'
   },
   {
-    title: 'Industrial CNT Partners with Leading Aerospace Company',
-    url: '/articles/aerospace-partnership',
-    date: '2025-09-22',
-    author: 'Marcus Rivera',
-    excerpt: 'We\'re excited to announce a strategic partnership to develop next-generation composite materials for commercial aircraft, reducing weight by up to 30%.'
+    title: 'Long Carbon Nanotubes For Composites',
+    url: '/articles/long-carbon-nanotubes-composites',
+    date: 'November 21, 2024',
+    author: 'Troll Hair Team',
+    excerpt: 'Exploring the importance of length when using carbon nanotubes in composites to increase strength and toughness.'
   }
 ]
 

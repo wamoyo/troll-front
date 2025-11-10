@@ -9,6 +9,13 @@ export default {
     email: "info@trollhair.com",
     phone: "+1 (555) CNT-HAIR"
   },
+  colors: {
+    red: "#e22c3b",
+    orange: "#f2833b",
+    topOrange: "#f75735",
+    black: "#000000",
+    white: "#ffffff"
+  },
   team: [
     {
       name: "Dr. Sarah Chen",
