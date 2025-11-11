@@ -17,12 +17,13 @@ Custom Deno-based static site generator using JavaScript template literals.
 troll-front/
 ├── data/          # Site-wide data (site.js)
 ├── layouts/       # standard.js, article.js
-├── components/    # header.js, footer.js, team-card.js
+├── components/    # header.js, footer.js, page-seo.js, article-seo.js
 ├── pages/         # Pages → HTML files (supports nesting)
 ├── styles/        # Mirrors: layouts/, components/, pages/
 ├── scripts/       # Client-side JS
 ├── root/          # Copied to site root
 ├── generators/    # sitemap.xml, feed.xml
+├── archive/       # Development files (gitignored)
 ├── site/          # Built output
 └── build.js       # Recursively builds all pages
 ```
@@ -37,12 +38,26 @@ Every file has exactly three sections:
 
 **Never:**
 - Declare component instances in front matter
-- Put logic in the function
+- Put logic in the function body (only return statements)
 - Use `var` for anything except data
+- Place media queries outside their parent selector block
+- Nest @keyframes inside selector blocks
 
 **Always:**
 - Call components inline in templates
 - Keep functions pure with only return statements
+
+## Development Workflow
+
+**Dev Server:**
+```bash
+deno task dev  # Runs dev server on localhost:8700 with watch mode
+```
+
+**Build:**
+```bash
+deno task build  # Builds site to site/ directory
+```
 
 ## Layouts
 
@@ -94,8 +109,10 @@ import standard from '@layouts/standard.js'
 import articleSeo from '@components/article-seo.js'
 
 // Pure: wraps body in article structure with metadata
-export default function article (meta, { head = '', body, scripts = ''}) {
+// Note: Pass options through for nav highlighting if needed
+export default function article (meta, { options = {}, head = '', body, scripts = ''}) {
   return standard({
+    options,  // Pass through for currentPath/nav highlighting
     head: html`
       ${articleSeo(meta).head}
       <link rel="stylesheet" href="/styles/layouts/article.css">
@@ -127,6 +144,10 @@ export default function article (meta, { head = '', body, scripts = ''}) {
 
 Components return `{ head, body, scripts }` (all optional).
 
+### Header Component Example
+
+Shows mobile menu toggle pattern with checkbox/hamburger icon.
+
 ```javascript
 // CSS: styles/components/header.css
 
@@ -137,18 +158,38 @@ import data from '@data/site.js'
 var nav = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
+  { label: "Products", href: "/products" },
+  { label: "Samples", href: "/samples" },
+  { label: "Careers", href: "/careers" },
   { label: "Articles", href: "/articles" },
   { label: "Contact", href: "/contact" }
 ]
 
-// Pure: returns header with nav
+// Pure: returns header component with head, body, scripts
 export default function header (currentPath) {
   return {
-    head: html`<link rel="stylesheet" href="/styles/components/header.css">`,
+    head: html`
+      <link rel="stylesheet" href="/styles/components/header.css">
+    `,
     body: html`
       <header class="cp-header">
         <div class="container">
-          <div class="logo"><a href="/">${data.site.name}</a></div>
+          <div class="logo">
+            <a href="/">
+              <img
+                src="/images/logo-icon-100.png"
+                srcset="/images/logo-icon-100.png 1x, /images/logo-icon-200.png 2x"
+                alt="Troll Hair Logo"
+                class="logo-icon"
+              >
+              <span class="brand"><span class="brand-troll">Troll</span> <span class="brand-hair">Hair</span></span>
+            </a>
+          </div>
+          <input type="checkbox" id="menu-toggle" class="menu-toggle" autocomplete="off">
+          <label for="menu-toggle" class="mobile-menu-toggle" aria-label="Toggle menu">
+            <span class="menu-text"></span>
+            <span class="hamburger"></span>
+          </label>
           <nav>
             ${nav.map(item => html`
               <a href="${item.href}" class="${item.href === currentPath ? 'active' : ''}">${item.label}</a>
@@ -157,7 +198,7 @@ export default function header (currentPath) {
         </div>
       </header>
     `,
-    scripts: html`<script src="/scripts/nav.js"></script>`
+    scripts: html``
   }
 }
 ```
@@ -223,7 +264,7 @@ export default function page () {
 Pass `meta` object with article metadata. Layout handles title, date, author, SEO, header, footer.
 
 ```javascript
-// CSS: styles/layouts/article.css
+// No dedicated CSS file - uses article layout's CSS
 
 import html from '@utils/html.js'
 import article from '@layouts/article.js'
@@ -260,11 +301,14 @@ export default function page () {
 **@keyframes Namespacing:**
 - `@keyframes` must be at root level (cannot be nested in current CSS)
 - Namespace by name: `@keyframes pg-index-hero-zoom { ... }`, `@keyframes cp-header-slide { ... }`, `@keyframes ly-standard-fade { ... }`
-- TODO: Consider PostCSS or similar to auto-scope keyframes in the future
+- **Critical:** Place @keyframes AFTER the closing brace of your main selector block, never inside it
+- If animations don't work, check that @keyframes are at file root level
 
 ### File Comment
 
 Every file starts with: `// CSS: styles/[path].css`
+
+Or if no CSS file: `// No CSS file - uses layout's CSS`
 
 ### Options Pattern
 
@@ -317,7 +361,110 @@ Both accept a data object and return `{ head }` with complete SEO markup. Pages 
 - **CSS**: Mirrors source structure exactly
 - **Front matter naming**: Use `meta` for SEO data, `pageData` for page-specific content
 
+## CSS Best Practices
+
+### Nesting and Media Queries
+
+Always ensure media queries are INSIDE their parent selector block. CSS nesting syntax is used throughout.
+
+**Bad - Media queries outside parent:**
+```css
+section#pg-index {
+  .hero {
+    padding: 4rem 0;
+  }
+}
+
+/* These won't apply! */
+@media (max-width: 768px) {
+  .hero {
+    padding: 2rem 0;
+  }
+}
+```
+
+**Good - Media queries inside parent:**
+```css
+section#pg-index {
+  .hero {
+    padding: 4rem 0;
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      padding: 2rem 0;
+    }
+  }
+}
+```
+
+### Specificity and !important
+
+- Use `!important` sparingly, only for overriding specificity conflicts
+- Example: Header nav links need `!important` to override global `body#ly-standard a` styles
+- Always document why `!important` is needed with a comment
+
+```css
+/* Override global link color for nav - needs !important due to body#ly-standard a specificity */
+nav a {
+  color: var(--color-text-secondary) !important;
+}
+```
+
+### Responsive Breakpoints
+
+Standard breakpoints used throughout:
+- **1100px** - Large tablets (logo/brand size adjustment)
+- **900px** - Tablets / Mobile menu activation
+- **768px** - Small tablets
+- **640px** - Large phones
+- **480px** - Medium phones
+- **375px** - Small phones
+- **320px** - Very small phones
+
+## Common Pitfalls
+
+### 1. Media queries outside parent selector
+**Problem:** Media queries placed outside the main selector block will not apply.
+
+**Solution:** Always nest media queries inside the main selector block.
+
+### 2. CSS specificity conflicts
+**Problem:** Global link styles in `standard.css` use `body#ly-standard a` which has high specificity.
+
+**Solution:** Component-specific overrides may need `!important` or matching specificity.
+
+### 3. Forgetting currentPath
+**Problem:** Nav highlighting doesn't work.
+
+**Solution:** Pages must pass `options: { currentPath: '/path' }` to standard layout.
+
+### 4. Testing without build
+**Problem:** CSS changes don't appear to work.
+
+**Solution:** Always check dev server (auto-rebuilds) or run `deno task build` to verify changes apply.
+
+### 5. @keyframes placement
+**Problem:** Animations don't work.
+
+**Solution:** @keyframes must be at root level, outside all selector blocks. Place them after the closing brace of your main selector.
+
+### 6. Front matter violations
+**Problem:** Components instantiated in front matter cause errors.
+
+**Solution:** Only declare data in front matter. Call components inline in templates.
+
+```javascript
+// BAD - Don't instantiate components in front matter
+var headerComponent = header('/about')  // ❌
+
+// GOOD - Only declare data
+var meta = { title: 'About' }  // ✅
+```
+
 ## TODO
 
 - **Self-host fonts**: Currently using Google Fonts for Ubuntu. Should download and use @font-face to serve fonts locally for better performance and privacy.
-- **Optimize logo for header**: Need to create a smaller version of logo-icon.png specifically sized for header use
+- **Create favicon**: Currently 404ing, need to create favicon.ico and add to root/
+- **Optimize images**: Implement lazy loading for hero images
+- **Add image optimization**: Consider WebP format with fallbacks for better performance
