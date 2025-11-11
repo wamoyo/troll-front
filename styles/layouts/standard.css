@@ -6,11 +6,15 @@
   box-sizing: border-box;
 }
 
+html,
+body#ly-standard {
+  background: #000;
+}
+
 body#ly-standard {
   font-family: 'Ubuntu', system-ui, -apple-system, sans-serif;
   line-height: 1.6;
   color: #333;
-  background: #fff;
 
   .container {
     max-width: 1200px;

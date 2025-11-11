@@ -4,7 +4,7 @@ section#pg-index {
   .hero {
     background: #000;
     color: white;
-    min-height: calc(100vh - 80px);
+    padding: 4rem 0;
     display: flex;
     align-items: center;
   }

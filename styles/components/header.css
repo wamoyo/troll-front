@@ -25,12 +25,13 @@ header.cp-header {
   }
 
   .logo-icon {
-    height: 50px;
+    height: 100px;
     width: auto;
+    max-height: 100px;
   }
 
   .logo .brand {
-    font-size: 1.75rem;
+    font-size: 2.25rem;
     font-weight: 700;
     line-height: 1;
   }
@@ -65,38 +66,111 @@ header.cp-header {
     color: #e22c3b;
   }
 
-  /* Mobile menu toggle - hidden by default, shown by nav.js */
+  /* Hide checkbox */
+  .menu-toggle {
+    display: none;
+  }
+
+  /* Mobile menu toggle - hidden on desktop */
   .mobile-menu-toggle {
     display: none;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
     background: none;
     border: none;
-    color: white;
-    font-size: 1.5rem;
-    cursor: pointer;
     padding: 0.5rem;
   }
 
+  .menu-text {
+    display: none;
+    color: white;
+    font-size: 1.3rem;
+    font-weight: 700;
+  }
+
+  .menu-text::before {
+    content: 'Menu';
+  }
+
+  .menu-toggle:checked + .mobile-menu-toggle .menu-text::before {
+    content: 'Close';
+  }
+
+  /* Hamburger icon */
+  .hamburger,
+  .hamburger::before,
+  .hamburger::after {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background: white;
+    transition: all 0.3s;
+  }
+
+  .hamburger {
+    position: relative;
+  }
+
+  .hamburger::before,
+  .hamburger::after {
+    content: '';
+    position: absolute;
+    left: 0;
+  }
+
+  .hamburger::before {
+    top: -8px;
+  }
+
+  .hamburger::after {
+    top: 8px;
+  }
+
+  /* Transform hamburger to X when checked */
+  .menu-toggle:checked + .mobile-menu-toggle .hamburger {
+    background: transparent;
+  }
+
+  .menu-toggle:checked + .mobile-menu-toggle .hamburger::before {
+    top: 0;
+    transform: rotate(45deg);
+  }
+
+  .menu-toggle:checked + .mobile-menu-toggle .hamburger::after {
+    top: 0;
+    transform: rotate(-45deg);
+  }
+
   /* Responsive */
-  @media (max-width: 768px) {
+  @media (max-width: 900px) {
     .mobile-menu-toggle {
-      display: block;
+      display: flex;
     }
 
     nav {
-      display: none;
       position: absolute;
       top: 100%;
       left: 0;
       right: 0;
       background: #000;
       flex-direction: column;
-      padding: 1rem 0;
+      padding: 0;
       gap: 0;
       border-top: 1px solid #333;
+      z-index: 1000;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
     }
 
-    nav.active {
-      display: flex;
+    .menu-toggle:checked ~ nav {
+      max-height: 500px;
+      opacity: 1;
+      padding: 1rem 0;
     }
 
     nav a {
@@ -110,21 +184,32 @@ header.cp-header {
     }
   }
 
-  @media (max-width: 480px) {
+  /* Show "Menu" text between 450px and 900px */
+  @media (max-width: 900px) and (min-width: 450px) {
+    .menu-text {
+      display: block;
+    }
+  }
+
+  @media (max-width: 1100px) {
     .logo-icon {
-      height: 40px;
+      height: 75px;
+      max-height: 75px;
     }
 
     .logo .brand {
-      font-size: 1.5rem;
+      font-size: 2rem;
+    }
+  }
+
+  /* Hide Menu text below 450px */
+  @media (max-width: 449px) {
+    .menu-text {
+      display: none;
     }
   }
 
   @media (max-width: 375px) {
-    .logo .brand {
-      font-size: 1.25rem;
-    }
-
     .logo a {
       gap: 0.5rem;
     }
@@ -132,14 +217,6 @@ header.cp-header {
 
   @media (max-width: 320px) {
     padding: 0.75rem 0;
-
-    .logo-icon {
-      height: 36px;
-    }
-
-    .logo .brand {
-      font-size: 1.125rem;
-    }
 
     .logo a {
       gap: 0.4rem;

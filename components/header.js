@@ -29,6 +29,11 @@ export default function header (currentPath) {
               <span class="brand"><span class="brand-troll">Troll</span> <span class="brand-hair">Hair</span></span>
             </a>
           </div>
+          <input type="checkbox" id="menu-toggle" class="menu-toggle" autocomplete="off">
+          <label for="menu-toggle" class="mobile-menu-toggle" aria-label="Toggle menu">
+            <span class="menu-text"></span>
+            <span class="hamburger"></span>
+          </label>
           <nav>
             ${nav.map(item => html`
               <a href="${item.href}" class="${item.href === currentPath ? 'active' : ''}">${item.label}</a>
@@ -37,6 +42,6 @@ export default function header (currentPath) {
         </div>
       </header>
     `,
-    scripts: html`<script src="/scripts/nav.js"></script>`
+    scripts: html``
   }
 }
