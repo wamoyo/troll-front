@@ -72,19 +72,6 @@ section#pg-index {
     transform-origin: center 70%;
     will-change: transform;
   }
-}
-
-@keyframes pg-index-hero-zoom {
-  0% {
-    transform: scale(1) translate(0, 0);
-  }
-  50% {
-    transform: scale(1.05) translate(-1%, -1%);
-  }
-  100% {
-    transform: scale(1) translate(0, 0);
-  }
-}
 
   /* Responsive breakpoints */
   @media (max-width: 968px) {
@@ -164,5 +151,17 @@ section#pg-index {
       padding: 0.75rem 1.5rem;
       font-size: 0.9375rem;
     }
+  }
+}
+
+@keyframes pg-index-hero-zoom {
+  0% {
+    transform: scale(1) translate(0, 0);
+  }
+  50% {
+    transform: scale(1.05) translate(-1%, -1%);
+  }
+  100% {
+    transform: scale(1) translate(0, 0);
   }
 }

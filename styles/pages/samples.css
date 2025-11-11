@@ -23,7 +23,7 @@ section#pg-samples .page-intro p {
 }
 
 section#pg-samples .sample-image {
-  text-align: center;
+  text-align: left;
   margin: var(--spacing-xl) 0;
 }
 

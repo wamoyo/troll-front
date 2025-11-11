@@ -52,11 +52,12 @@ header.cp-header {
   }
 
   nav a {
-    color: var(--color-text-primary) !important;
+    color: var(--color-text-secondary) !important;
   }
 
   nav a.active {
-    color: var(--color-accent) !important;
+    color: var(--color-text-primary) !important;
+    text-decoration: underline !important;
   }
 
   /* Hide checkbox */
@@ -170,6 +171,7 @@ header.cp-header {
       padding: var(--spacing-sm) 1.25rem;
       width: 100%;
       border-bottom: 1px solid #222;
+      text-align: center;
     }
 
     nav a.active {
