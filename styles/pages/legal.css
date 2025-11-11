@@ -1,45 +1,44 @@
 /* Legal pages styles (Terms & Privacy) */
 
 section#pg-legal {
-  background: #000;
-  color: white;
-  padding: 4rem 0;
-  min-height: calc(100vh - 80px);
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  padding: var(--spacing-2xl) 0;
 
   .container {
-    max-width: 900px;
+    max-width: var(--width-medium);
   }
 
   h1 {
-    font-size: 3.5rem;
-    font-weight: 700;
-    margin-bottom: 2rem;
+    font-size: var(--font-size-h1);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-lg);
   }
 
   .effective-date {
     font-size: 1rem;
-    color: rgba(255, 255, 255, 0.7);
-    margin-bottom: 2rem;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-lg);
   }
 
   p {
-    font-size: 1.125rem;
-    line-height: 1.7;
-    margin-bottom: 1.5rem;
+    font-size: var(--font-size-body);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--spacing-md);
   }
 
   h2 {
     font-size: 1.75rem;
-    font-weight: 700;
+    font-weight: var(--font-weight-bold);
     margin-top: 2.5rem;
     margin-bottom: 1.25rem;
   }
 
   ul {
-    font-size: 1.125rem;
-    line-height: 1.7;
-    margin-bottom: 1.5rem;
-    padding-left: 2rem;
+    font-size: var(--font-size-body);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--spacing-md);
+    padding-left: var(--spacing-lg);
   }
 
   li {
@@ -47,9 +46,9 @@ section#pg-legal {
   }
 
   a {
-    color: #e22c3b;
+    color: var(--color-accent);
     text-decoration: none;
-    font-weight: 600;
+    font-weight: var(--font-weight-semibold);
   }
 
   a:hover {
@@ -58,14 +57,14 @@ section#pg-legal {
 
   /* Responsive */
   @media (max-width: 768px) {
-    padding: 3rem 0;
+    padding: var(--spacing-xl) 0;
 
     h1 {
       font-size: 2.5rem;
     }
 
     h2 {
-      font-size: 1.5rem;
+      font-size: var(--font-size-h3);
     }
 
     p,
@@ -75,33 +74,33 @@ section#pg-legal {
   }
 
   @media (max-width: 480px) {
-    padding: 2rem 0;
+    padding: var(--spacing-lg) 0;
 
     h1 {
-      font-size: 2rem;
-      margin-bottom: 1.5rem;
+      font-size: var(--font-size-h2);
+      margin-bottom: var(--spacing-md);
     }
 
     h2 {
       font-size: 1.375rem;
-      margin-top: 2rem;
+      margin-top: var(--spacing-lg);
     }
   }
 
   @media (max-width: 320px) {
-    padding: 1.5rem 0;
+    padding: var(--spacing-md) 0;
 
     h1 {
       font-size: 1.75rem;
     }
 
     h2 {
-      font-size: 1.25rem;
+      font-size: var(--font-size-h4);
     }
 
     p,
     ul {
-      font-size: 0.9375rem;
+      font-size: var(--font-size-small);
     }
   }
 }

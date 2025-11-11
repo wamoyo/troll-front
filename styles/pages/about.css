@@ -1,57 +1,47 @@
 /* About page styles */
 
 section#pg-about {
-  background: #000;
-  color: white;
-  padding: 4rem 0;
-  min-height: calc(100vh - 80px);
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  padding: var(--spacing-2xl) 0;
 
   .container {
-    max-width: 900px;
+    max-width: var(--width-medium);
   }
 
   h1 {
-    font-size: 3.5rem;
-    font-weight: 700;
+    font-size: var(--font-size-h1);
+    font-weight: var(--font-weight-bold);
     margin-bottom: 2.5rem;
     text-align: center;
   }
 
   h2 {
     font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 2rem;
-    margin-top: 3rem;
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-lg);
+    margin-top: var(--spacing-xl);
   }
 
   .intro {
-    margin-bottom: 2rem;
+    margin-bottom: var(--spacing-lg);
   }
 
   .intro p {
-    font-size: 1.125rem;
-    line-height: 1.7;
-    margin-bottom: 1.5rem;
-  }
-
-  .intro a {
-    color: #e22c3b;
-    text-decoration: underline;
-  }
-
-  .intro a:hover {
-    color: #c91f2e;
+    font-size: var(--font-size-body);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--spacing-md);
   }
 
   .strength-spec {
-    margin-bottom: 3rem;
+    margin-bottom: var(--spacing-xl);
   }
 
   .spec-highlight {
-    font-size: 1.25rem;
+    font-size: var(--font-size-h4);
     font-style: italic;
-    margin-bottom: 1.5rem;
-    line-height: 1.7;
+    margin-bottom: var(--spacing-md);
+    line-height: var(--line-height-relaxed);
   }
 
   .spec-highlight em {
@@ -59,58 +49,39 @@ section#pg-about {
   }
 
   .strength-spec p {
-    font-size: 1.125rem;
-    line-height: 1.7;
+    font-size: var(--font-size-body);
+    line-height: var(--line-height-relaxed);
   }
 
   .team {
-    margin-bottom: 3rem;
+    margin-bottom: var(--spacing-xl);
   }
 
   .team p {
-    font-size: 1.125rem;
-    line-height: 1.7;
-    margin-bottom: 1.5rem;
-  }
-
-  .team a {
-    color: #e22c3b;
-    font-weight: 600;
-    text-decoration: none;
-  }
-
-  .team a:hover {
-    text-decoration: underline;
+    font-size: var(--font-size-body);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--spacing-md);
   }
 
   .cta {
-    margin-top: 3rem;
+    margin-top: var(--spacing-xl);
   }
 
   .cta p {
-    font-size: 1.125rem;
-    line-height: 1.7;
-  }
-
-  .cta a {
-    color: #e22c3b;
-    text-decoration: underline;
-  }
-
-  .cta a:hover {
-    color: #c91f2e;
+    font-size: var(--font-size-body);
+    line-height: var(--line-height-relaxed);
   }
 
   /* Responsive */
   @media (max-width: 768px) {
-    padding: 3rem 0;
+    padding: var(--spacing-xl) 0;
 
     h1 {
       font-size: 2.5rem;
     }
 
     h2 {
-      font-size: 2rem;
+      font-size: var(--font-size-h2);
     }
 
     .intro p,
@@ -121,42 +92,42 @@ section#pg-about {
     }
 
     .spec-highlight {
-      font-size: 1.125rem;
+      font-size: var(--font-size-body);
     }
   }
 
   @media (max-width: 480px) {
-    padding: 2rem 0;
+    padding: var(--spacing-lg) 0;
 
     h1 {
-      font-size: 2rem;
-      margin-bottom: 2rem;
+      font-size: var(--font-size-h2);
+      margin-bottom: var(--spacing-lg);
     }
 
     h2 {
       font-size: 1.75rem;
-      margin-top: 2rem;
+      margin-top: var(--spacing-lg);
     }
   }
 
   @media (max-width: 320px) {
-    padding: 1.5rem 0;
+    padding: var(--spacing-md) 0;
 
     h1 {
       font-size: 1.75rem;
-      margin-bottom: 1.5rem;
+      margin-bottom: var(--spacing-md);
     }
 
     h2 {
-      font-size: 1.5rem;
-      margin-top: 1.5rem;
+      font-size: var(--font-size-h3);
+      margin-top: var(--spacing-md);
     }
 
     .intro p,
     .strength-spec p,
     .team p,
     .cta p {
-      font-size: 0.9375rem;
+      font-size: var(--font-size-small);
     }
 
     .spec-highlight {

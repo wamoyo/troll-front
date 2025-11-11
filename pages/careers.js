@@ -55,7 +55,7 @@ export default function page () {
     `,
     body: html`
       <section id="pg-careers">
-        <div class="container">
+        <div class="container-medium">
           <h1>Careers</h1>
 
           <section class="intro">
@@ -66,7 +66,7 @@ export default function page () {
           <section class="process">
             <ol>
               <li>View the open listings below.</li>
-              <li>Contact Constantinos at <a href="mailto:costa@trollhair.com">costa@trollhair.com</a> or on <a href="https://linkedin.com/in/costamichailidis" target="_blank" rel="noopener">LinkedIn</a> with questions.</li>
+              <li>Contact Constantinos at <a href="mailto:costa@trollhair.com" target="_blank">costa@trollhair.com</a> or on <a href="https://linkedin.com/in/costamichailidis" target="_blank" rel="noopener">LinkedIn</a> with questions.</li>
               <li>Submit an application with the form below.</li>
             </ol>
           </section>
@@ -80,7 +80,9 @@ export default function page () {
             <p>Select the position you're interested in and complete the form below. And, please share this web page with friends and colleagues suited for the roles.</p>
             <p class="compensation"><em>Compensation is, of course, very competitive.</em></p>
           </section>
+        </div>
 
+        <div class="container-medium">
           <section class="job-listings">
             <h2>Apply For A Job</h2>
 

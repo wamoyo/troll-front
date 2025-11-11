@@ -49,8 +49,6 @@ section#pg-samples .more-info p {
 
 section#pg-samples .contact-details {
   margin-top: var(--spacing-lg);
-  padding-top: var(--spacing-lg);
-  border-top: 1px solid var(--color-border);
 }
 
 section#pg-samples .contact-details p {

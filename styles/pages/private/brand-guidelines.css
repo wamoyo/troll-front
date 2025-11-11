@@ -1,10 +1,9 @@
 /* Brand Guidelines page styles */
 
 section#pg-brand-guidelines {
-  background: #000;
-  color: #fff;
-  padding: 4rem 0 6rem;
-  min-height: 100vh;
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  padding: var(--spacing-2xl) 0 6rem;
 }
 
 section#pg-brand-guidelines .container {
@@ -12,21 +11,21 @@ section#pg-brand-guidelines .container {
 }
 
 section#pg-brand-guidelines .page-header {
-  margin-bottom: 4rem;
-  padding-bottom: 2rem;
-  border-bottom: 2px solid #e22c3b;
+  margin-bottom: var(--spacing-2xl);
+  padding-bottom: var(--spacing-lg);
+  border-bottom: 2px solid var(--color-accent);
 }
 
 section#pg-brand-guidelines .page-header h1 {
   font-size: 4rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  color: #fff;
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-text-primary);
 }
 
 section#pg-brand-guidelines .subtitle {
-  font-size: 1.5rem;
-  color: rgba(255, 255, 255, 0.7);
+  font-size: var(--font-size-h3);
+  color: var(--color-text-secondary);
   margin: 0;
 }
 
@@ -36,50 +35,50 @@ section#pg-brand-guidelines .guide-section {
 
 section#pg-brand-guidelines .section-title {
   font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 3rem;
-  color: #e22c3b;
-  padding-bottom: 0.5rem;
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-xl);
+  color: var(--color-accent);
+  padding-bottom: var(--spacing-xs);
   border-bottom: 1px solid rgba(226, 44, 59, 0.3);
 }
 
 section#pg-brand-guidelines .subsection {
-  margin-bottom: 3rem;
+  margin-bottom: var(--spacing-xl);
 }
 
 section#pg-brand-guidelines .subsection h3 {
   font-size: 1.75rem;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
-  color: #fff;
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-md);
+  color: var(--color-text-primary);
 }
 
 section#pg-brand-guidelines .subsection h4 {
-  font-size: 1.25rem;
-  font-weight: 700;
-  margin: 2rem 0 1rem;
-  color: #fff;
+  font-size: var(--font-size-h4);
+  font-weight: var(--font-weight-bold);
+  margin: var(--spacing-lg) 0 var(--spacing-sm);
+  color: var(--color-text-primary);
 }
 
 section#pg-brand-guidelines .font-info {
-  font-size: 1.25rem;
+  font-size: var(--font-size-h4);
   margin-bottom: 0.75rem;
   color: rgba(255, 255, 255, 0.9);
 }
 
 section#pg-brand-guidelines .type-specimen {
-  background: rgba(255, 255, 255, 0.03);
-  padding: 2rem;
-  margin-bottom: 1.5rem;
-  border-left: 3px solid #e22c3b;
+  background: var(--color-bg-secondary);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
+  border-left: 3px solid var(--color-accent);
 }
 
 section#pg-brand-guidelines .type-specimen h1,
 section#pg-brand-guidelines .type-specimen h2,
 section#pg-brand-guidelines .type-specimen h3,
 section#pg-brand-guidelines .type-specimen h4 {
-  margin: 0 0 0.5rem 0;
-  color: #fff;
+  margin: 0 0 var(--spacing-xs) 0;
+  color: var(--color-text-primary);
 }
 
 section#pg-brand-guidelines .type-specimen p {
@@ -87,22 +86,22 @@ section#pg-brand-guidelines .type-specimen p {
 }
 
 section#pg-brand-guidelines .type-meta {
-  font-size: 0.9375rem;
-  color: rgba(255, 255, 255, 0.5);
+  font-size: var(--font-size-small);
+  color: var(--color-text-tertiary);
   font-family: 'Courier New', monospace;
-  margin-top: 0.5rem;
+  margin-top: var(--spacing-xs);
 }
 
 section#pg-brand-guidelines p {
-  font-size: 1.125rem;
-  line-height: 1.7;
-  margin-bottom: 1.5rem;
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-relaxed);
+  margin-bottom: var(--spacing-md);
   color: rgba(255, 255, 255, 0.9);
 }
 
 section#pg-brand-guidelines strong {
-  font-weight: 700;
-  color: #fff;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
 }
 
 section#pg-brand-guidelines em {
@@ -110,9 +109,9 @@ section#pg-brand-guidelines em {
 }
 
 section#pg-brand-guidelines a {
-  color: #e22c3b;
+  color: var(--color-accent);
   text-decoration: none;
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
 }
 
 section#pg-brand-guidelines a:hover {
@@ -121,10 +120,10 @@ section#pg-brand-guidelines a:hover {
 
 section#pg-brand-guidelines ul,
 section#pg-brand-guidelines ol {
-  font-size: 1.125rem;
-  line-height: 1.7;
-  margin-bottom: 1.5rem;
-  padding-left: 2rem;
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-relaxed);
+  margin-bottom: var(--spacing-md);
+  padding-left: var(--spacing-lg);
   color: rgba(255, 255, 255, 0.9);
 }
 
@@ -135,65 +134,65 @@ section#pg-brand-guidelines li {
 section#pg-brand-guidelines blockquote {
   font-size: 1.375rem;
   font-style: italic;
-  line-height: 1.6;
-  margin: 2rem 0;
-  padding: 2rem 2.5rem;
-  border-left: 4px solid #e22c3b;
+  line-height: var(--line-height-normal);
+  margin: var(--spacing-lg) 0;
+  padding: var(--spacing-lg) 2.5rem;
+  border-left: 4px solid var(--color-accent);
   background: rgba(226, 44, 59, 0.08);
-  color: #fff;
+  color: var(--color-text-primary);
 }
 
 section#pg-brand-guidelines .cta-button {
   display: inline-block;
-  background: #e22c3b;
-  color: white;
-  padding: 1rem 2.5rem;
-  font-size: 1.125rem;
-  font-weight: 700;
+  background: var(--color-accent);
+  color: var(--color-text-primary);
+  padding: var(--spacing-sm) 2.5rem;
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-bold);
   border: none;
-  transition: background 0.3s;
-  margin-bottom: 1rem;
+  transition: background var(--transition-normal);
+  margin-bottom: var(--spacing-sm);
 }
 
 section#pg-brand-guidelines .cta-button:hover {
-  background: #c91f2e;
+  background: var(--color-accent-hover);
   text-decoration: none;
 }
 
 section#pg-brand-guidelines .color-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-lg);
 }
 
 section#pg-brand-guidelines .color-card {
-  background: rgba(255, 255, 255, 0.03);
-  padding: 2rem;
+  background: var(--color-bg-secondary);
+  padding: var(--spacing-lg);
   border-radius: 8px;
   text-align: center;
 }
 
 section#pg-brand-guidelines .color-card h4 {
-  font-size: 1.25rem;
-  margin: 1rem 0 0.5rem;
-  color: #fff;
+  font-size: var(--font-size-h4);
+  margin: var(--spacing-sm) 0 var(--spacing-xs);
+  color: var(--color-text-primary);
 }
 
 section#pg-brand-guidelines .color-swatch {
   width: 100%;
   height: 140px;
   border-radius: 8px;
-  margin-bottom: 1rem;
+  margin-bottom: var(--spacing-sm);
 }
 
 section#pg-brand-guidelines .swatch-black {
-  background: #000;
+  background: var(--color-bg-primary);
   border: 2px solid rgba(255, 255, 255, 0.2);
 }
 
 section#pg-brand-guidelines .swatch-red {
-  background: #e22c3b;
+  background: var(--color-accent);
 }
 
 section#pg-brand-guidelines .swatch-white {
@@ -203,20 +202,20 @@ section#pg-brand-guidelines .swatch-white {
 section#pg-brand-guidelines .color-value {
   font-family: 'Courier New', monospace;
   font-size: 1rem;
-  color: rgba(255, 255, 255, 0.7);
-  margin-bottom: 0.5rem;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-xs);
 }
 
 section#pg-brand-guidelines .color-usage {
-  font-size: 0.9375rem;
-  color: rgba(255, 255, 255, 0.5);
+  font-size: var(--font-size-small);
+  color: var(--color-text-tertiary);
   margin: 0;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
   section#pg-brand-guidelines {
-    padding: 3rem 0;
+    padding: var(--spacing-xl) 0;
   }
 
   section#pg-brand-guidelines .page-header h1 {
@@ -224,24 +223,24 @@ section#pg-brand-guidelines .color-usage {
   }
 
   section#pg-brand-guidelines .subtitle {
-    font-size: 1.25rem;
+    font-size: var(--font-size-h4);
   }
 
   section#pg-brand-guidelines .section-title {
-    font-size: 2rem;
+    font-size: var(--font-size-h2);
   }
 
   section#pg-brand-guidelines .subsection h3 {
-    font-size: 1.5rem;
+    font-size: var(--font-size-h3);
   }
 
   section#pg-brand-guidelines .type-specimen {
-    padding: 1.5rem;
+    padding: var(--spacing-md);
   }
 
   section#pg-brand-guidelines blockquote {
-    font-size: 1.25rem;
-    padding: 1.5rem 2rem;
+    font-size: var(--font-size-h4);
+    padding: var(--spacing-md) var(--spacing-lg);
   }
 
   section#pg-brand-guidelines .color-grid {
@@ -251,15 +250,15 @@ section#pg-brand-guidelines .color-usage {
 
 @media (max-width: 480px) {
   section#pg-brand-guidelines {
-    padding: 2rem 0;
+    padding: var(--spacing-lg) 0;
   }
 
   section#pg-brand-guidelines .page-header h1 {
-    font-size: 2rem;
+    font-size: var(--font-size-h2);
   }
 
   section#pg-brand-guidelines .subtitle {
-    font-size: 1.125rem;
+    font-size: var(--font-size-body);
   }
 
   section#pg-brand-guidelines .section-title {

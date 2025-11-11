@@ -1,32 +1,27 @@
 /* Careers page styles */
 
 section#pg-careers {
-  background: #000;
-  color: white;
-  padding: 4rem 0;
-  min-height: calc(100vh - 80px);
-
-  .container {
-    max-width: 900px;
-  }
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  padding: var(--spacing-2xl) 0;
 
   h1 {
-    font-size: 3.5rem;
-    font-weight: 700;
+    font-size: var(--font-size-h1);
+    font-weight: var(--font-weight-bold);
     margin-bottom: 2.5rem;
   }
 
   h2 {
     font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 2rem;
-    margin-top: 3rem;
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-lg);
+    margin-top: var(--spacing-xl);
   }
 
   h3 {
     font-size: 1.75rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-sm);
   }
 
   .intro {
@@ -34,17 +29,17 @@ section#pg-careers {
   }
 
   .intro p {
-    font-size: 1.125rem;
-    line-height: 1.7;
+    font-size: var(--font-size-body);
+    line-height: var(--line-height-relaxed);
     margin-bottom: 1.25rem;
   }
 
   p.tagline {
     font-size: var(--font-size-medium);
     font-style: italic;
-    font-weight: bold;
+    font-weight: var(--font-weight-bold);
     color: var(--color-text-primary);
-    margin-top: 1.5rem;
+    margin-top: var(--spacing-md);
   }
 
   .process {
@@ -52,9 +47,9 @@ section#pg-careers {
   }
 
   .process ol {
-    font-size: 1.125rem;
-    line-height: 1.7;
-    padding-left: 1.5rem;
+    font-size: var(--font-size-body);
+    line-height: var(--line-height-relaxed);
+    padding-left: var(--spacing-md);
   }
 
   .process li {
@@ -62,9 +57,9 @@ section#pg-careers {
   }
 
   .process a {
-    color: #e22c3b;
+    color: var(--color-accent);
     text-decoration: none;
-    font-weight: 600;
+    font-weight: var(--font-weight-semibold);
   }
 
   .process a:hover {
@@ -72,29 +67,29 @@ section#pg-careers {
   }
 
   .philosophy {
-    margin-bottom: 3rem;
+    margin-bottom: var(--spacing-xl);
   }
 
   .philosophy p {
-    font-size: 1.125rem;
-    line-height: 1.7;
+    font-size: var(--font-size-body);
+    line-height: var(--line-height-relaxed);
     margin-bottom: 1.25rem;
   }
 
   .compensation {
     font-style: italic;
-    margin-top: 1.5rem;
+    margin-top: var(--spacing-md);
   }
 
   .job-listings {
-    margin-top: 3rem;
+    margin-top: var(--spacing-xl);
   }
 
   .job-application-form {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
-    margin-top: 2rem;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-lg);
   }
 
   .form-group {
@@ -120,13 +115,13 @@ section#pg-careers {
   input[type="url"],
   textarea {
     width: 100%;
-    padding: 1rem;
+    padding: var(--spacing-sm);
     background: transparent;
     border: 1px solid rgba(255, 255, 255, 0.3);
-    color: white;
-    font-family: 'Ubuntu', system-ui, -apple-system, sans-serif;
+    color: var(--color-text-primary);
+    font-family: var(--font-family-primary);
     font-size: 1rem;
-    transition: border-color 0.2s;
+    transition: border-color var(--transition-fast);
   }
 
   select {
@@ -134,25 +129,25 @@ section#pg-careers {
     appearance: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='white' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
-    background-position: right 1rem center;
+    background-position: right var(--spacing-sm) center;
     padding-right: 2.5rem;
   }
 
   select option {
     background: #1a1a1a;
-    color: white;
+    color: var(--color-text-primary);
   }
 
   input::placeholder,
   textarea::placeholder {
-    color: rgba(255, 255, 255, 0.5);
+    color: var(--color-text-tertiary);
   }
 
   input:focus,
   textarea:focus,
   select:focus {
     outline: none;
-    border-color: #e22c3b;
+    border-color: var(--color-accent);
   }
 
   textarea {
@@ -161,14 +156,14 @@ section#pg-careers {
   }
 
   #job-descriptions {
-    margin: 1.5rem 0;
+    margin: var(--spacing-md) 0;
   }
 
   .job-description {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 2rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    margin-bottom: 1.5rem;
+    background: var(--color-bg-secondary);
+    padding: var(--spacing-lg);
+    border: 1px solid var(--color-border);
+    margin-bottom: var(--spacing-md);
   }
 
   .job-description h3 {
@@ -178,44 +173,44 @@ section#pg-careers {
 
   .job-priority,
   .job-metrics {
-    margin-bottom: 1rem;
+    margin-bottom: var(--spacing-sm);
   }
 
   .job-detail {
-    line-height: 1.7;
-    margin-bottom: 1rem;
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--spacing-sm);
   }
 
   .submit-button {
-    background: #e22c3b;
-    color: white;
-    padding: 1rem 2.5rem;
+    background: var(--color-accent);
+    color: var(--color-text-primary);
+    padding: var(--spacing-sm) 2.5rem;
     border: none;
-    font-size: 1.125rem;
-    font-weight: 700;
+    font-size: var(--font-size-body);
+    font-weight: var(--font-weight-bold);
     cursor: pointer;
-    transition: background 0.3s;
+    transition: background var(--transition-normal);
     align-self: flex-start;
   }
 
   .submit-button:hover {
-    background: #c91f2e;
+    background: var(--color-accent-hover);
   }
 
   /* Responsive */
   @media (max-width: 768px) {
-    padding: 3rem 0;
+    padding: var(--spacing-xl) 0;
 
     h1 {
       font-size: 2.5rem;
     }
 
     h2 {
-      font-size: 2rem;
+      font-size: var(--font-size-h2);
     }
 
     h3 {
-      font-size: 1.5rem;
+      font-size: var(--font-size-h3);
     }
 
     .intro p,
@@ -225,21 +220,21 @@ section#pg-careers {
     }
 
     .tagline {
-      font-size: 1.125rem;
+      font-size: var(--font-size-body);
     }
   }
 
   @media (max-width: 480px) {
-    padding: 2rem 0;
+    padding: var(--spacing-lg) 0;
 
     h1 {
-      font-size: 2rem;
-      margin-bottom: 2rem;
+      font-size: var(--font-size-h2);
+      margin-bottom: var(--spacing-lg);
     }
 
     h2 {
       font-size: 1.75rem;
-      margin-top: 2rem;
+      margin-top: var(--spacing-lg);
     }
 
     h3 {
@@ -247,30 +242,30 @@ section#pg-careers {
     }
 
     .job-description {
-      padding: 1.5rem;
+      padding: var(--spacing-md);
     }
 
     .submit-button {
       width: 100%;
-      padding: 0.875rem 2rem;
+      padding: 0.875rem var(--spacing-lg);
     }
   }
 
   @media (max-width: 320px) {
-    padding: 1.5rem 0;
+    padding: var(--spacing-md) 0;
 
     h1 {
       font-size: 1.75rem;
     }
 
     h2 {
-      font-size: 1.5rem;
+      font-size: var(--font-size-h3);
     }
 
     .intro p,
     .process ol,
     .philosophy p {
-      font-size: 0.9375rem;
+      font-size: var(--font-size-small);
     }
 
     select,
@@ -279,7 +274,7 @@ section#pg-careers {
     input[type="url"],
     textarea {
       padding: 0.875rem;
-      font-size: 0.9375rem;
+      font-size: var(--font-size-small);
     }
 
     .job-description {

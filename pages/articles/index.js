@@ -49,15 +49,15 @@ export default function page () {
 
           <div class="articles-list">
             ${articles.map(article => html`
-              <article class="article-card">
-                <h2><a href="${article.url}">${article.title}</a></h2>
+              <a href="${article.url}" class="article-card">
+                <h2>${article.title}</h2>
                 <div class="article-meta">
                   <span class="date">${article.date}</span>
                   <span class="author">By ${article.author}</span>
                 </div>
                 <p class="excerpt">${article.excerpt}</p>
-                <a href="${article.url}" class="read-more">Read more →</a>
-              </article>
+                <span class="read-more">Read more →</span>
+              </a>
             `).join('\n')}
           </div>
         </div>
