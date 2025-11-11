@@ -72,7 +72,7 @@ export default function page () {
 
           <h2>7. Your Rights</h2>
           <ul>
-            <li>You may request access, correction, or deletion of your personal data by contacting us at <a href="mailto:info@trollhair.com">info@trollhair.com</a>.</li>
+            <li>You may request access, correction, or deletion of your personal data by contacting us at <a href="mailto:info@trollhair.com" target="_blank">info@trollhair.com</a>.</li>
             <li>You can opt-out of marketing emails by clicking "unsubscribe" in our communications.</li>
           </ul>
 
@@ -89,7 +89,7 @@ export default function page () {
           <h2>10. Contact Information</h2>
           <ul>
             <li>For questions about this policy, contact us at:</li>
-            <li>Email: <a href="mailto:info@trollhair.com">info@trollhair.com</a></li>
+            <li>Email: <a href="mailto:info@trollhair.com" target="_blank">info@trollhair.com</a></li>
             <li>Phone: <a href="tel:+12126021401">212-602-1401</a></li>
           </ul>
         </div>

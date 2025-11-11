@@ -1,0 +1,282 @@
+/* Brand Guidelines page styles */
+
+section#pg-brand-guidelines {
+  background: #000;
+  color: #fff;
+  padding: 4rem 0 6rem;
+  min-height: 100vh;
+}
+
+section#pg-brand-guidelines .container {
+  max-width: 1000px;
+}
+
+section#pg-brand-guidelines .page-header {
+  margin-bottom: 4rem;
+  padding-bottom: 2rem;
+  border-bottom: 2px solid #e22c3b;
+}
+
+section#pg-brand-guidelines .page-header h1 {
+  font-size: 4rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+section#pg-brand-guidelines .subtitle {
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+}
+
+section#pg-brand-guidelines .guide-section {
+  margin-bottom: 5rem;
+}
+
+section#pg-brand-guidelines .section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 3rem;
+  color: #e22c3b;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(226, 44, 59, 0.3);
+}
+
+section#pg-brand-guidelines .subsection {
+  margin-bottom: 3rem;
+}
+
+section#pg-brand-guidelines .subsection h3 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #fff;
+}
+
+section#pg-brand-guidelines .subsection h4 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 2rem 0 1rem;
+  color: #fff;
+}
+
+section#pg-brand-guidelines .font-info {
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+section#pg-brand-guidelines .type-specimen {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  border-left: 3px solid #e22c3b;
+}
+
+section#pg-brand-guidelines .type-specimen h1,
+section#pg-brand-guidelines .type-specimen h2,
+section#pg-brand-guidelines .type-specimen h3,
+section#pg-brand-guidelines .type-specimen h4 {
+  margin: 0 0 0.5rem 0;
+  color: #fff;
+}
+
+section#pg-brand-guidelines .type-specimen p {
+  margin: 0;
+}
+
+section#pg-brand-guidelines .type-meta {
+  font-size: 0.9375rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-family: 'Courier New', monospace;
+  margin-top: 0.5rem;
+}
+
+section#pg-brand-guidelines p {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+section#pg-brand-guidelines strong {
+  font-weight: 700;
+  color: #fff;
+}
+
+section#pg-brand-guidelines em {
+  font-style: italic;
+}
+
+section#pg-brand-guidelines a {
+  color: #e22c3b;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+section#pg-brand-guidelines a:hover {
+  text-decoration: underline;
+}
+
+section#pg-brand-guidelines ul,
+section#pg-brand-guidelines ol {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  padding-left: 2rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+section#pg-brand-guidelines li {
+  margin-bottom: 0.75rem;
+}
+
+section#pg-brand-guidelines blockquote {
+  font-size: 1.375rem;
+  font-style: italic;
+  line-height: 1.6;
+  margin: 2rem 0;
+  padding: 2rem 2.5rem;
+  border-left: 4px solid #e22c3b;
+  background: rgba(226, 44, 59, 0.08);
+  color: #fff;
+}
+
+section#pg-brand-guidelines .cta-button {
+  display: inline-block;
+  background: #e22c3b;
+  color: white;
+  padding: 1rem 2.5rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  border: none;
+  transition: background 0.3s;
+  margin-bottom: 1rem;
+}
+
+section#pg-brand-guidelines .cta-button:hover {
+  background: #c91f2e;
+  text-decoration: none;
+}
+
+section#pg-brand-guidelines .color-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+section#pg-brand-guidelines .color-card {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 2rem;
+  border-radius: 8px;
+  text-align: center;
+}
+
+section#pg-brand-guidelines .color-card h4 {
+  font-size: 1.25rem;
+  margin: 1rem 0 0.5rem;
+  color: #fff;
+}
+
+section#pg-brand-guidelines .color-swatch {
+  width: 100%;
+  height: 140px;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+section#pg-brand-guidelines .swatch-black {
+  background: #000;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+section#pg-brand-guidelines .swatch-red {
+  background: #e22c3b;
+}
+
+section#pg-brand-guidelines .swatch-white {
+  background: #fff;
+}
+
+section#pg-brand-guidelines .color-value {
+  font-family: 'Courier New', monospace;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 0.5rem;
+}
+
+section#pg-brand-guidelines .color-usage {
+  font-size: 0.9375rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  section#pg-brand-guidelines {
+    padding: 3rem 0;
+  }
+
+  section#pg-brand-guidelines .page-header h1 {
+    font-size: 2.5rem;
+  }
+
+  section#pg-brand-guidelines .subtitle {
+    font-size: 1.25rem;
+  }
+
+  section#pg-brand-guidelines .section-title {
+    font-size: 2rem;
+  }
+
+  section#pg-brand-guidelines .subsection h3 {
+    font-size: 1.5rem;
+  }
+
+  section#pg-brand-guidelines .type-specimen {
+    padding: 1.5rem;
+  }
+
+  section#pg-brand-guidelines blockquote {
+    font-size: 1.25rem;
+    padding: 1.5rem 2rem;
+  }
+
+  section#pg-brand-guidelines .color-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  section#pg-brand-guidelines {
+    padding: 2rem 0;
+  }
+
+  section#pg-brand-guidelines .page-header h1 {
+    font-size: 2rem;
+  }
+
+  section#pg-brand-guidelines .subtitle {
+    font-size: 1.125rem;
+  }
+
+  section#pg-brand-guidelines .section-title {
+    font-size: 1.75rem;
+  }
+
+  section#pg-brand-guidelines .subsection h3 {
+    font-size: 1.375rem;
+  }
+
+  section#pg-brand-guidelines .type-specimen {
+    padding: 1.25rem;
+  }
+
+  section#pg-brand-guidelines p,
+  section#pg-brand-guidelines ul,
+  section#pg-brand-guidelines ol {
+    font-size: 1rem;
+  }
+}

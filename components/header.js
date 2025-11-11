@@ -25,7 +25,12 @@ export default function header (currentPath) {
         <div class="container">
           <div class="logo">
             <a href="/">
-              <img src="/images/logo-icon.png" alt="Troll Hair Logo" class="logo-icon">
+              <img
+                src="/images/logo-icon-100.png"
+                srcset="/images/logo-icon-100.png 1x, /images/logo-icon-200.png 2x"
+                alt="Troll Hair Logo"
+                class="logo-icon"
+              >
               <span class="brand"><span class="brand-troll">Troll</span> <span class="brand-hair">Hair</span></span>
             </a>
           </div>

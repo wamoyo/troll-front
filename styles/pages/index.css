@@ -2,9 +2,9 @@
 
 section#pg-index {
   .hero {
-    background: #000;
-    color: white;
-    padding: 4rem 0;
+    background: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    padding: var(--spacing-2xl) 0;
     display: flex;
     align-items: center;
   }
@@ -12,46 +12,46 @@ section#pg-index {
   .hero .container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    gap: var(--spacing-2xl);
     align-items: center;
   }
 
   .hero-content {
-    padding-right: 2rem;
+    padding-right: var(--spacing-lg);
   }
 
   .hero h1 {
-    font-size: 3.5rem;
-    font-weight: 700;
-    line-height: 1.1;
-    margin-bottom: 1.5rem;
+    font-size: var(--font-size-h1);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
+    margin-bottom: var(--spacing-md);
   }
 
   .hero-description {
-    font-size: 1.25rem;
-    line-height: 1.6;
-    margin-bottom: 2rem;
-    color: rgba(255, 255, 255, 0.9);
+    font-size: var(--font-size-body);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--spacing-lg);
+    color: var(--color-text-secondary);
   }
 
   .hero-description em {
     font-style: italic;
-    font-weight: 500;
+    font-weight: var(--font-weight-medium);
   }
 
   .cta-button {
     display: inline-block;
-    background: #e22c3b;
-    color: white;
-    padding: 1rem 2.5rem;
-    font-size: 1.125rem;
-    font-weight: 700;
+    background: var(--color-accent);
+    color: var(--color-text-primary);
+    padding: var(--spacing-sm) var(--spacing-xl);
+    font-size: var(--font-size-body);
+    font-weight: var(--font-weight-bold);
     border: none;
-    transition: all 0.3s;
+    transition: background var(--transition-normal);
   }
 
   .cta-button:hover {
-    background: #c91f2e;
+    background: var(--color-accent-hover);
     text-decoration: none;
   }
 
@@ -59,13 +59,32 @@ section#pg-index {
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
   }
 
   .hero-image img {
+    display: block;
     max-width: 100%;
     height: auto;
+    clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
     filter: drop-shadow(0 20px 40px rgba(226, 44, 59, 0.3));
+    animation: pg-index-hero-zoom 12s ease-in-out infinite;
+    transform-origin: center 70%;
+    will-change: transform;
   }
+}
+
+@keyframes pg-index-hero-zoom {
+  0% {
+    transform: scale(1) translate(0, 0);
+  }
+  50% {
+    transform: scale(1.05) translate(-1%, -1%);
+  }
+  100% {
+    transform: scale(1) translate(0, 0);
+  }
+}
 
   /* Responsive breakpoints */
   @media (max-width: 968px) {

@@ -24,40 +24,42 @@ export default function page () {
     `,
     body: html`
       <section id="pg-contact">
-        <div class="container">
-          <h1>Contact</h1>
+        <div class="container-medium">
+          <header class="page-header">
+            <h1>Contact</h1>
+          </header>
 
-          <section class="intro">
-            <p>Troll Hair is a new company bringing breakthroughs in carbon nanotube manufacturing and application to the market. We cannot wait to build incredible new things with you! Reach out to us using the form below, or email us at <a href="mailto:info@trollhair.com">info@trollhair.com</a> or call <a href="tel:+12126021401">(212) 602-1401</a>.</p>
-          </section>
+          <div class="page-intro">
+            <p>Troll Hair is a new company bringing breakthroughs in carbon nanotube manufacturing and application to the market. We cannot wait to build incredible new things with you! Reach out to us using the form below, or email us at <a href="mailto:info@trollhair.com" target="_blank">info@trollhair.com</a> or call <a href="tel:+12126021401">(212) 602-1401</a>.</p>
+          </div>
+        </div>
 
-          <section class="contact-form">
-            <form action="/api/contact" method="post">
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="name">Name</label>
-                  <input type="text" id="name" name="name" placeholder="Name">
-                </div>
-
-                <div class="form-group">
-                  <label for="email">Email *</label>
-                  <input type="email" id="email" name="email" placeholder="Email *" required>
-                </div>
+        <div class="container-narrow">
+          <form action="/api/contact" method="post" class="contact-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="Name">
               </div>
 
               <div class="form-group">
-                <label for="phone">Phone number</label>
-                <input type="tel" id="phone" name="phone" placeholder="Phone number">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" placeholder="Email *" required>
               </div>
+            </div>
 
-              <div class="form-group">
-                <label for="comment">Comment</label>
-                <textarea id="comment" name="comment" rows="6" placeholder="Comment"></textarea>
-              </div>
+            <div class="form-group">
+              <label for="phone">Phone number</label>
+              <input type="tel" id="phone" name="phone" placeholder="Phone number">
+            </div>
 
-              <button type="submit" class="submit-button">Send</button>
-            </form>
-          </section>
+            <div class="form-group">
+              <label for="comment">Comment</label>
+              <textarea id="comment" name="comment" rows="6" placeholder="Comment"></textarea>
+            </div>
+
+            <button type="submit" class="submit-button">Send</button>
+          </form>
         </div>
       </section>
     `

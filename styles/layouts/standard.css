@@ -6,53 +6,194 @@
   box-sizing: border-box;
 }
 
+/* CSS Custom Properties - Design Tokens */
+:root {
+  /* Colors */
+  --color-bg-primary: #000;
+  --color-bg-secondary: rgba(255, 255, 255, 0.03);
+  --color-text-primary: #fff;
+  --color-text-secondary: rgba(255, 255, 255, 0.7);
+  --color-text-tertiary: rgba(255, 255, 255, 0.5);
+  --color-accent: #e22c3b;
+  --color-accent-hover: #c91f2e;
+  --color-border: rgba(255, 255, 255, 0.1);
+
+  /* Typography */
+  --font-family-primary: 'Ubuntu', system-ui, -apple-system, sans-serif;
+  --font-size-h1: 3.5rem;
+  --font-size-h2: 2rem;
+  --font-size-h3: 1.5rem;
+  --font-size-h4: 1.25rem;
+  --font-size-medium: 1.325rem;
+  --font-size-body: 1rem;
+  --font-size-small: 0.9375rem;
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --line-height-tight: 1.1;
+  --line-height-normal: 1.6;
+  --line-height-relaxed: 1.7;
+
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  --spacing-2xl: 4rem;
+
+  /* Container widths */
+  --width-narrow: 700px;
+  --width-medium: 900px;
+  --width-wide: 1200px;
+
+  /* Transitions */
+  --transition-fast: 0.2s;
+  --transition-normal: 0.3s;
+}
+
 html,
 body#ly-standard {
-  background: #000;
+  background: var(--color-bg-primary);
 }
 
 body#ly-standard {
-  font-family: 'Ubuntu', system-ui, -apple-system, sans-serif;
-  line-height: 1.6;
-  color: #333;
+  font-family: var(--font-family-primary);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-body);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
+body#ly-standard .main-content {
+  flex: 1;
+}
+
+/* Container utilities */
+body#ly-standard .container {
+  max-width: var(--width-wide);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+body#ly-standard .container-narrow {
+  max-width: var(--width-narrow);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+body#ly-standard .container-medium {
+  max-width: var(--width-medium);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+body#ly-standard .container-wide {
+  max-width: var(--width-wide);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Global link styles */
+body#ly-standard a {
+  color: var(--color-accent);
+  text-decoration: none;
+  font-weight: var(--font-weight-semibold);
+  transition: color var(--transition-fast);
+}
+
+body#ly-standard a:hover {
+  text-decoration: underline;
+}
+
+/* Global heading styles */
+body#ly-standard h1 {
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--color-text-primary);
+}
+
+body#ly-standard h2 {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+}
+
+body#ly-standard h3 {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+}
+
+body#ly-standard h4 {
+  font-size: var(--font-size-h4);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+}
+
+body#ly-standard p {
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-secondary);
+}
+
+body#ly-standard ul,
+body#ly-standard ol {
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-secondary);
+}
+
+body#ly-standard li {
+  color: var(--color-text-secondary);
+}
+
+body#ly-standard strong {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+}
+
+body#ly-standard em {
+  font-style: italic;
+}
+
+/* Responsive container padding */
+@media (max-width: 768px) {
+  body#ly-standard .container,
+  body#ly-standard .container-narrow,
+  body#ly-standard .container-medium,
+  body#ly-standard .container-wide {
+    padding: 0 1.25rem;
   }
+}
 
-  a {
-    color: #e22c3b;
-    text-decoration: none;
+@media (max-width: 480px) {
+  body#ly-standard .container,
+  body#ly-standard .container-narrow,
+  body#ly-standard .container-medium,
+  body#ly-standard .container-wide {
+    padding: 0 1rem;
   }
+}
 
-  a:hover {
-    text-decoration: underline;
+@media (max-width: 375px) {
+  body#ly-standard .container,
+  body#ly-standard .container-narrow,
+  body#ly-standard .container-medium,
+  body#ly-standard .container-wide {
+    padding: 0 0.875rem;
   }
+}
 
-  /* Responsive container padding */
-  @media (max-width: 768px) {
-    .container {
-      padding: 0 1.25rem;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .container {
-      padding: 0 1rem;
-    }
-  }
-
-  @media (max-width: 375px) {
-    .container {
-      padding: 0 0.875rem;
-    }
-  }
-
-  @media (max-width: 320px) {
-    .container {
-      padding: 0 0.75rem;
-    }
+@media (max-width: 320px) {
+  body#ly-standard .container,
+  body#ly-standard .container-narrow,
+  body#ly-standard .container-medium,
+  body#ly-standard .container-wide {
+    padding: 0 0.75rem;
   }
 }

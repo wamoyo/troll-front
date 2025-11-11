@@ -257,6 +257,11 @@ export default function page () {
 - **Pages**: `section#pg-about { ... }`
 - **Components**: `header.cp-header { ... }`
 
+**@keyframes Namespacing:**
+- `@keyframes` must be at root level (cannot be nested in current CSS)
+- Namespace by name: `@keyframes pg-index-hero-zoom { ... }`, `@keyframes cp-header-slide { ... }`, `@keyframes ly-standard-fade { ... }`
+- TODO: Consider PostCSS or similar to auto-scope keyframes in the future
+
 ### File Comment
 
 Every file starts with: `// CSS: styles/[path].css`

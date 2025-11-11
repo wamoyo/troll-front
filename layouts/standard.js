@@ -23,7 +23,9 @@ export default function standard ({ options = {}, head, body, scripts }) {
     </head>
     <body id="ly-standard">
       ${header(options.currentPath).body}
-      ${body || ''}
+      <main class="main-content">
+        ${body || ''}
+      </main>
       ${footer().body}
 
       <!-- Scripts -->

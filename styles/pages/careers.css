@@ -39,9 +39,11 @@ section#pg-careers {
     margin-bottom: 1.25rem;
   }
 
-  .tagline {
-    font-size: 1.375rem;
+  p.tagline {
+    font-size: var(--font-size-medium);
     font-style: italic;
+    font-weight: bold;
+    color: var(--color-text-primary);
     margin-top: 1.5rem;
   }
 

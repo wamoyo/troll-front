@@ -1,175 +1,126 @@
 /* Contact page styles */
 
 section#pg-contact {
-  background: #000;
-  color: white;
-  padding: 4rem 0;
-  min-height: calc(100vh - 80px);
+  background: var(--color-bg-primary);
+  padding: var(--spacing-2xl) 0;
+}
 
-  .container {
-    max-width: 800px;
+section#pg-contact .page-header {
+  margin-bottom: var(--spacing-xl);
+}
+
+section#pg-contact .page-header h1 {
+  margin-bottom: 0;
+}
+
+section#pg-contact .page-intro {
+  margin-bottom: var(--spacing-2xl);
+}
+
+section#pg-contact .page-intro p {
+  font-size: var(--font-size-body);
+  margin: 0;
+}
+
+section#pg-contact .contact-form {
+  margin-top: var(--spacing-xl);
+}
+
+section#pg-contact .form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+}
+
+section#pg-contact .form-group {
+  margin-bottom: var(--spacing-md);
+}
+
+section#pg-contact label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+section#pg-contact input[type="text"],
+section#pg-contact input[type="email"],
+section#pg-contact input[type="tel"],
+section#pg-contact textarea {
+  width: 100%;
+  padding: var(--spacing-sm);
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-body);
+  transition: border-color var(--transition-normal);
+}
+
+section#pg-contact input::placeholder,
+section#pg-contact textarea::placeholder {
+  color: var(--color-text-tertiary);
+}
+
+section#pg-contact input:focus,
+section#pg-contact textarea:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+section#pg-contact textarea {
+  resize: vertical;
+  min-height: 150px;
+}
+
+section#pg-contact .submit-button {
+  background: var(--color-accent);
+  color: var(--color-text-primary);
+  padding: var(--spacing-sm) var(--spacing-xl);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-bold);
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-family-primary);
+  transition: background var(--transition-normal);
+}
+
+section#pg-contact .submit-button:hover {
+  background: var(--color-accent-hover);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  section#pg-contact {
+    padding: var(--spacing-xl) 0;
+  }
+}
+
+@media (max-width: 640px) {
+  section#pg-contact .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
   }
 
-  h1 {
-    font-size: 3.5rem;
-    font-weight: 700;
-    margin-bottom: 2rem;
-  }
-
-  .intro {
-    margin-bottom: 3rem;
-  }
-
-  .intro p {
-    font-size: 1.125rem;
-    line-height: 1.7;
-  }
-
-  .intro a {
-    color: #e22c3b;
-    text-decoration: none;
-    font-weight: 600;
-  }
-
-  .intro a:hover {
-    text-decoration: underline;
-  }
-
-  .contact-form {
-    margin-top: 3rem;
-  }
-
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-
-  .form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-  }
-
-  .form-group {
-    display: flex;
-    flex-direction: column;
-  }
-
-  label {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border-width: 0;
-  }
-
-  input[type="text"],
-  input[type="email"],
-  input[type="tel"],
-  textarea {
+  section#pg-contact .submit-button {
     width: 100%;
-    padding: 1rem;
-    background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: white;
-    font-family: 'Ubuntu', system-ui, -apple-system, sans-serif;
-    font-size: 1rem;
-    transition: border-color 0.2s;
   }
+}
 
-  input::placeholder,
-  textarea::placeholder {
-    color: rgba(255, 255, 255, 0.5);
+@media (max-width: 480px) {
+  section#pg-contact {
+    padding: var(--spacing-lg) 0;
   }
+}
 
-  input:focus,
-  textarea:focus {
-    outline: none;
-    border-color: #e22c3b;
-  }
-
-  textarea {
-    resize: vertical;
-    min-height: 150px;
-  }
-
-  .submit-button {
-    background: #e22c3b;
-    color: white;
-    padding: 1rem 2.5rem;
-    border: none;
-    font-size: 1.125rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.3s;
-    align-self: flex-start;
-  }
-
-  .submit-button:hover {
-    background: #c91f2e;
-  }
-
-  /* Responsive */
-  @media (max-width: 768px) {
-    padding: 3rem 0;
-
-    h1 {
-      font-size: 2.5rem;
-    }
-
-    .intro p {
-      font-size: 1rem;
-    }
-
-    .form-row {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  @media (max-width: 480px) {
-    padding: 2rem 0;
-
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .contact-form {
-      margin-top: 2rem;
-    }
-
-    form {
-      gap: 1.25rem;
-    }
-
-    .submit-button {
-      width: 100%;
-      padding: 0.875rem 2rem;
-    }
-  }
-
-  @media (max-width: 320px) {
-    padding: 1.5rem 0;
-
-    h1 {
-      font-size: 1.75rem;
-    }
-
-    .intro p {
-      font-size: 0.9375rem;
-    }
-
-    input[type="text"],
-    input[type="email"],
-    input[type="tel"],
-    textarea {
-      padding: 0.875rem;
-      font-size: 0.9375rem;
-    }
+@media (max-width: 320px) {
+  section#pg-contact {
+    padding: var(--spacing-md) 0;
   }
 }

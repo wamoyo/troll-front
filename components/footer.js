@@ -12,7 +12,7 @@ export default function footer () {
     body: html`
       <footer class="cp-footer">
         <div class="container">
-          <p class="social">Connect with us on <a href="${data.social.linkedin}" target="_blank" rel="noopener">LinkedIn</a></p>
+          <p class="social">Connect with us on <a href="${data.social.linkedin}" target="_blank" rel="noopener"><img src="/images/linkedin-icon.svg" alt="" class="linkedin-icon">LinkedIn</a></p>
           <p class="copyright">&copy; ${new Date().getFullYear()} Copyright ${data.site.company}</p>
           <p class="legal">
             <a href="/terms">Terms &amp; Conditions</a> |
