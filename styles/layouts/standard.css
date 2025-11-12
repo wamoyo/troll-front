@@ -1,116 +1,4 @@
-/* Base layout styles - loaded on every page */
-
-/* Ubuntu Font - Self-hosted */
-@font-face {
-  font-family: 'Ubuntu';
-  src: url('/fonts/Ubuntu-Regular.woff2') format('woff2');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Ubuntu';
-  src: url('/fonts/Ubuntu-Italic.woff2') format('woff2');
-  font-weight: normal;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Ubuntu';
-  src: url('/fonts/Ubuntu-Bold.woff2') format('woff2');
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Ubuntu';
-  src: url('/fonts/Ubuntu-BoldItalic.woff2') format('woff2');
-  font-weight: bold;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Ubuntu Mono';
-  src: url('/fonts/UbuntuMono-Regular.woff2') format('woff2');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Ubuntu Mono';
-  src: url('/fonts/UbuntuMono-Italic.woff2') format('woff2');
-  font-weight: normal;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Ubuntu Mono';
-  src: url('/fonts/UbuntuMono-Bold.woff2') format('woff2');
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* CSS Custom Properties - Design Tokens */
-:root {
-  /* Colors */
-  --color-bg-primary: #000;
-  --color-bg-secondary: rgba(255, 255, 255, 0.03);
-  --color-text-primary: #fff;
-  --color-text-secondary: rgba(255, 255, 255, 0.7);
-  --color-text-tertiary: rgba(255, 255, 255, 0.5);
-  --color-accent: #e22c3b;
-  --color-accent-hover: #c91f2e;
-  --color-success: #00ff88;
-  --color-border: rgba(255, 255, 255, 0.1);
-
-  /* Typography */
-  --font-family-primary: 'Ubuntu', Ubuntu, system-ui, -apple-system, sans-serif;
-  --font-family-mono: 'Ubuntu Mono', 'Ubuntu Mono', ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
-  --font-size-h1: 3.5rem;
-  --font-size-h2: 2rem;
-  --font-size-h3: 1.5rem;
-  --font-size-h4: 1.25rem;
-  --font-size-medium: 1.325rem;
-  --font-size-body: 1rem;
-  --font-size-small: 0.9375rem;
-
-  --font-weight-normal: normal;
-  --font-weight-bold: bold;
-
-  --line-height-tight: 1.1;
-  --line-height-normal: 1.6;
-  --line-height-relaxed: 1.7;
-
-  /* Spacing */
-  --spacing-xs: 0.5rem;
-  --spacing-sm: 1rem;
-  --spacing-md: 1.5rem;
-  --spacing-lg: 2rem;
-  --spacing-xl: 3rem;
-  --spacing-2xl: 4rem;
-
-  /* Container widths */
-  --width-narrow: 700px;
-  --width-medium: 965px;
-  --width-wide: 1200px;
-
-  /* Transitions */
-  --transition-fast: 0.2s;
-  --transition-normal: 0.3s;
-}
+/* Standard layout styles */
 
 html,
 body#ly-standard {
@@ -129,6 +17,31 @@ body#ly-standard {
 
 body#ly-standard .main-content {
   flex: 1;
+}
+
+/* CSS Grid System - Flexible width control */
+body#ly-standard .grid-container {
+  display: grid;
+  grid-template-columns:
+    [full-start]
+    minmax(1.5rem, 1fr)
+    [page-start]
+    minmax(0, var(--width-medium))
+    [page-end]
+    minmax(1.5rem, 1fr)
+    [full-end];
+}
+
+/* Default: all direct children use page width lane (965px) */
+body#ly-standard .grid-container > * {
+  grid-column: page;
+}
+
+/* Opt-in to full width for direct children only */
+body#ly-standard .grid-container > .width-full {
+  grid-column: full;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
 
 /* Container utilities */
@@ -154,68 +67,6 @@ body#ly-standard .container-wide {
   max-width: var(--width-wide);
   margin: 0 auto;
   padding: 0 1.5rem;
-}
-
-/* Global link styles */
-body#ly-standard a {
-  color: var(--color-accent);
-  text-decoration: none;
-  font-weight: var(--font-weight-semibold);
-  transition: color var(--transition-fast);
-}
-
-body#ly-standard a:hover {
-  text-decoration: underline;
-}
-
-/* Global heading styles */
-body#ly-standard h1 {
-  font-size: var(--font-size-h1);
-  font-weight: var(--font-weight-bold);
-  line-height: var(--line-height-tight);
-  color: var(--color-text-primary);
-}
-
-body#ly-standard h2 {
-  font-size: var(--font-size-h2);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-text-primary);
-}
-
-body#ly-standard h3 {
-  font-size: var(--font-size-h3);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-text-primary);
-}
-
-body#ly-standard h4 {
-  font-size: var(--font-size-h4);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-text-primary);
-}
-
-body#ly-standard p {
-  line-height: var(--line-height-relaxed);
-  color: var(--color-text-secondary);
-}
-
-body#ly-standard ul,
-body#ly-standard ol {
-  line-height: var(--line-height-relaxed);
-  color: var(--color-text-secondary);
-}
-
-body#ly-standard li {
-  color: var(--color-text-secondary);
-}
-
-body#ly-standard strong {
-  font-weight: var(--font-weight-bold);
-  color: var(--color-text-primary);
-}
-
-body#ly-standard em {
-  font-style: italic;
 }
 
 /* Responsive container padding */

@@ -161,6 +161,17 @@ async function copyAllCSS () {
   await ensureDir(`${siteDir}/styles/components`)
   await ensureDir(`${siteDir}/styles/pages`)
 
+  // Copy site.css from root of styles directory
+  try {
+    await Deno.copyFile(
+      `${srcDir}/styles/site.css`,
+      `${siteDir}/styles/site.css`
+    )
+    console.log(`  ✓ site.css`)
+  } catch {
+    // site.css doesn't exist, skip
+  }
+
   var cssTypes = ['layouts', 'components', 'pages']
 
   for (var type of cssTypes) {
@@ -313,7 +324,7 @@ function isTempFile (path) {
 async function handleFileChange (path, kind) {
   console.log(`\n📝 ${kind}: ${path}`)
 
-  // Handle CSS changes
+  // Handle CSS changes (including site.css at root of styles/)
   if (path.startsWith('styles/') && path.endsWith('.css')) {
     var destPath = path.replace('styles/', 'site/styles/')
 

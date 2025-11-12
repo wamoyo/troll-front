@@ -13,6 +13,7 @@ export default function standard ({ options = {}, head, body, scripts }) {
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width">
       <link rel="shortcut icon" href="/images/favicon.ico">
+      <link rel="stylesheet" href="/styles/site.css">
       <link rel="stylesheet" href="/styles/layouts/standard.css">
       ${header().head}
       ${footer().head}

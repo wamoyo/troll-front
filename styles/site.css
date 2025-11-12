@@ -1,0 +1,223 @@
+/* Site-wide base styles - loaded on every page */
+
+/* Ubuntu Font - Self-hosted */
+@font-face {
+  font-family: 'Ubuntu';
+  src: url('/fonts/Ubuntu-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ubuntu';
+  src: url('/fonts/Ubuntu-Italic.woff2') format('woff2');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ubuntu';
+  src: url('/fonts/Ubuntu-Bold.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ubuntu';
+  src: url('/fonts/Ubuntu-BoldItalic.woff2') format('woff2');
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ubuntu Mono';
+  src: url('/fonts/UbuntuMono-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ubuntu Mono';
+  src: url('/fonts/UbuntuMono-Italic.woff2') format('woff2');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ubuntu Mono';
+  src: url('/fonts/UbuntuMono-Bold.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* CSS Custom Properties - Design Tokens */
+:root {
+  /* Colors */
+  --color-bg-primary: #000;
+  --color-bg-secondary: rgba(255, 255, 255, 0.03);
+  --color-text-primary: #fff;
+  --color-text-secondary: rgba(255, 255, 255, 0.7);
+  --color-text-tertiary: rgba(255, 255, 255, 0.5);
+  --color-accent: #e22c3b;
+  --color-accent-hover: #c91f2e;
+  --color-success: #00ff88;
+  --color-border: rgba(255, 255, 255, 0.1);
+
+  /* Typography */
+  --font-family-primary: 'Ubuntu', Ubuntu, system-ui, -apple-system, sans-serif;
+  --font-family-mono: 'Ubuntu Mono', 'Ubuntu Mono', ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+  --font-size-h1: 3.5rem;
+  --font-size-h2: 2rem;
+  --font-size-h3: 1.5rem;
+  --font-size-h4: 1.25rem;
+  --font-size-medium: 1.325rem;
+  --font-size-body: 1rem;
+  --font-size-small: 0.9375rem;
+
+  --font-weight-normal: normal;
+  --font-weight-bold: bold;
+
+  --line-height-tight: 1.1;
+  --line-height-normal: 1.6;
+  --line-height-relaxed: 1.7;
+
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  --spacing-2xl: 4rem;
+
+  /* Container widths */
+  --width-narrow: 700px;
+  --width-medium: 965px;
+  --width-wide: 1200px;
+
+  /* Transitions */
+  --transition-fast: 0.2s;
+  --transition-normal: 0.3s;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Button Styles */
+.button {
+  display: inline-block;
+  padding: var(--spacing-sm) 2.5rem;
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-bold);
+  text-decoration: none;
+  transition: all var(--transition-normal);
+  cursor: pointer;
+  border: none;
+}
+
+.button:hover {
+  text-decoration: none;
+}
+
+.button.primary {
+  background: var(--color-accent);
+  color: var(--color-text-primary);
+}
+
+.button.primary:hover {
+  background: var(--color-accent-hover);
+}
+
+.button.secondary {
+  background: transparent;
+  color: var(--color-text-primary);
+  border: 2px solid var(--color-accent);
+  padding: calc(var(--spacing-sm) - 2px) calc(2.5rem - 2px);
+}
+
+.button.secondary:hover {
+  background: var(--color-accent);
+  color: var(--color-text-primary);
+}
+
+.button.tertiary {
+  background: transparent;
+  color: var(--color-text-secondary);
+  border: 2px solid var(--color-text-secondary);
+  padding: calc(var(--spacing-sm) - 2px) calc(2.5rem - 2px);
+}
+
+.button.tertiary:hover {
+  border-color: var(--color-text-primary);
+  color: var(--color-text-primary);
+}
+
+/* Global Typography */
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  font-weight: var(--font-weight-bold);
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--color-text-primary);
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+}
+
+h3 {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+}
+
+h4 {
+  font-size: var(--font-size-h4);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+}
+
+p {
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-secondary);
+}
+
+ul,
+ol {
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-secondary);
+}
+
+li {
+  color: var(--color-text-secondary);
+}
+
+strong {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+}
+
+em {
+  font-style: italic;
+}

@@ -2,36 +2,36 @@
 
 a.cp-button {
   display: inline-block;
-  padding: 1rem 2rem;
-  font-size: 1.1rem;
-  font-weight: bold;
-  border: 3px solid;
-  transition: all 0.3s;
+  padding: var(--spacing-sm) 2.5rem;
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-bold);
+  border: none;
+  transition: all var(--transition-normal);
   text-decoration: none;
+  cursor: pointer;
 
   &:hover {
     text-decoration: none;
   }
 
   &.primary {
-    background: #f28337;
-    color: white;
-    border-color: #f28337;
+    background: var(--color-accent);
+    color: var(--color-text-primary);
 
     &:hover {
-      background: transparent;
-      color: #f28337;
+      background: var(--color-accent-hover);
     }
   }
 
   &.secondary {
     background: transparent;
-    color: #1a1a1a;
-    border-color: #1a1a1a;
+    color: var(--color-accent);
+    border: 2px solid var(--color-accent);
+    padding: calc(var(--spacing-sm) - 2px) calc(2.5rem - 2px);
 
     &:hover {
-      background: #1a1a1a;
-      color: white;
+      background: var(--color-accent);
+      color: var(--color-text-primary);
     }
   }
 }

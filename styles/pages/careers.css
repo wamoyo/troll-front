@@ -59,7 +59,7 @@ section#pg-careers {
   .process a {
     color: var(--color-accent);
     text-decoration: none;
-    font-weight: var(--font-weight-semibold);
+    font-weight: var(--font-weight-bold);
   }
 
   .process a:hover {

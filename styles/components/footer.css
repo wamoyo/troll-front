@@ -15,12 +15,12 @@ footer.cp-footer {
 
   .social {
     margin-bottom: 0.25rem;
-    font-size: 1.3rem;
+    font-size: 1.25rem;
   }
 
   .social a {
     color: var(--color-accent);
-    font-weight: var(--font-weight-semibold);
+    font-weight: var(--font-weight-bold);
     transition: color var(--transition-fast);
   }
 

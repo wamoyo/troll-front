@@ -23,7 +23,7 @@ export default function page () {
       <link rel="stylesheet" href="/styles/pages/private/brand-guidelines.css">
     `,
     body: html`
-      <section id="pg-brand-guidelines">
+      <section id="pg-brand-guidelines" class="grid-container">
         <header class="page-header">
           <h1>Brand Guidelines</h1>
           <p class="subtitle">Complete brand identity system for Troll Hair</p>
@@ -161,8 +161,12 @@ export default function page () {
 
             <div class="subsection">
               <h3>Buttons</h3>
-              <a href="#" class="cta-button">Primary CTA Button</a>
-              <p class="type-meta">Background: #e22c3b, Hover: #c91f2e</p>
+              <div style="display: flex; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap;">
+                <a href="#" class="button primary">Primary Button</a>
+                <a href="#" class="button secondary">Secondary Button</a>
+                <a href="#" class="button tertiary">Tertiary Button</a>
+              </div>
+              <p class="type-meta">Primary: Solid red background. Secondary: White text with red border. Tertiary: Grey text with grey border (white on hover).</p>
             </div>
 
             <div class="subsection">

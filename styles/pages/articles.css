@@ -80,7 +80,7 @@ section#pg-articles {
 
     .read-more {
       color: var(--color-accent);
-      font-weight: var(--font-weight-semibold);
+      font-weight: var(--font-weight-bold);
     }
   }
 

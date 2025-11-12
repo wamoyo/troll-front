@@ -4,29 +4,6 @@ section#pg-brand-guidelines {
   background: var(--color-bg-primary);
   color: var(--color-text-primary);
   padding: var(--spacing-2xl) 0 6rem;
-
-  /* CSS Grid with named tracks for flexible width control */
-  display: grid;
-  grid-template-columns:
-    [full-start]
-    minmax(1.5rem, 1fr)
-    [page-start]
-    minmax(0, var(--width-medium))
-    [page-end]
-    minmax(1.5rem, 1fr)
-    [full-end];
-}
-
-/* Default: all direct children use page width lane (965px) */
-section#pg-brand-guidelines > * {
-  grid-column: page;
-}
-
-/* Opt-in to full width for direct children only */
-section#pg-brand-guidelines > .width-full {
-  grid-column: full;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
 }
 
 section#pg-brand-guidelines .page-header {
@@ -127,16 +104,6 @@ section#pg-brand-guidelines em {
   font-style: italic;
 }
 
-section#pg-brand-guidelines a {
-  color: var(--color-accent);
-  text-decoration: none;
-  font-weight: var(--font-weight-semibold);
-}
-
-section#pg-brand-guidelines a:hover {
-  text-decoration: underline;
-}
-
 section#pg-brand-guidelines ul,
 section#pg-brand-guidelines ol {
   font-size: var(--font-size-body);
@@ -159,23 +126,6 @@ section#pg-brand-guidelines blockquote {
   border-left: 4px solid var(--color-accent);
   background: rgba(226, 44, 59, 0.08);
   color: var(--color-text-primary);
-}
-
-section#pg-brand-guidelines .cta-button {
-  display: inline-block;
-  background: var(--color-accent);
-  color: var(--color-text-primary);
-  padding: var(--spacing-sm) 2.5rem;
-  font-size: var(--font-size-body);
-  font-weight: var(--font-weight-bold);
-  border: none;
-  transition: background var(--transition-normal);
-  margin-bottom: var(--spacing-sm);
-}
-
-section#pg-brand-guidelines .cta-button:hover {
-  background: var(--color-accent-hover);
-  text-decoration: none;
 }
 
 section#pg-brand-guidelines .color-grid {

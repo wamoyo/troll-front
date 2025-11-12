@@ -24,19 +24,22 @@ export default function page () {
       <link rel="stylesheet" href="/styles/pages/article-custom.css">
     `,
     body: html`
-      <article id="pg-article-custom">
-        <div class="hero-image">
+      <article id="pg-article-custom" class="grid-container">
+        <header class="article-header">
+          <h1>${meta.title}</h1>
+          <div class="article-meta">
+            <time class="article-date">${meta.date}</time>
+            <span class="author">By ${meta.author}</span>
+          </div>
+        </header>
+
+        <p class="intro">Discover the revolutionary material that's stronger than steel, lighter than aluminum, and could enable everything from space elevators to floating cities.</p>
+
+        <div class="hero-image width-full">
           <img src="/images/tubes-bg.png" alt="Carbon nanotube molecular structure visualization">
         </div>
 
-        <div class="container">
-          <header class="article-header">
-            <h1>${meta.title}</h1>
-            <time class="article-date">${meta.date}</time>
-            <button class="share-button">Share</button>
-          </header>
-
-          <div class="article-content">
+        <div class="article-content">
             <h2>What are carbon nanotubes?</h2>
             <p>Carbon nanotubes (CNTs) are tubular molecules of carbon. They are a few nanometers up to hundreds of nanometers in diameter–1000 times smaller than a hair. Their chemical structure gives them incredible properties, including immense tensile strength, conduction or EM sheilding, chemial resistance, and more.</p>
             <p>Bulk nanotubes have been produced in extremely short lengths and individual nanotubes have been made up to 55 cm (about 19 inches) in length. We are creating long, strong carbon nanotubes from 1 mm up to 2 cm, and developing continuous spun threads made of CNTs.</p>
@@ -58,12 +61,12 @@ export default function page () {
             <p>Carbon nanotubes enable the Space Elevator, which is why our founder, Dr. Bradley Edwards, originally began his work on CNTs.</p>
             <p>Large, long-duration airships become possible. These are basically small cities on blimps floating above the clouds.</p>
             <p>CNTs enable city-sized, inflatable space stations, large tensile structures, even entire cities under a single protective tent. Not to mention the world's best golf clubs, tennis rackets, and sailboats.</p>
-          </div>
-
-          <footer class="article-footer">
-            <a href="/articles" class="back-link">Back to articles</a>
-          </footer>
         </div>
+
+        <footer class="article-footer">
+          <a href="/articles" class="button secondary">« Back to Articles</a>
+          <a href="/samples" class="button primary">Get Samples »</a>
+        </footer>
       </article>
     `
   })
