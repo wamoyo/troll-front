@@ -63,52 +63,37 @@ export default function page () {
             </div>
           </section>
 
-          <section class="guide-section">
-            <h2 class="section-title">Typography</h2>
+          <h2 class="section-title">Typography</h2>
 
-            <div class="subsection">
-              <h3>Font Family</h3>
-              <p class="font-info">Primary: <strong>Ubuntu</strong> (Google Fonts)</p>
-              <p class="font-info">Fallback: system-ui, -apple-system, sans-serif</p>
-            </div>
+          <section class="guide-section" style="max-width: 965px; margin: 0 auto;">
+            <h1>Building a Clear Visual Hierarchy</h1>
+            <time class="type-meta" style="display: block; margin-bottom: 2rem;">Updated November 2024</time>
 
-            <div class="subsection">
-              <h3>Headings</h3>
-              <div class="type-specimen">
-                <h1>Heading 1 - 3.5rem / 700 weight</h1>
-                <p class="type-meta">Use for page titles only</p>
-              </div>
-              <div class="type-specimen">
-                <h2>Heading 2 - 2rem / 700 weight</h2>
-                <p class="type-meta">Use for major sections</p>
-              </div>
-              <div class="type-specimen">
-                <h3>Heading 3 - 1.5rem / 700 weight</h3>
-                <p class="type-meta">Use for subsections</p>
-              </div>
-              <div class="type-specimen">
-                <h4>Heading 4 - 1.25rem / 700 weight</h4>
-                <p class="type-meta">Use for minor sections</p>
-              </div>
-            </div>
+            <p>Our typography system uses <strong>Ubuntu</strong> as the primary typeface with <strong>Ubuntu Mono</strong> for technical content and code. These fonts provide excellent readability while maintaining the modern, technical character of our brand. The system falls back gracefully to system fonts when needed.</p>
 
-            <div class="subsection">
-              <h3>Body Text</h3>
-              <div class="type-specimen">
-                <p>Regular body copy is 1.125rem with 1.7 line-height. Our Carbon Nanotubes enable ultra high strength plastics for 3D Printing, Injection Molding, Extrusion, and more. This size provides optimal readability on screens of all sizes.</p>
-                <p class="type-meta">Body: 1.125rem / line-height 1.7</p>
-              </div>
-            </div>
+            <h2>Heading Levels and Their Purpose</h2>
 
-            <div class="subsection">
-              <h3>Text Formatting</h3>
-              <p>Use <strong>strong/bold (700 weight)</strong> for emphasis and <em>em/italic</em> for alternative voice or technical terms. You can combine: <strong><em>bold italic together</em></strong>.</p>
-            </div>
+            <p>The <strong>H1 heading</strong> (3.5rem, bold) should be used once per page as the main title. It's large and commanding, setting the tone for everything that follows. You're seeing it at the top of this section.</p>
 
-            <div class="subsection">
-              <h3>Links</h3>
-              <p>Links appear in <a href="#">brand red (#e22c3b)</a> with 600 weight. They have no underline by default but <a href="#">underline on hover</a> for clear affordance.</p>
-            </div>
+            <p>The <strong>H2 heading</strong> (2rem, bold) divides major sections—like "Heading Levels and Their Purpose" above. Notice the red color and underline treatment on section titles throughout these guidelines? That's a special variant we use for top-level organization.</p>
+
+            <h3>Subsections Use Heading 3</h3>
+
+            <p>When you need to break down an H2 section further, use <strong>H3 headings</strong> (1.5rem, bold). They're noticeably smaller than H2 but still command attention. Perfect for organizing detailed content within a major section.</p>
+
+            <h4>Minor Divisions with Heading 4</h4>
+
+            <p>The smallest heading level, <strong>H4</strong> (1.25rem, bold), works well for lists, feature callouts, or minor organizational divisions. Use sparingly to maintain hierarchy.</p>
+
+            <h2>Body Text and Inline Formatting</h2>
+
+            <p>Body copy is set at 1rem with a relaxed 1.7 line-height for comfortable reading. Use <strong>bold text</strong> to emphasize important concepts and <em>italic text</em> for alternative voice, technical terms, or subtle emphasis. You can even <strong><em>combine both</em></strong> when needed.</p>
+
+            <p>Links appear in <a href="#">brand red</a> with bold weight. They start without underlines for a clean look, but <a href="#">gain an underline on hover</a> to clearly signal interactivity. This creates a clear visual distinction while maintaining our minimalist aesthetic.</p>
+
+            <h3>Technical Content</h3>
+
+            <p class="type-meta">Use Ubuntu Mono (like this line) for code, technical specifications, color values, or any content that benefits from a monospace treatment. It pairs perfectly with Ubuntu while clearly distinguishing technical from narrative content.</p>
           </section>
 
           <h2 class="section-title">Color Palette</h2>

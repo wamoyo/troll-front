@@ -23,14 +23,10 @@ section#pg-index {
   .hero h1 {
     font-size: var(--font-size-h1);
     font-weight: var(--font-weight-bold);
-    line-height: var(--line-height-tight);
-    margin-bottom: var(--spacing-md);
   }
 
   .hero-description {
     font-size: var(--font-size-body);
-    line-height: var(--line-height-relaxed);
-    margin-bottom: var(--spacing-lg);
     color: var(--color-text-secondary);
   }
 

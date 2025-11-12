@@ -7,7 +7,7 @@ body#ly-standard {
 
 body#ly-standard {
   font-family: var(--font-family-primary);
-  line-height: var(--line-height-normal);
+  line-height: var(--line-height-relaxed);
   color: var(--color-text-primary);
   font-size: var(--font-size-body);
   display: flex;

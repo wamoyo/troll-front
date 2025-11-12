@@ -8,30 +8,23 @@ section#pg-careers {
   h1 {
     font-size: var(--font-size-h1);
     font-weight: var(--font-weight-bold);
-    margin-bottom: 2.5rem;
   }
 
   h2 {
     font-size: 2.5rem;
     font-weight: var(--font-weight-bold);
-    margin-bottom: var(--spacing-lg);
-    margin-top: var(--spacing-xl);
   }
 
   h3 {
     font-size: 1.75rem;
     font-weight: var(--font-weight-bold);
-    margin-bottom: var(--spacing-sm);
   }
 
   .intro {
-    margin-bottom: 2.5rem;
   }
 
   .intro p {
     font-size: var(--font-size-body);
-    line-height: var(--line-height-relaxed);
-    margin-bottom: 1.25rem;
   }
 
   p.tagline {
@@ -39,21 +32,17 @@ section#pg-careers {
     font-style: italic;
     font-weight: var(--font-weight-bold);
     color: var(--color-text-primary);
-    margin-top: var(--spacing-md);
   }
 
   .process {
-    margin-bottom: 2.5rem;
   }
 
   .process ol {
     font-size: var(--font-size-body);
-    line-height: var(--line-height-relaxed);
     padding-left: var(--spacing-md);
   }
 
   .process li {
-    margin-bottom: 0.75rem;
   }
 
   .process a {
@@ -67,29 +56,23 @@ section#pg-careers {
   }
 
   .philosophy {
-    margin-bottom: var(--spacing-xl);
   }
 
   .philosophy p {
     font-size: var(--font-size-body);
-    line-height: var(--line-height-relaxed);
-    margin-bottom: 1.25rem;
   }
 
   .compensation {
     font-style: italic;
-    margin-top: var(--spacing-md);
   }
 
   .job-listings {
-    margin-top: var(--spacing-xl);
   }
 
   .job-application-form {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-md);
-    margin-top: var(--spacing-lg);
   }
 
   .form-group {
@@ -163,22 +146,17 @@ section#pg-careers {
     background: var(--color-bg-secondary);
     padding: var(--spacing-lg);
     border: 1px solid var(--color-border);
-    margin-bottom: var(--spacing-md);
   }
 
   .job-description h3 {
     margin-top: 0;
-    margin-bottom: 1.25rem;
   }
 
   .job-priority,
   .job-metrics {
-    margin-bottom: var(--spacing-sm);
   }
 
   .job-detail {
-    line-height: var(--line-height-relaxed);
-    margin-bottom: var(--spacing-sm);
   }
 
   .submit-button {
@@ -229,12 +207,10 @@ section#pg-careers {
 
     h1 {
       font-size: var(--font-size-h2);
-      margin-bottom: var(--spacing-lg);
     }
 
     h2 {
       font-size: 1.75rem;
-      margin-top: var(--spacing-lg);
     }
 
     h3 {

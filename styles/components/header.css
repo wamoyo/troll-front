@@ -34,7 +34,6 @@ header.cp-header {
   .logo .brand {
     font-size: 2.25rem;
     font-weight: var(--font-weight-bold);
-    line-height: 1;
   }
 
   .brand-troll {

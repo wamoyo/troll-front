@@ -6,7 +6,6 @@ section#pg-samples {
 }
 
 section#pg-samples .page-header {
-  margin-bottom: var(--spacing-xl);
 }
 
 section#pg-samples .page-header h1 {
@@ -14,7 +13,6 @@ section#pg-samples .page-header h1 {
 }
 
 section#pg-samples .page-intro {
-  margin-bottom: var(--spacing-xl);
 }
 
 section#pg-samples .page-intro p {
@@ -35,24 +33,19 @@ section#pg-samples .sample-image img {
 }
 
 section#pg-samples .more-info {
-  margin-top: var(--spacing-xl);
 }
 
 section#pg-samples .more-info h2 {
-  margin-bottom: var(--spacing-lg);
 }
 
 section#pg-samples .more-info p {
   font-size: var(--font-size-body);
-  margin-bottom: var(--spacing-md);
 }
 
 section#pg-samples .contact-details {
-  margin-top: var(--spacing-lg);
 }
 
 section#pg-samples .contact-details p {
-  margin-bottom: var(--spacing-sm);
 }
 
 /* Responsive */

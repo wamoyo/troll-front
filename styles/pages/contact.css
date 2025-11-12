@@ -6,7 +6,6 @@ section#pg-contact {
 }
 
 section#pg-contact .page-header {
-  margin-bottom: var(--spacing-xl);
 }
 
 section#pg-contact .page-header h1 {
@@ -14,7 +13,6 @@ section#pg-contact .page-header h1 {
 }
 
 section#pg-contact .page-intro {
-  margin-bottom: var(--spacing-2xl);
 }
 
 section#pg-contact .page-intro p {
@@ -23,18 +21,15 @@ section#pg-contact .page-intro p {
 }
 
 section#pg-contact .contact-form {
-  margin-top: var(--spacing-xl);
 }
 
 section#pg-contact .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--spacing-md);
-  margin-bottom: var(--spacing-md);
 }
 
 section#pg-contact .form-group {
-  margin-bottom: var(--spacing-md);
 }
 
 section#pg-contact label {

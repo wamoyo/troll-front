@@ -12,37 +12,28 @@ section#pg-legal {
   h1 {
     font-size: var(--font-size-h1);
     font-weight: var(--font-weight-bold);
-    margin-bottom: var(--spacing-lg);
   }
 
   .effective-date {
     font-size: 1rem;
     color: var(--color-text-secondary);
-    margin-bottom: var(--spacing-lg);
   }
 
   p {
     font-size: var(--font-size-body);
-    line-height: var(--line-height-relaxed);
-    margin-bottom: var(--spacing-md);
   }
 
   h2 {
     font-size: 1.75rem;
     font-weight: var(--font-weight-bold);
-    margin-top: 2.5rem;
-    margin-bottom: 1.25rem;
   }
 
   ul {
     font-size: var(--font-size-body);
-    line-height: var(--line-height-relaxed);
-    margin-bottom: var(--spacing-md);
     padding-left: var(--spacing-lg);
   }
 
   li {
-    margin-bottom: 0.75rem;
   }
 
   a {
@@ -78,12 +69,10 @@ section#pg-legal {
 
     h1 {
       font-size: var(--font-size-h2);
-      margin-bottom: var(--spacing-md);
     }
 
     h2 {
       font-size: 1.375rem;
-      margin-top: var(--spacing-lg);
     }
   }
 

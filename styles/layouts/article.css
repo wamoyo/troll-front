@@ -8,14 +8,12 @@ article#ly-article {
   }
 
   .article-header {
-    margin-bottom: var(--spacing-lg);
     padding-bottom: var(--spacing-md);
     border-bottom: 1px solid #ddd;
 
     h1 {
       font-size: 2.5rem;
       margin: 0 0 var(--spacing-sm) 0;
-      line-height: 1.2;
     }
 
     .article-meta {
@@ -32,39 +30,31 @@ article#ly-article {
 
   .article-content {
     font-size: var(--font-size-body);
-    line-height: var(--line-height-relaxed);
     color: #333;
 
     .lead {
       font-size: var(--font-size-h4);
       font-weight: var(--font-weight-medium);
       color: #444;
-      margin-bottom: var(--spacing-lg);
-      line-height: var(--line-height-normal);
     }
 
     h2 {
       font-size: var(--font-size-h2);
       margin: 2.5rem 0 var(--spacing-sm) 0;
-      line-height: 1.3;
     }
 
     h3 {
       font-size: var(--font-size-h3);
       margin: var(--spacing-lg) 0 var(--spacing-sm) 0;
-      line-height: 1.3;
     }
 
     p {
-      margin-bottom: var(--spacing-md);
     }
 
     ul, ol {
-      margin-bottom: var(--spacing-md);
       padding-left: var(--spacing-lg);
 
       li {
-        margin-bottom: 0.75rem;
 
         strong {
           color: #000;
@@ -83,7 +73,6 @@ article#ly-article {
   }
 
   .article-footer {
-    margin-top: var(--spacing-xl);
     padding-top: var(--spacing-lg);
     border-top: 1px solid #ddd;
 
