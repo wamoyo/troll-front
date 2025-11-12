@@ -98,6 +98,39 @@ Pages are dynamically imported with `?t=${Date.now()}` query parameters to bypas
 deno task build  # Builds site to site/ directory (no watch, no server)
 ```
 
+**Visual Feedback with Screenshots:**
+
+When developing pages visually, use Chromium CLI to take screenshots for review. All screenshots should be saved to `archive/screenshots/` (gitignored).
+
+```bash
+# Start dev server in background (if not already running)
+deno task dev &
+
+# Take screenshot of a page
+chromium --headless --disable-gpu \
+  --screenshot=archive/screenshots/[page-name].png \
+  --window-size=1440,6000 \
+  --virtual-time-budget=2000 \
+  http://localhost:8700/[page-path]
+```
+
+**Screenshot Workflow:**
+1. Take "before" screenshot
+2. Edit HTML/CSS (dev server auto-rebuilds on save)
+3. Take "after" screenshot to see changes
+4. Iterate until satisfied
+
+**Screenshot Parameters:**
+- `--window-size=1440,6000` - Width 1440px, height adjustable for full page
+- `--virtual-time-budget=2000` - Wait 2s for fonts/assets to load
+- Name screenshots descriptively: `page-name-v1.png`, `page-name-final.png`, etc.
+
+**Why Chromium CLI?**
+- ✅ Fast (1-2 seconds per screenshot)
+- ✅ No dependencies (uses system Chromium)
+- ✅ Perfect for iterative development
+- ✅ Saved history in archive/screenshots/
+
 ## Layouts
 
 ### Standard Layout

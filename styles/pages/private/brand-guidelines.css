@@ -4,10 +4,29 @@ section#pg-brand-guidelines {
   background: var(--color-bg-primary);
   color: var(--color-text-primary);
   padding: var(--spacing-2xl) 0 6rem;
+
+  /* CSS Grid with named tracks for flexible width control */
+  display: grid;
+  grid-template-columns:
+    [full-start]
+    minmax(1.5rem, 1fr)
+    [page-start]
+    minmax(0, var(--width-medium))
+    [page-end]
+    minmax(1.5rem, 1fr)
+    [full-end];
 }
 
-section#pg-brand-guidelines .container {
-  max-width: 1000px;
+/* Default: all direct children use page width lane (965px) */
+section#pg-brand-guidelines > * {
+  grid-column: page;
+}
+
+/* Opt-in to full width for direct children only */
+section#pg-brand-guidelines > .width-full {
+  grid-column: full;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
 
 section#pg-brand-guidelines .page-header {
@@ -160,10 +179,12 @@ section#pg-brand-guidelines .cta-button:hover {
 }
 
 section#pg-brand-guidelines .color-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: var(--spacing-lg);
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-xl);
   margin-top: var(--spacing-lg);
+  margin-bottom: 3rem;
 }
 
 section#pg-brand-guidelines .color-card {
@@ -171,6 +192,8 @@ section#pg-brand-guidelines .color-card {
   padding: var(--spacing-lg);
   border-radius: 8px;
   text-align: center;
+  width: 260px;
+  flex-shrink: 0;
 }
 
 section#pg-brand-guidelines .color-card h4 {
@@ -181,7 +204,7 @@ section#pg-brand-guidelines .color-card h4 {
 
 section#pg-brand-guidelines .color-swatch {
   width: 100%;
-  height: 140px;
+  aspect-ratio: 1;
   border-radius: 8px;
   margin-bottom: var(--spacing-sm);
 }
@@ -199,6 +222,15 @@ section#pg-brand-guidelines .swatch-white {
   background: #fff;
 }
 
+section#pg-brand-guidelines .swatch-green {
+  background: var(--color-success);
+}
+
+section#pg-brand-guidelines .swatch-grey {
+  background: var(--color-text-secondary);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
 section#pg-brand-guidelines .color-value {
   font-family: var(--font-family-mono);
   font-size: 1rem;
@@ -212,7 +244,110 @@ section#pg-brand-guidelines .color-usage {
   margin: 0;
 }
 
+/* Brand Overview Grid */
+section#pg-brand-guidelines .brand-overview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-xl);
+  margin-top: var(--spacing-lg);
+}
+
+section#pg-brand-guidelines .brand-overview .subsection {
+  max-width: 450px;
+  justify-self: center;
+}
+
+/* Logo Display */
+section#pg-brand-guidelines .logo-display {
+  background: var(--color-bg-secondary);
+  padding: var(--spacing-xl);
+  border-radius: 8px;
+  text-align: center;
+  margin: var(--spacing-md) 0;
+}
+
+section#pg-brand-guidelines .logo-display img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Wordmark Example */
+section#pg-brand-guidelines .wordmark-example {
+  font-size: 3rem;
+  font-weight: var(--font-weight-bold);
+  text-align: center;
+  padding: var(--spacing-xl);
+  background: var(--color-bg-secondary);
+  border-radius: 8px;
+  margin: var(--spacing-md) 0;
+}
+
+/* Usage Notes */
+section#pg-brand-guidelines .usage-note {
+  font-size: var(--font-size-small);
+  color: var(--color-text-secondary);
+  padding: var(--spacing-md);
+  background: rgba(226, 44, 59, 0.05);
+  border-left: 3px solid var(--color-accent);
+  margin: var(--spacing-md) 0;
+}
+
+/* Do's & Don'ts Grid */
+section#pg-brand-guidelines .dos-donts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--spacing-xl);
+  margin-top: var(--spacing-lg);
+}
+
+section#pg-brand-guidelines .dos-donts-card {
+  background: var(--color-bg-secondary);
+  padding: var(--spacing-xl);
+  border-radius: 8px;
+}
+
+section#pg-brand-guidelines .dos-donts-card h3 {
+  font-size: 2rem;
+  margin-bottom: var(--spacing-lg);
+  text-align: center;
+  padding-bottom: var(--spacing-md);
+}
+
+section#pg-brand-guidelines .dos-donts-card h3.do {
+  color: var(--color-success);
+  border-bottom: 2px solid var(--color-success);
+}
+
+section#pg-brand-guidelines .dos-donts-card h3.dont {
+  color: var(--color-accent);
+  border-bottom: 2px solid var(--color-accent);
+}
+
+section#pg-brand-guidelines .dos-donts-card ul {
+  padding-left: var(--spacing-lg);
+}
+
+section#pg-brand-guidelines .dos-donts-card li {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
 /* Responsive */
+
+/* Collapse grid to single column on smaller screens */
+@media (max-width: 1024px) {
+  section#pg-brand-guidelines {
+    grid-template-columns:
+      [full-start page-start]
+      minmax(0, 100%)
+      [page-end full-end];
+  }
+
+  section#pg-brand-guidelines .guide-section {
+    grid-template-columns: inherit;
+  }
+}
+
 @media (max-width: 768px) {
   section#pg-brand-guidelines {
     padding: var(--spacing-xl) 0;
