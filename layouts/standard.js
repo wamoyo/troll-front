@@ -13,9 +13,6 @@ export default function standard ({ options = {}, head, body, scripts }) {
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width">
       <link rel="shortcut icon" href="/images/favicon.ico">
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
       <link rel="stylesheet" href="/styles/layouts/standard.css">
       ${header().head}
       ${footer().head}

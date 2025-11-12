@@ -1,5 +1,62 @@
 /* Base layout styles - loaded on every page */
 
+/* Ubuntu Font - Self-hosted */
+@font-face {
+  font-family: 'Ubuntu';
+  src: url('/fonts/Ubuntu-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ubuntu';
+  src: url('/fonts/Ubuntu-Italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ubuntu';
+  src: url('/fonts/Ubuntu-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ubuntu';
+  src: url('/fonts/Ubuntu-BoldItalic.woff2') format('woff2');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ubuntu Mono';
+  src: url('/fonts/UbuntuMono-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ubuntu Mono';
+  src: url('/fonts/UbuntuMono-Italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ubuntu Mono';
+  src: url('/fonts/UbuntuMono-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -19,7 +76,8 @@
   --color-border: rgba(255, 255, 255, 0.1);
 
   /* Typography */
-  --font-family-primary: 'Ubuntu', system-ui, -apple-system, sans-serif;
+  --font-family-primary: 'Ubuntu', Ubuntu, system-ui, -apple-system, sans-serif;
+  --font-family-mono: 'Ubuntu Mono', 'Ubuntu Mono', ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
   --font-size-h1: 3.5rem;
   --font-size-h2: 2rem;
   --font-size-h3: 1.5rem;

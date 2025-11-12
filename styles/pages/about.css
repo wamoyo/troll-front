@@ -44,8 +44,11 @@ section#pg-about {
     line-height: var(--line-height-relaxed);
   }
 
-  .spec-highlight em {
+  p.spec-highlight {
     font-style: italic;
+    font-weight: bold;
+    font-size: --var(--font-size-medium);
+    color: --var(--color-text-primary);
   }
 
   .strength-spec p {

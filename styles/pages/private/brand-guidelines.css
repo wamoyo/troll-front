@@ -88,7 +88,7 @@ section#pg-brand-guidelines .type-specimen p {
 section#pg-brand-guidelines .type-meta {
   font-size: var(--font-size-small);
   color: var(--color-text-tertiary);
-  font-family: 'Courier New', monospace;
+  font-family: var(--font-family-mono);
   margin-top: var(--spacing-xs);
 }
 
@@ -200,7 +200,7 @@ section#pg-brand-guidelines .swatch-white {
 }
 
 section#pg-brand-guidelines .color-value {
-  font-family: 'Courier New', monospace;
+  font-family: var(--font-family-mono);
   font-size: 1rem;
   color: var(--color-text-secondary);
   margin-bottom: var(--spacing-xs);

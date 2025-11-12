@@ -55,7 +55,7 @@ export default function page () {
           </section>
 
           <section class="strength-spec">
-            <p class="spec-highlight"><em>Troll Hair clocks in at over 100 gigapascals of tensile strength.</em></p>
+            <p class="spec-highlight">Troll Hair clocks in at over 100 gigapascals of tensile strength.</p>
             <p>That's roughly 27 times stronger than Kevlar (carbon fiber). This signals a transformational shift and enables entirely new use cases. Imagine stronger construction materials, dramatically lighter vehicles, new space craft, and more.</p>
           </section>
 

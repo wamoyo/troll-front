@@ -464,7 +464,6 @@ var meta = { title: 'About' }  // ✅
 
 ## TODO
 
-- **Self-host fonts**: Currently using Google Fonts for Ubuntu. Should download and use @font-face to serve fonts locally for better performance and privacy.
 - **Create favicon**: Currently 404ing, need to create favicon.ico and add to root/
 - **Optimize images**: Implement lazy loading for hero images
 - **Add image optimization**: Consider WebP format with fallbacks for better performance
