@@ -49,14 +49,53 @@ Every file has exactly three sections:
 
 ## Development Workflow
 
-**Dev Server:**
+**Dev Server with Smart Watch:**
 ```bash
-deno task dev  # Runs dev server on localhost:8700 with watch mode
+deno task dev  # Full build + dev server on localhost:8700 + smart file watching
 ```
 
-**Build:**
+The dev server includes a smart watch system that:
+- Runs a full build on startup to ensure clean state
+- Watches all source directories using `Deno.watchFs`
+- Handles ALL file system events: create, modify, rename, remove
+- Intelligently rebuilds only what's needed
+- Maintains exact sync between source and output (including deletions)
+- Filters temp files from editors (vim swap, emacs temp, etc.)
+- Debounces events (100ms) to handle rapid changes
+
+**File System Event Handling:**
+The watcher handles these event types:
+- `create` - New file created
+- `modify` - File content modified
+- `rename` - File renamed/moved (critical for atomic saves from editors!)
+- `remove` - File deleted
+
+Atomic writes (used by most editors) create temp files and rename them, which fires `rename` events. The watcher properly detects these.
+
+**Smart Rebuild Strategy:**
+
+| File Type | Action | Rebuild Behavior |
+|-----------|--------|------------------|
+| CSS (`styles/**/*.css`) | Create/Modify/Rename | Copy to site/ |
+| CSS | Delete | Delete from site/ |
+| Pages (`pages/**/*.js`) | Create/Modify/Rename | Rebuild only that page + cache bust |
+| Pages | Delete | Delete output directory |
+| Components/Layouts/Data | Any change | Rebuild ALL pages* |
+| Assets (images/fonts/etc) | Create/Modify/Rename | Copy to site/ |
+| Assets | Delete | Delete from site/ |
+| Root files | Create/Modify/Rename | Copy to site/ root |
+| Root files | Delete | Delete from site/ root |
+| Generators | Create/Modify/Rename | Run that generator |
+| Generators | Delete | Do nothing (orphaned) |
+
+*Component/layout/data changes trigger full page rebuild. Future: implement dependency tracking.
+
+**Module Cache Busting:**
+Pages are dynamically imported with `?t=${Date.now()}` query parameters to bypass Deno's module cache in the long-running watch process.
+
+**Manual Build:**
 ```bash
-deno task build  # Builds site to site/ directory
+deno task build  # Builds site to site/ directory (no watch, no server)
 ```
 
 ## Layouts
@@ -462,8 +501,33 @@ var headerComponent = header('/about')  // ❌
 var meta = { title: 'About' }  // ✅
 ```
 
+## Watch System Implementation Notes
+
+**Temp File Filtering:**
+The watcher filters temporary files created by editors and tools:
+- Hidden files (`.DS_Store`, `.file.swp`)
+- Backup files (`file~`)
+- Temp files (contains `.tmp`)
+- Vim swap files (`.swp`, `.swx`, `.swo`)
+- Emacs temp files (`#file#`, `file#`)
+- Build output (`site/` directory)
+- Git directory (`/.git/`)
+
+**Debouncing:**
+File system events are collected over 100ms windows and processed together. This handles:
+- Editors that fire multiple events for a single save
+- Rapid successive changes
+- Atomic write operations that generate multiple events
+
+**Why Rename Events Matter:**
+Most editors perform atomic writes:
+1. Write to temporary file (`about.js.tmp.12345`)
+2. Rename temp file to target (`about.js`)
+
+Without handling `rename` events, the watcher won't detect most editor saves!
+
 ## TODO
 
-- **Create favicon**: Currently 404ing, need to create favicon.ico and add to root/
-- **Optimize images**: Implement lazy loading for hero images
-- **Add image optimization**: Consider WebP format with fallbacks for better performance
+- **Dependency tracking**: Build dependency graph for incremental component rebuilds (currently rebuilds all pages)
+- **Create favicon**: Add proper favicon.ico to root/
+- **Image optimization**: WebP format with fallbacks, lazy loading

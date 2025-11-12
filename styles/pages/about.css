@@ -37,22 +37,16 @@ section#pg-about {
     margin-bottom: var(--spacing-xl);
   }
 
-  .spec-highlight {
-    font-size: var(--font-size-h4);
-    font-style: italic;
-    margin-bottom: var(--spacing-md);
+  .strength-spec p {
+    font-size: var(--font-size-body);
     line-height: var(--line-height-relaxed);
   }
 
-  p.spec-highlight {
-    font-style: italic;
-    font-weight: bold;
-    font-size: --var(--font-size-medium);
-    color: --var(--color-text-primary);
-  }
-
-  .strength-spec p {
-    font-size: var(--font-size-body);
+  .strength-spec .spec-highlight {
+    font-size: var(--font-size-medium);
+    font-weight: var(--font-weight-bold);
+    color: white;
+    margin-bottom: var(--spacing-md);
     line-height: var(--line-height-relaxed);
   }
 

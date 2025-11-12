@@ -4,7 +4,7 @@
 @font-face {
   font-family: 'Ubuntu';
   src: url('/fonts/Ubuntu-Regular.woff2') format('woff2');
-  font-weight: 400;
+  font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
@@ -12,7 +12,7 @@
 @font-face {
   font-family: 'Ubuntu';
   src: url('/fonts/Ubuntu-Italic.woff2') format('woff2');
-  font-weight: 400;
+  font-weight: normal;
   font-style: italic;
   font-display: swap;
 }
@@ -20,7 +20,7 @@
 @font-face {
   font-family: 'Ubuntu';
   src: url('/fonts/Ubuntu-Bold.woff2') format('woff2');
-  font-weight: 700;
+  font-weight: bold;
   font-style: normal;
   font-display: swap;
 }
@@ -28,7 +28,7 @@
 @font-face {
   font-family: 'Ubuntu';
   src: url('/fonts/Ubuntu-BoldItalic.woff2') format('woff2');
-  font-weight: 700;
+  font-weight: bold;
   font-style: italic;
   font-display: swap;
 }
@@ -36,7 +36,7 @@
 @font-face {
   font-family: 'Ubuntu Mono';
   src: url('/fonts/UbuntuMono-Regular.woff2') format('woff2');
-  font-weight: 400;
+  font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
@@ -44,7 +44,7 @@
 @font-face {
   font-family: 'Ubuntu Mono';
   src: url('/fonts/UbuntuMono-Italic.woff2') format('woff2');
-  font-weight: 400;
+  font-weight: normal;
   font-style: italic;
   font-display: swap;
 }
@@ -52,7 +52,7 @@
 @font-face {
   font-family: 'Ubuntu Mono';
   src: url('/fonts/UbuntuMono-Bold.woff2') format('woff2');
-  font-weight: 700;
+  font-weight: bold;
   font-style: normal;
   font-display: swap;
 }
@@ -86,10 +86,8 @@
   --font-size-body: 1rem;
   --font-size-small: 0.9375rem;
 
-  --font-weight-normal: 400;
-  --font-weight-medium: 500;
-  --font-weight-semibold: 600;
-  --font-weight-bold: 700;
+  --font-weight-normal: normal;
+  --font-weight-bold: bold;
 
   --line-height-tight: 1.1;
   --line-height-normal: 1.6;
