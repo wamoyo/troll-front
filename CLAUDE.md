@@ -494,6 +494,262 @@ Standard breakpoints used throughout:
 - **375px** - Small phones
 - **320px** - Very small phones
 
+## Design System (site.css)
+
+### CSS Custom Properties
+
+All design tokens are defined as CSS custom properties in `site.css` for consistency and maintainability.
+
+**Dual Color Naming System:**
+```css
+/* Literal Colors - explicit values for direct use */
+--black: #000;
+--white: #fff;
+--red: #e22c3b;
+--red-dark: #c91f2e;
+--green: #00ff88;
+--light-grey: #B3B3B3;
+--dark-grey: #808080;
+
+/* Opacity Variants */
+--white-03: rgba(255, 255, 255, 0.03);
+--white-10: rgba(255, 255, 255, 0.1);
+--white-30: rgba(255, 255, 255, 0.3);
+--red-30: rgba(226, 44, 59, 0.3);
+
+/* Semantic Colors - theme-aware, use these for components */
+--bg: var(--black);
+--bg-2: var(--white-03);
+--text: var(--white);
+--text-2: var(--light-grey);
+--text-3: var(--dark-grey);
+--accent: var(--red);
+--accent-hover: var(--red-dark);
+--success: var(--green);
+--border: var(--white-10);
+```
+
+**Typography:**
+```css
+/* Fonts */
+--ubuntu: 'Ubuntu', Ubuntu, system-ui, -apple-system, sans-serif;
+--mono: 'Ubuntu Mono', ...;
+
+/* Sizes */
+--h1: 3.5rem;
+--h2: 2rem;
+--h3: 1.5rem;
+--h4: 1.25rem;
+--medium: 1.325rem;
+--body: 1rem;
+--small: 0.9375rem;
+
+/* Weights */
+--bold: bold;
+/* Use 'normal' keyword directly, no variable needed */
+
+/* Line Heights */
+--tight: 1.1;
+/* Use 1.6 directly for middle value */
+--relaxed: 1.7;
+```
+
+**Spacing:**
+```css
+--xs: 0.5rem;
+--sm: 1rem;
+--md: 1.5rem;
+--lg: 2rem;
+--xl: 3rem;
+--2xl: 4rem;
+```
+
+**Container Widths:**
+```css
+--narrow: 700px;  /* Forms, narrow content */
+--page: 965px;    /* Main page content (aligns with logo) */
+--wide: 1200px;   /* Wide content, header container */
+```
+
+**Transitions:**
+```css
+--fast: 0.2s;
+--normal: 0.3s;
+```
+
+### Global Responsive Typography
+
+Headings automatically scale down on mobile to maintain hierarchy while improving readability. Defined globally in `site.css`:
+
+```css
+/* Desktop: Use CSS variables */
+h1 { font-size: var(--h1); }  /* 3.5rem */
+h2 { font-size: var(--h2); }  /* 2rem */
+h3 { font-size: var(--h3); }  /* 1.5rem */
+h4 { font-size: var(--h4); }  /* 1.25rem */
+
+/* 768px and below: Gentle shrinking */
+@media (max-width: 768px) {
+  h1 { font-size: 3rem; }
+  h2 { font-size: 1.875rem; }
+  h3 { font-size: 1.375rem; }
+  h4 { font-size: 1.125rem; }
+}
+
+/* 480px and below: More compression */
+@media (max-width: 480px) {
+  h1 { font-size: 2.5rem; }
+  h2 { font-size: 1.75rem; }
+  h3 { font-size: var(--h4); }
+  h4 { font-size: 1.125rem; }
+}
+
+/* 320px and below: Maximum compression while maintaining hierarchy */
+@media (max-width: 320px) {
+  h1 { font-size: 2.25rem; }
+  h2 { font-size: var(--h3); }
+  h3 { font-size: var(--h4); }
+  h4 { font-size: 1.125rem; }  /* Never smaller than body text */
+}
+```
+
+**Important:** Pages should NOT override heading sizes unless absolutely necessary. The global responsive typography maintains proper hierarchy across all screen sizes.
+
+## Grid Container System
+
+The grid system provides consistent layout, spacing, and alignment across all pages. Defined in `styles/layouts/standard.css`.
+
+### How It Works
+
+```css
+body#ly-standard .grid-container {
+  display: grid;
+  grid-template-columns:
+    [full-start]
+    minmax(var(--md), 1fr)      /* Left gutter (min 1.5rem) */
+    [page-start]
+    minmax(0, calc(var(--page) - (var(--md) * 2)))  /* Content (965px - 3rem = 917px) */
+    [page-end]
+    minmax(var(--md), 1fr)      /* Right gutter (min 1.5rem) */
+    [full-end];
+  padding-top: var(--2xl);      /* 4rem vertical padding */
+  padding-bottom: var(--2xl);
+}
+
+/* All children default to page lane */
+body#ly-standard .grid-container > * {
+  grid-column: page;
+}
+
+/* Opt-in to full width */
+body#ly-standard .grid-container > .width-full {
+  grid-column: full;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+```
+
+### Why 917px Content Width?
+
+The grid content width (917px) is carefully calculated to align the left edge of page content with the "Troll Hair" text in the logo:
+
+**Header alignment math:**
+- Header container: 1200px (`--wide`)
+- On 1440px viewport: margin = (1440-1200)/2 = 120px
+- Plus padding: 1.5rem = 24px
+- Plus logo: 100px
+- Plus gap: 0.75rem = 12px
+- **"Troll Hair" starts at: 256px from left**
+
+**Page content alignment:**
+- Content: 917px (965px - 48px internal padding)
+- Gutters: (1440-965)/2 = 237.5px each
+- Plus gutter min-width: 1.5rem = 24px
+- **Content starts at: ~261px from left** ✓
+
+This creates a visually pleasing vertical alignment between the logo text and page content.
+
+### Using Grid Container
+
+**Basic Usage:**
+```html
+<section id="pg-about" class="grid-container">
+  <h1>About Us</h1>
+  <p>Content stays in the page lane (917px max)</p>
+</section>
+```
+
+**Breaking Out to Full Width:**
+```html
+<section id="pg-articles" class="grid-container">
+  <h1>Articles</h1>
+  <p class="subtitle">This stays in page lane</p>
+
+  <!-- This breaks out to full viewport width -->
+  <div class="articles-list width-full">
+    <!-- Article cards can spread across full width -->
+  </div>
+</section>
+```
+
+**Responsive Vertical Padding:**
+The grid container's top/bottom padding scales down on smaller screens:
+- **Desktop**: 4rem (--2xl)
+- **768px**: 3rem (--xl)
+- **480px**: 2rem (--lg)
+- **320px**: 1.5rem (--md)
+
+### Grid Container vs Old Containers
+
+**Before (deprecated):**
+```html
+<section id="pg-about">
+  <div class="container-medium">  <!-- Extra wrapper div -->
+    <h1>About</h1>
+  </div>
+</section>
+```
+
+**After (current):**
+```html
+<section id="pg-about" class="grid-container">  <!-- One class, no wrapper -->
+  <h1>About</h1>
+</section>
+```
+
+**Benefits:**
+- ✅ No wrapper divs needed
+- ✅ Consistent spacing (horizontal gutters + vertical padding)
+- ✅ Easy to break out to full width with `.width-full`
+- ✅ Aligns content with logo
+- ✅ Responsive padding built-in
+
+## Image Best Practices
+
+### Preventing Layout Shift
+
+Always include `width` and `height` attributes on images to reserve space before the image loads. This prevents content from jumping around (Cumulative Layout Shift).
+
+**Bad - No dimensions:**
+```html
+<img src="/images/logo.png" alt="Logo">
+<!-- Browser doesn't know size, layout shifts when image loads -->
+```
+
+**Good - Explicit dimensions:**
+```html
+<img
+  src="/images/logo-icon-100.png"
+  srcset="/images/logo-icon-100.png 1x, /images/logo-icon-200.png 2x"
+  alt="Troll Hair Logo"
+  width="100"
+  height="100"
+>
+<!-- Browser reserves 100x100 space immediately, no layout shift -->
+```
+
+The CSS can still scale the image with `max-height`, `max-width`, etc. The aspect ratio is preserved.
+
 ## Common Pitfalls
 
 ### 1. Media queries outside parent selector
@@ -561,6 +817,7 @@ Without handling `rename` events, the watcher won't detect most editor saves!
 
 ## TODO
 
+- **Fix watch.js debouncing**: Sometimes misses component file changes (needs investigation of debounce window and atomic write handling)
 - **Dependency tracking**: Build dependency graph for incremental component rebuilds (currently rebuilds all pages)
 - **Create favicon**: Add proper favicon.ico to root/
 - **Image optimization**: WebP format with fallbacks, lazy loading
