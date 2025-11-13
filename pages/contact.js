@@ -47,8 +47,8 @@ export default function page () {
             </div>
 
             <div class="form-group">
-              <label for="comment">Comment</label>
-              <textarea id="comment" name="comment" rows="6" placeholder="Comment"></textarea>
+              <label for="comment">Message</label>
+              <textarea id="comment" name="comment" rows="6" placeholder="Message *" required></textarea>
             </div>
 
           <button type="submit" class="button primary">Send</button>

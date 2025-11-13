@@ -30,6 +30,8 @@ export default function header (currentPath) {
                 srcset="/images/logo-icon-100.png 1x, /images/logo-icon-200.png 2x"
                 alt="Troll Hair Logo"
                 class="logo-icon"
+                width="100"
+                height="100"
               >
               <span class="brand"><span class="brand-troll">Troll</span> <span class="brand-hair">Hair</span></span>
             </a>

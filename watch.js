@@ -1,4 +1,6 @@
 // Smart watch system - monitors source files and rebuilds intelligently
+// TODO: Fix debouncing issue - sometimes misses component file changes (header.js edit wasn't detected)
+//       Investigate if debounce window drops events or if atomic writes cause issues
 
 import { ensureDir } from "https://deno.land/std@0.208.0/fs/mod.ts"
 import { join } from "https://deno.land/std@0.208.0/path/mod.ts"

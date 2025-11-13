@@ -9,6 +9,8 @@ section#pg-contact .contact-form {
   flex-direction: column;
   gap: var(--md);
   max-width: var(--narrow);
+  margin: auto;
+  margin-top: 2rem;
 }
 
 section#pg-contact .form-row {
@@ -64,6 +66,9 @@ section#pg-contact textarea {
   min-height: 150px;
 }
 
+section#pg-contact .button {
+  width: fit-content;
+}
 /* Responsive */
 @media (max-width: 640px) {
   section#pg-contact .form-row {

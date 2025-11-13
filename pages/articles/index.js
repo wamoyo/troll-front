@@ -46,7 +46,7 @@ export default function page () {
           <p class="subtitle">News, updates, and insights about carbon nanotube technology</p>
         </header>
 
-        <div class="articles-list">
+        <div class="articles-list width-full">
           ${articles.map(article => html`
             <a href="${article.url}" class="article-card">
               <h2>${article.title}</h2>
