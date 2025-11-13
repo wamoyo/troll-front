@@ -13,6 +13,7 @@ body#ly-standard {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  counter-reset: h2-counter h3-counter h4-counter;
 }
 
 body#ly-standard .main-content {
@@ -103,5 +104,45 @@ body#ly-standard .container-wide {
   body#ly-standard .container-medium,
   body#ly-standard .container-wide {
     padding: 0 0.75rem;
+  }
+}
+
+/* Numbered headings - layout specific due to margin space requirements */
+/* Auto-reset child counters for proper hierarchy */
+body#ly-standard h2 {
+  counter-reset: h3-counter h4-counter;
+}
+
+body#ly-standard h3 {
+  counter-reset: h4-counter;
+}
+
+body#ly-standard h2.numbered,
+body#ly-standard h3.numbered,
+body#ly-standard h4.numbered {
+  position: relative;
+}
+
+body#ly-standard h2.numbered::before {
+  counter-increment: h2-counter;
+  content: counter(h2-counter) ") ";
+}
+
+body#ly-standard h3.numbered::before {
+  counter-increment: h3-counter;
+  content: counter(h3-counter) ") ";
+}
+
+body#ly-standard h4.numbered::before {
+  counter-increment: h4-counter;
+  content: counter(h4-counter) ") ";
+}
+
+@media (min-width: 1200px) {
+  body#ly-standard h2.numbered::before,
+  body#ly-standard h3.numbered::before,
+  body#ly-standard h4.numbered::before {
+    position: absolute;
+    transform: translateX(calc(-100% - 1rem));
   }
 }

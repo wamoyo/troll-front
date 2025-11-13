@@ -52,7 +52,6 @@ section#pg-brand-guidelines .subsection h4 {
 
 section#pg-brand-guidelines .type-meta {
   font-size: var(--font-size-small);
-  color: var(--color-text-tertiary);
   font-family: var(--font-family-mono);
 }
 
@@ -123,6 +122,11 @@ section#pg-brand-guidelines .swatch-green {
 
 section#pg-brand-guidelines .swatch-grey {
   background: var(--color-text-secondary);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+section#pg-brand-guidelines .swatch-grey-dark {
+  background: var(--color-text-tertiary);
   border: 2px solid rgba(255, 255, 255, 0.2);
 }
 

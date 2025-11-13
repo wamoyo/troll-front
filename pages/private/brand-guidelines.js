@@ -66,34 +66,72 @@ export default function page () {
           <h2 class="section-title">Typography</h2>
 
           <section class="guide-section" style="max-width: 965px; margin: 0 auto;">
+            <p>Above this paragraph sits the red section title variant—it's 2.5rem, uses the accent color (#e22c3b), and has a 1px bottom border. We use it to divide major page sections like "Typography" or "Color Palette" on this page.</p>
+
+            <p>The H1 (like "Building a Clear Visual Hierarchy" below) is 3.5rem, bold, white, with tight 1.1 line-height. Use once per page for the main title.</p>
+
             <h1>Building a Clear Visual Hierarchy</h1>
+
             <time class="type-meta" style="display: block; margin-bottom: 2rem;">Updated November 2024</time>
 
-            <p>Our typography system uses <strong>Ubuntu</strong> as the primary typeface with <strong>Ubuntu Mono</strong> for technical content and code. These fonts provide excellent readability while maintaining the modern, technical character of our brand. The system falls back gracefully to system fonts when needed.</p>
+            <p>Our fonts: We use <strong>Ubuntu</strong> for almost everything, and <strong>Ubuntu Mono</strong> for technical content and numbers (like the update date just above this paragraph).</p>
 
-            <h2>Heading Levels and Their Purpose</h2>
+            <p>Body text is 1rem with a relaxed 1.7 line-height. It's set in a light grey (#B3B3B3) to reduce eye strain and create hierarchy against the black background.</p>
 
-            <p>The <strong>H1 heading</strong> (3.5rem, bold) should be used once per page as the main title. It's large and commanding, setting the tone for everything that follows. You're seeing it at the top of this section.</p>
+            <h2>Heading Hierarchy</h2>
 
-            <p>The <strong>H2 heading</strong> (2rem, bold) divides major sections—like "Heading Levels and Their Purpose" above. Notice the red color and underline treatment on section titles throughout these guidelines? That's a special variant we use for top-level organization.</p>
+            <p>H2 headings (2rem, bold, white, tight line-height) divide major sections. They get extra top margin of 2rem, like all headings, to create breathing room and define a new section of the copy. The one above is a standard H2.</p>
 
-            <h3>Subsections Use Heading 3</h3>
+            <h3>Subsection Heading</h3>
 
-            <p>When you need to break down an H2 section further, use <strong>H3 headings</strong> (1.5rem, bold). They're noticeably smaller than H2 but still command attention. Perfect for organizing detailed content within a major section.</p>
+            <p>H3 headings (1.5rem, bold, white) break down H2 sections. Same top/bottom margin as H2 for consistent rhythm.</p>
 
-            <h4>Minor Divisions with Heading 4</h4>
+            <h4>Minor Heading</h4>
 
-            <p>The smallest heading level, <strong>H4</strong> (1.25rem, bold), works well for lists, feature callouts, or minor organizational divisions. Use sparingly to maintain hierarchy.</p>
+            <p>H4 headings (1.25rem/20px, bold, white) are the smallest. Less top margin (2rem) since they're minor divisions. Use sparingly.</p>
 
-            <h2>Body Text and Inline Formatting</h2>
+            <p>If you need any headings to be numbered, just add the class <em>numbered</em>.</p>
 
-            <p>Body copy is set at 1rem with a relaxed 1.7 line-height for comfortable reading. Use <strong>bold text</strong> to emphasize important concepts and <em>italic text</em> for alternative voice, technical terms, or subtle emphasis. You can even <strong><em>combine both</em></strong> when needed.</p>
+            <h4 class="numbered">Something</h4>
+            <p>The first section...</p>
+            <h4 class="numbered">Something Else</h4>
+            <p>The second section...</p>
+            <h4 class="numbered">A Third Thing!</h4>
+            <p>The third section...</p>
 
-            <p>Links appear in <a href="#">brand red</a> with bold weight. They start without underlines for a clean look, but <a href="#">gain an underline on hover</a> to clearly signal interactivity. This creates a clear visual distinction while maintaining our minimalist aesthetic.</p>
+            <h3>But then...</h3>
+            <p>A new h3 resets!</p>
+
+            <h4 class="numbered">Next Set Of Numbers</h4>
+            <p>Numbering starts over.</p>
+
+            <h2>Inline Formatting</h2>
+
+            <p>Use <strong>bold</strong> for emphasis (appears in full white). Use <em>italic</em> for alternative voice or technical terms. <strong><em>Combine both</em></strong> when needed.</p>
+
+            <p>Links are <a href="#">brand red (#e22c3b)</a>, bold weight, no underline by default. They <a href="#">gain an underline on hover</a> for clear affordance.</p>
+
+            <p>Lists inherit body text styling with comfortable spacing between items, like this...</p>
+
+            <h3>Lists</h3>
+            <h4>Unordered</h4>
+            <ul>
+              <li>Carbon Nanotubes</li>
+              <li>3D Printing Materials</li>
+              <li>Injection Molding Additives</li>
+            </ul>
+
+            <h4>Ordered</h4>
+            <ol>
+              <li>Contact us for information</li>
+              <li>Request free samples</li>
+              <li>Test in your process</li>
+            </ol>
+
 
             <h3>Technical Content</h3>
 
-            <p class="type-meta">Use Ubuntu Mono (like this line) for code, technical specifications, color values, or any content that benefits from a monospace treatment. It pairs perfectly with Ubuntu while clearly distinguishing technical from narrative content.</p>
+            <p class="type-meta">Technical content like this uses Ubuntu Mono at 0.9375rem (15px) in a darker grey (50% opacity). Use for code, specifications, color values (#e22c3b), measurements (1.5rem), or any monospace content.</p>
           </section>
 
           <h2 class="section-title">Color Palette</h2>
@@ -128,8 +166,14 @@ export default function page () {
             <div class="color-card">
               <div class="color-swatch swatch-grey"></div>
               <h4>Text Grey</h4>
-              <p class="color-value">rgba(255, 255, 255, 0.7)</p>
+              <p class="color-value">#B3B3B3</p>
               <p class="color-usage">Body text, secondary content. Softer than pure white for comfortable reading.</p>
+            </div>
+            <div class="color-card">
+              <div class="color-swatch swatch-grey-dark"></div>
+              <h4>Tertiary Grey</h4>
+              <p class="color-value">#808080</p>
+              <p class="color-usage">Muted text, de-emphasized content. Use sparingly for lowest hierarchy text.</p>
             </div>
           </div>
 
@@ -152,23 +196,6 @@ export default function page () {
                 <a href="#" class="button tertiary">Tertiary Button</a>
               </div>
               <p class="type-meta">Primary: Solid red background. Secondary: White text with red border. Tertiary: Grey text with grey border (white on hover).</p>
-            </div>
-
-            <div class="subsection">
-              <h3>Lists</h3>
-              <h4>Unordered</h4>
-              <ul>
-                <li>Carbon Nanotubes</li>
-                <li>3D Printing Materials</li>
-                <li>Injection Molding Additives</li>
-              </ul>
-
-              <h4>Ordered</h4>
-              <ol>
-                <li>Contact us for information</li>
-                <li>Request free samples</li>
-                <li>Test in your process</li>
-              </ol>
             </div>
 
             <div class="subsection">
