@@ -2,11 +2,11 @@
 
 a.cp-button {
   display: inline-block;
-  padding: var(--spacing-sm) 2.5rem;
-  font-size: var(--font-size-body);
-  font-weight: var(--font-weight-bold);
+  padding: var(--sm) 2.5rem;
+  font-size: var(--body);
+  font-weight: var(--bold);
   border: none;
-  transition: all var(--transition-normal);
+  transition: all var(--normal);
   text-decoration: none;
   cursor: pointer;
 
@@ -15,23 +15,23 @@ a.cp-button {
   }
 
   &.primary {
-    background: var(--color-accent);
-    color: var(--color-text-primary);
+    background: var(--accent);
+    color: var(--text);
 
     &:hover {
-      background: var(--color-accent-hover);
+      background: var(--accent-hover);
     }
   }
 
   &.secondary {
     background: transparent;
-    color: var(--color-accent);
-    border: 2px solid var(--color-accent);
-    padding: calc(var(--spacing-sm) - 2px) calc(2.5rem - 2px);
+    color: var(--accent);
+    border: 2px solid var(--accent);
+    padding: calc(var(--sm) - 2px) calc(2.5rem - 2px);
 
     &:hover {
-      background: var(--color-accent);
-      color: var(--color-text-primary);
+      background: var(--accent);
+      color: var(--text);
     }
   }
 }

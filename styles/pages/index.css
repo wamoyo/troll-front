@@ -2,9 +2,9 @@
 
 section#pg-index {
   .hero {
-    background: var(--color-bg-primary);
-    color: var(--color-text-primary);
-    padding: var(--spacing-2xl) 0;
+    background: var(--bg);
+    color: var(--text);
+    padding: var(--2xl) 0;
     display: flex;
     align-items: center;
   }
@@ -12,43 +12,16 @@ section#pg-index {
   .hero .container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-2xl);
+    gap: var(--2xl);
     align-items: center;
   }
 
   .hero-content {
-    padding-right: var(--spacing-lg);
-  }
-
-  .hero h1 {
-    font-size: var(--font-size-h1);
-    font-weight: var(--font-weight-bold);
+    padding-right: var(--lg);
   }
 
   .hero-description {
-    font-size: var(--font-size-body);
-    color: var(--color-text-secondary);
-  }
-
-  .hero-description em {
-    font-style: italic;
-    font-weight: var(--font-weight-medium);
-  }
-
-  .cta-button {
-    display: inline-block;
-    background: var(--color-accent);
-    color: var(--color-text-primary);
-    padding: var(--spacing-sm) var(--spacing-xl);
-    font-size: var(--font-size-body);
-    font-weight: var(--font-weight-bold);
-    border: none;
-    transition: background var(--transition-normal);
-  }
-
-  .cta-button:hover {
-    background: var(--color-accent-hover);
-    text-decoration: none;
+    color: var(--text-2);
   }
 
   .hero-image {
@@ -63,7 +36,6 @@ section#pg-index {
     max-width: 100%;
     height: auto;
     clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
-    filter: drop-shadow(0 20px 40px rgba(226, 44, 59, 0.3));
     animation: pg-index-hero-zoom 12s ease-in-out infinite;
     transform-origin: center 70%;
     will-change: transform;
@@ -107,13 +79,6 @@ section#pg-index {
     .hero-description {
       font-size: 1rem;
     }
-
-    .cta-button {
-      padding: 0.875rem 2rem;
-      font-size: 1rem;
-      width: 100%;
-      text-align: center;
-    }
   }
 
   @media (max-width: 375px) {
@@ -141,11 +106,6 @@ section#pg-index {
 
     .hero .container {
       gap: 1.5rem;
-    }
-
-    .cta-button {
-      padding: 0.75rem 1.5rem;
-      font-size: 0.9375rem;
     }
   }
 }

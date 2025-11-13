@@ -29,7 +29,7 @@ export default function page () {
             <div class="hero-content">
               <h1>Titanium Strength Plastics</h1>
               <p class="hero-description">Our <strong>Carbon Nanotubes</strong> enable ultra high strength plastics for 3D Printing, Injection Molding, Extrusion, and more...</p>
-              <a href="/samples" class="cta-button">Get Samples</a>
+              <a href="/samples" class="button primary">Get Samples</a>
             </div>
             <div class="hero-image">
               <img src="/images/hero-3d-printed-carbon-nanotube.png" alt="Red 3D printed geometric object demonstrating carbon nanotube enhanced plastic">

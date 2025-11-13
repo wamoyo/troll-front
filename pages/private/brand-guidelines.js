@@ -165,13 +165,13 @@ export default function page () {
             </div>
             <div class="color-card">
               <div class="color-swatch swatch-grey"></div>
-              <h4>Text Grey</h4>
+              <h4>Light Grey</h4>
               <p class="color-value">#B3B3B3</p>
               <p class="color-usage">Body text, secondary content. Softer than pure white for comfortable reading.</p>
             </div>
             <div class="color-card">
               <div class="color-swatch swatch-grey-dark"></div>
-              <h4>Tertiary Grey</h4>
+              <h4>Dark Grey</h4>
               <p class="color-value">#808080</p>
               <p class="color-usage">Muted text, de-emphasized content. Use sparingly for lowest hierarchy text.</p>
             </div>

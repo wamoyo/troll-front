@@ -1,9 +1,9 @@
 /* Header component styles */
 
 header.cp-header {
-  background: var(--color-bg-primary);
-  color: var(--color-text-primary);
-  padding: var(--spacing-sm) 0;
+  background: var(--bg);
+  color: var(--text);
+  padding: var(--sm) 0;
   position: relative;
 
   .container {
@@ -33,29 +33,29 @@ header.cp-header {
 
   .logo .brand {
     font-size: 2.25rem;
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--bold);
   }
 
   .brand-troll {
-    color: var(--color-text-primary);
+    color: var(--text);
   }
 
   .brand-hair {
-    color: var(--color-accent);
+    color: var(--accent);
   }
 
   nav {
     display: flex;
-    gap: var(--spacing-lg);
+    gap: var(--lg);
     align-items: center;
   }
 
   nav a {
-    color: var(--color-text-secondary) !important;
+    color: var(--text-2) !important;
   }
 
   nav a.active {
-    color: var(--color-text-primary) !important;
+    color: var(--text) !important;
     text-decoration: underline !important;
   }
 
@@ -74,14 +74,14 @@ header.cp-header {
     cursor: pointer;
     background: none;
     border: none;
-    padding: var(--spacing-xs);
+    padding: var(--xs);
   }
 
   .menu-text {
     display: none;
-    color: var(--color-text-primary);
+    color: var(--text);
     font-size: 1.3rem;
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--bold);
   }
 
   .menu-text::before {
@@ -99,8 +99,8 @@ header.cp-header {
     display: block;
     width: 25px;
     height: 2px;
-    background: var(--color-text-primary);
-    transition: all var(--transition-normal);
+    background: var(--text);
+    transition: all var(--normal);
   }
 
   .hamburger {
@@ -148,7 +148,7 @@ header.cp-header {
       top: 100%;
       left: 0;
       right: 0;
-      background: var(--color-bg-primary);
+      background: var(--bg);
       flex-direction: column;
       padding: 0;
       gap: 0;
@@ -157,17 +157,17 @@ header.cp-header {
       max-height: 0;
       overflow: hidden;
       opacity: 0;
-      transition: max-height var(--transition-normal) ease, opacity var(--transition-normal) ease, padding var(--transition-normal) ease;
+      transition: max-height var(--normal) ease, opacity var(--normal) ease, padding var(--normal) ease;
     }
 
     .menu-toggle:checked ~ nav {
       max-height: 500px;
       opacity: 1;
-      padding: var(--spacing-sm) 0;
+      padding: var(--sm) 0;
     }
 
     nav a {
-      padding: var(--spacing-sm) 1.25rem;
+      padding: var(--sm) 1.25rem;
       width: 100%;
       border-bottom: 1px solid #222;
       text-align: center;

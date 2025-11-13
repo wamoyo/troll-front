@@ -40,26 +40,24 @@ export default function page () {
       <link rel="stylesheet" href="/styles/pages/articles.css">
     `,
     body: html`
-      <section id="pg-articles">
-        <div class="container">
-          <header class="articles-header">
-            <h1>Articles</h1>
-            <p class="subtitle">News, updates, and insights about carbon nanotube technology</p>
-          </header>
+      <section id="pg-articles" class="grid-container">
+        <header class="articles-header">
+          <h1>Articles</h1>
+          <p class="subtitle">News, updates, and insights about carbon nanotube technology</p>
+        </header>
 
-          <div class="articles-list">
-            ${articles.map(article => html`
-              <a href="${article.url}" class="article-card">
-                <h2>${article.title}</h2>
-                <div class="article-meta">
-                  <span class="date">${article.date}</span>
-                  <span class="author">By ${article.author}</span>
-                </div>
-                <p class="excerpt">${article.excerpt}</p>
-                <span class="read-more">Read more →</span>
-              </a>
-            `).join('\n')}
-          </div>
+        <div class="articles-list">
+          ${articles.map(article => html`
+            <a href="${article.url}" class="article-card">
+              <h2>${article.title}</h2>
+              <div class="article-meta">
+                <span class="date">${article.date}</span>
+                <span class="author">By ${article.author}</span>
+              </div>
+              <p class="excerpt">${article.excerpt}</p>
+              <span class="read-more">Read more →</span>
+            </a>
+          `).join('\n')}
         </div>
       </section>
     `

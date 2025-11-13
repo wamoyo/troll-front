@@ -1,45 +1,45 @@
 /* Legal pages styles (Terms & Privacy) */
 
 section#pg-legal {
-  background: var(--color-bg-primary);
-  color: var(--color-text-primary);
-  padding: var(--spacing-2xl) 0;
+  background: var(--bg);
+  color: var(--text);
+  padding: var(--2xl) 0;
 
   .container {
-    max-width: var(--width-medium);
+    max-width: var(--page);
   }
 
   h1 {
-    font-size: var(--font-size-h1);
-    font-weight: var(--font-weight-bold);
+    font-size: var(--h1);
+    font-weight: var(--bold);
   }
 
   .effective-date {
     font-size: 1rem;
-    color: var(--color-text-secondary);
+    color: var(--text-2);
   }
 
   p {
-    font-size: var(--font-size-body);
+    font-size: var(--body);
   }
 
   h2 {
     font-size: 1.75rem;
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--bold);
   }
 
   ul {
-    font-size: var(--font-size-body);
-    padding-left: var(--spacing-lg);
+    font-size: var(--body);
+    padding-left: var(--lg);
   }
 
   li {
   }
 
   a {
-    color: var(--color-accent);
+    color: var(--accent);
     text-decoration: none;
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--bold);
   }
 
   a:hover {
@@ -48,14 +48,14 @@ section#pg-legal {
 
   /* Responsive */
   @media (max-width: 768px) {
-    padding: var(--spacing-xl) 0;
+    padding: var(--xl) 0;
 
     h1 {
       font-size: 2.5rem;
     }
 
     h2 {
-      font-size: var(--font-size-h3);
+      font-size: var(--h3);
     }
 
     p,
@@ -65,10 +65,10 @@ section#pg-legal {
   }
 
   @media (max-width: 480px) {
-    padding: var(--spacing-lg) 0;
+    padding: var(--lg) 0;
 
     h1 {
-      font-size: var(--font-size-h2);
+      font-size: var(--h2);
     }
 
     h2 {
@@ -77,19 +77,19 @@ section#pg-legal {
   }
 
   @media (max-width: 320px) {
-    padding: var(--spacing-md) 0;
+    padding: var(--md) 0;
 
     h1 {
       font-size: 1.75rem;
     }
 
     h2 {
-      font-size: var(--font-size-h4);
+      font-size: var(--h4);
     }
 
     p,
     ul {
-      font-size: var(--font-size-small);
+      font-size: var(--small);
     }
   }
 }

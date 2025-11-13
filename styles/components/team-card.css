@@ -38,7 +38,7 @@ div.cp-team-card {
 
   .title {
     color: #f28337;
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--bold);
     margin-bottom: 1rem;
   }
 

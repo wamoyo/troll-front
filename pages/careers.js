@@ -54,84 +54,72 @@ export default function page () {
       <link rel="stylesheet" href="/styles/pages/careers.css">
     `,
     body: html`
-      <section id="pg-careers">
-        <div class="container-medium">
-          <h1>Careers</h1>
+      <section id="pg-careers" class="grid-container">
+        <h1>Careers</h1>
 
-          <section class="intro">
-            <p><strong>Troll Hair</strong> is receiving tremendous demand from the marketplace for our high strength carbon nanotube based materials. We're a fully funded tech startup growing rapidly, and we're looking to recruit talented, hard working, competent engineers and business people.</p>
-            <p class="tagline"><em>Join our team and help craft Earth's strongest materials!</em></p>
-          </section>
+        <p><strong>Troll Hair</strong> is receiving tremendous demand from the marketplace for our high strength carbon nanotube based materials. We're a fully funded tech startup growing rapidly, and we're looking to recruit talented, hard working, competent engineers and business people.</p>
+        <p class="tagline"><em><strong>Join our team and help craft Earth's strongest materials!</strong></em></p>
 
-          <section class="process">
-            <ol>
-              <li>View the open listings below.</li>
-              <li>Contact Constantinos at <a href="mailto:costa@trollhair.com" target="_blank">costa@trollhair.com</a> or on <a href="https://linkedin.com/in/costamichailidis" target="_blank" rel="noopener">LinkedIn</a> with questions.</li>
-              <li>Submit an application with the form below.</li>
-            </ol>
-          </section>
+        <ol>
+          <li>View the open listings below.</li>
+          <li>Contact Constantinos at <a href="mailto:costa@trollhair.com" target="_blank">costa@trollhair.com</a> or on <a href="https://linkedin.com/in/costamichailidis" target="_blank" rel="noopener">LinkedIn</a> with questions.</li>
+          <li>Submit an application with the form below.</li>
+        </ol>
 
-          <section class="philosophy">
-            <p>At Troll Hair we are building our organization for massive scale and impact.</p>
-            <p>As such, the job descriptions are extremely focused, each with a singular top priority and a few high level metrics of success.</p>
-            <p>Every job contributes to growth, and we expect candidates to be hyper focused on driving growth through their roles.</p>
-            <p>We are a team of extremely mission driven, passionate, material science and startup business nerds. We get really excited about the nitty gritty details. Make sure to tell us why you'd be a great fit for our team in your application. We aim to fill the company with extremely smart, capable individuals and mold them into an incredibly high performing team that will do nothing short of crafting literally the strongest materials on Earth and beyond. Be certain to tell us how you can contribute to that, what unique competence you bring to the team.</p>
-            <p><strong>Alright, let's go!</strong></p>
-            <p>Select the position you're interested in and complete the form below. And, please share this web page with friends and colleagues suited for the roles.</p>
-            <p class="compensation"><em>Compensation is, of course, very competitive.</em></p>
-          </section>
-        </div>
+        <p>At Troll Hair we are building our organization for massive scale and impact.</p>
+        <p>As such, the job descriptions are extremely focused, each with a singular top priority and a few high level metrics of success.</p>
+        <p>Every job contributes to growth, and we expect candidates to be hyper focused on driving growth through their roles.</p>
+        <p>We are a team of extremely mission driven, passionate, material science and startup business nerds. We get really excited about the nitty gritty details. Make sure to tell us why you'd be a great fit for our team in your application. We aim to fill the company with extremely smart, capable individuals and mold them into an incredibly high performing team that will do nothing short of crafting literally the strongest materials on Earth and beyond. Be certain to tell us how you can contribute to that, what unique competence you bring to the team.</p>
+        <p><strong>Alright, let's go!</strong></p>
+        <p>Select the position you're interested in and complete the form below. And, please share this web page with friends and colleagues suited for the roles.</p>
+        <p class="compensation"><em>Compensation is, of course, very competitive.</em></p>
 
-        <div class="container-medium">
-          <section class="job-listings">
-            <h2>Apply For A Job</h2>
+        <h2>Apply For A Job</h2>
 
-            <form class="job-application-form" action="/api/careers" method="post">
-              <div class="form-group">
-                <label for="job-select">Select a Job</label>
-                <select id="job-select" name="job" required>
-                  <option value="">Select a Job</option>
-                  ${jobs.map(job => html`
-                    <option value="${job.id}">${job.title}</option>
-                  `).join('\n                  ')}
-                </select>
+        <form class="job-application-form" action="/api/careers" method="post">
+          <div class="form-group">
+            <label for="job-select">Select a Job</label>
+            <select id="job-select" name="job" required>
+              <option value="">Select a Job</option>
+              ${jobs.map(job => html`
+                <option value="${job.id}">${job.title}</option>
+              `).join('\n              ')}
+            </select>
+          </div>
+
+          <div id="job-descriptions">
+            ${jobs.map(job => html`
+              <div class="job-description" data-job="${job.id}" style="display: none;">
+                <h3>${job.title}</h3>
+                <p class="job-priority"><strong>Top Priority »</strong> ${job.priority}</p>
+                <p class="job-detail">${job.description}</p>
+                <p class="job-metrics"><strong>Metrics of Success »</strong> ${job.metrics}</p>
               </div>
+            `).join('\n            ')}
+          </div>
 
-              <div id="job-descriptions">
-                ${jobs.map(job => html`
-                  <div class="job-description" data-job="${job.id}" style="display: none;">
-                    <h3>${job.title}</h3>
-                    <p class="job-priority"><strong>Top Priority »</strong> ${job.priority}</p>
-                    <p class="job-detail">${job.description}</p>
-                    <p class="job-metrics"><strong>Metrics of Success »</strong> ${job.metrics}</p>
-                  </div>
-                `).join('\n                ')}
-              </div>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Name" required>
+          </div>
 
-              <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" placeholder="Name" required>
-              </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Email" required>
+          </div>
 
-              <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="Email" required>
-              </div>
+          <div class="form-group">
+            <label for="linkedin">LinkedIn Or Website Link</label>
+            <input type="url" id="linkedin" name="linkedin" placeholder="LinkedIn Or Website Link">
+          </div>
 
-              <div class="form-group">
-                <label for="linkedin">LinkedIn Or Website Link</label>
-                <input type="url" id="linkedin" name="linkedin" placeholder="LinkedIn Or Website Link">
-              </div>
+          <div class="form-group">
+            <label for="statement">Application Statement</label>
+            <textarea id="statement" name="statement" rows="8" placeholder="Application Statement" required></textarea>
+          </div>
 
-              <div class="form-group">
-                <label for="statement">Application Statement</label>
-                <textarea id="statement" name="statement" rows="8" placeholder="Application Statement" required></textarea>
-              </div>
-
-              <button type="submit" class="submit-button">Submit Application</button>
-            </form>
-          </section>
-        </div>
+          <button type="submit" class="button primary">Submit Application</button>
+        </form>
       </section>
     `,
     scripts: html`

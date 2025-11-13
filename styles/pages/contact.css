@@ -1,35 +1,25 @@
 /* Contact page styles */
 
 section#pg-contact {
-  background: var(--color-bg-primary);
-  padding: var(--spacing-2xl) 0;
-}
-
-section#pg-contact .page-header {
-}
-
-section#pg-contact .page-header h1 {
-  margin-bottom: 0;
-}
-
-section#pg-contact .page-intro {
-}
-
-section#pg-contact .page-intro p {
-  font-size: var(--font-size-body);
-  margin: 0;
+  background: var(--bg);
 }
 
 section#pg-contact .contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--md);
+  max-width: var(--narrow);
 }
 
 section#pg-contact .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--spacing-md);
+  gap: var(--md);
 }
 
 section#pg-contact .form-group {
+  display: flex;
+  flex-direction: column;
 }
 
 section#pg-contact label {
@@ -49,24 +39,24 @@ section#pg-contact input[type="email"],
 section#pg-contact input[type="tel"],
 section#pg-contact textarea {
   width: 100%;
-  padding: var(--spacing-sm);
+  padding: var(--sm);
   background: transparent;
-  border: 1px solid var(--color-border);
-  color: var(--color-text-primary);
-  font-family: var(--font-family-primary);
-  font-size: var(--font-size-body);
-  transition: border-color var(--transition-normal);
+  border: 1px solid var(--white-30);
+  color: var(--text);
+  font-family: var(--ubuntu);
+  font-size: 1rem;
+  transition: border-color var(--fast);
 }
 
 section#pg-contact input::placeholder,
 section#pg-contact textarea::placeholder {
-  color: var(--color-text-tertiary);
+  color: var(--text-3);
 }
 
 section#pg-contact input:focus,
 section#pg-contact textarea:focus {
   outline: none;
-  border-color: var(--color-accent);
+  border-color: var(--accent);
 }
 
 section#pg-contact textarea {
@@ -74,48 +64,13 @@ section#pg-contact textarea {
   min-height: 150px;
 }
 
-section#pg-contact .submit-button {
-  background: var(--color-accent);
-  color: var(--color-text-primary);
-  padding: var(--spacing-sm) var(--spacing-xl);
-  font-size: var(--font-size-body);
-  font-weight: var(--font-weight-bold);
-  border: none;
-  cursor: pointer;
-  font-family: var(--font-family-primary);
-  transition: background var(--transition-normal);
-}
-
-section#pg-contact .submit-button:hover {
-  background: var(--color-accent-hover);
-}
-
 /* Responsive */
-@media (max-width: 768px) {
-  section#pg-contact {
-    padding: var(--spacing-xl) 0;
-  }
-}
-
 @media (max-width: 640px) {
   section#pg-contact .form-row {
     grid-template-columns: 1fr;
-    gap: 0;
   }
 
-  section#pg-contact .submit-button {
+  section#pg-contact .button {
     width: 100%;
-  }
-}
-
-@media (max-width: 480px) {
-  section#pg-contact {
-    padding: var(--spacing-lg) 0;
-  }
-}
-
-@media (max-width: 320px) {
-  section#pg-contact {
-    padding: var(--spacing-md) 0;
   }
 }

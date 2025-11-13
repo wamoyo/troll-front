@@ -1,16 +1,16 @@
 /* Footer component styles */
 
 footer.cp-footer {
-  background: var(--color-bg-primary);
-  color: var(--color-text-primary);
-  padding: var(--spacing-lg) 0;
+  background: var(--bg);
+  color: var(--text);
+  padding: var(--lg) 0;
   text-align: center;
   font-size: 0.9rem;
 
   .container {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-xs);
+    gap: var(--xs);
   }
 
   .social {
@@ -19,13 +19,13 @@ footer.cp-footer {
   }
 
   .social a {
-    color: var(--color-accent);
-    font-weight: var(--font-weight-bold);
-    transition: color var(--transition-fast);
+    color: var(--accent);
+    font-weight: var(--bold);
+    transition: color var(--fast);
   }
 
   .social a:hover {
-    color: var(--color-accent-hover);
+    color: var(--accent-hover);
     text-decoration: underline;
   }
 
@@ -36,25 +36,25 @@ footer.cp-footer {
   }
 
   .copyright {
-    color: var(--color-text-secondary);
+    color: var(--text-2);
   }
 
   .legal {
-    color: var(--color-text-secondary);
+    color: var(--text-2);
   }
 
   .legal a {
-    color: var(--color-accent);
-    transition: color var(--transition-fast);
+    color: var(--accent);
+    transition: color var(--fast);
   }
 
   .legal a:hover {
-    color: var(--color-accent-hover);
+    color: var(--accent-hover);
     text-decoration: underline;
   }
 
   @media (max-width: 480px) {
-    padding: var(--spacing-md) 0;
+    padding: var(--md) 0;
     font-size: 0.85rem;
   }
 

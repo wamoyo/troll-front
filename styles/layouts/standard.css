@@ -2,14 +2,14 @@
 
 html,
 body#ly-standard {
-  background: var(--color-bg-primary);
+  background: var(--bg);
 }
 
 body#ly-standard {
-  font-family: var(--font-family-primary);
-  line-height: var(--line-height-relaxed);
-  color: var(--color-text-primary);
-  font-size: var(--font-size-body);
+  font-family: var(--ubuntu);
+  line-height: var(--relaxed);
+  color: var(--text);
+  font-size: var(--body);
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -25,12 +25,14 @@ body#ly-standard .grid-container {
   display: grid;
   grid-template-columns:
     [full-start]
-    minmax(1.5rem, 1fr)
+    minmax(var(--md), 1fr)
     [page-start]
-    minmax(0, var(--width-medium))
+    minmax(0, calc(var(--page) - (var(--md) * 2)))
     [page-end]
-    minmax(1.5rem, 1fr)
+    minmax(var(--md), 1fr)
     [full-end];
+  padding-top: var(--2xl);
+  padding-bottom: var(--2xl);
 }
 
 /* Default: all direct children use page width lane (965px) */
@@ -47,25 +49,25 @@ body#ly-standard .grid-container > .width-full {
 
 /* Container utilities */
 body#ly-standard .container {
-  max-width: var(--width-wide);
+  max-width: var(--wide);
   margin: 0 auto;
   padding: 0 1.5rem;
 }
 
 body#ly-standard .container-narrow {
-  max-width: var(--width-narrow);
+  max-width: var(--narrow);
   margin: 0 auto;
   padding: 0 1.5rem;
 }
 
 body#ly-standard .container-medium {
-  max-width: var(--width-medium);
+  max-width: var(--page);
   margin: 0 auto;
   padding: 0 1.5rem;
 }
 
 body#ly-standard .container-wide {
-  max-width: var(--width-wide);
+  max-width: var(--wide);
   margin: 0 auto;
   padding: 0 1.5rem;
 }
@@ -78,6 +80,11 @@ body#ly-standard .container-wide {
   body#ly-standard .container-wide {
     padding: 0 1.25rem;
   }
+
+  body#ly-standard .grid-container {
+    padding-top: var(--xl);
+    padding-bottom: var(--xl);
+  }
 }
 
 @media (max-width: 480px) {
@@ -86,6 +93,11 @@ body#ly-standard .container-wide {
   body#ly-standard .container-medium,
   body#ly-standard .container-wide {
     padding: 0 1rem;
+  }
+
+  body#ly-standard .grid-container {
+    padding-top: var(--lg);
+    padding-bottom: var(--lg);
   }
 }
 
@@ -104,6 +116,11 @@ body#ly-standard .container-wide {
   body#ly-standard .container-medium,
   body#ly-standard .container-wide {
     padding: 0 0.75rem;
+  }
+
+  body#ly-standard .grid-container {
+    padding-top: var(--md);
+    padding-bottom: var(--md);
   }
 }
 

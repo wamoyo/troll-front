@@ -23,19 +23,12 @@ export default function page () {
       <link rel="stylesheet" href="/styles/pages/contact.css">
     `,
     body: html`
-      <section id="pg-contact">
-        <div class="container-medium">
-          <header class="page-header">
-            <h1>Contact</h1>
-          </header>
+      <section id="pg-contact" class="grid-container">
+        <h1>Contact</h1>
 
-          <div class="page-intro">
-            <p>Troll Hair is a new company bringing breakthroughs in carbon nanotube manufacturing and application to the market. We cannot wait to build incredible new things with you! Reach out to us using the form below, or email us at <a href="mailto:info@trollhair.com" target="_blank">info@trollhair.com</a> or call <a href="tel:+12126021401">(212) 602-1401</a>.</p>
-          </div>
-        </div>
+        <p>Troll Hair is a new company bringing breakthroughs in carbon nanotube manufacturing and application to the market. We cannot wait to build incredible new things with you! Reach out to us using the form below, or email us at <a href="mailto:info@trollhair.com" target="_blank">info@trollhair.com</a> or call <a href="tel:+12126021401">(212) 602-1401</a>.</p>
 
-        <div class="container-narrow">
-          <form action="/api/contact" method="post" class="contact-form">
+        <form action="/api/contact" method="post" class="contact-form">
             <div class="form-row">
               <div class="form-group">
                 <label for="name">Name</label>
@@ -58,9 +51,8 @@ export default function page () {
               <textarea id="comment" name="comment" rows="6" placeholder="Comment"></textarea>
             </div>
 
-            <button type="submit" class="submit-button">Send</button>
-          </form>
-        </div>
+          <button type="submit" class="button primary">Send</button>
+        </form>
       </section>
     `
   })

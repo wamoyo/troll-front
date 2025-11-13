@@ -1,25 +1,25 @@
 /* Custom article page styles */
 
 article#pg-article-custom {
-  background: var(--color-bg-primary);
-  color: var(--color-text-primary);
-  padding: var(--spacing-2xl) 0 6rem;
+  background: var(--bg);
+  color: var(--text);
+  padding: var(--2xl) 0 6rem;
 
   .article-header {
-    padding-bottom: var(--spacing-md);
+    padding-bottom: var(--md);
   }
 
   h1 {
     font-size: 3.5rem;
-    font-weight: var(--font-weight-bold);
-    color: var(--color-text-primary);
+    font-weight: var(--bold);
+    color: var(--text);
   }
 
   .article-meta {
     display: flex;
-    gap: var(--spacing-md);
-    font-size: var(--font-size-small);
-    color: var(--color-text-tertiary);
+    gap: var(--md);
+    font-size: var(--small);
+    color: var(--text-3);
   }
 
   .article-date {
@@ -28,13 +28,13 @@ article#pg-article-custom {
   }
 
   .author {
-    color: var(--color-text-tertiary);
+    color: var(--text-3);
   }
 
   .intro {
-    font-size: var(--font-size-medium);
+    font-size: var(--medium);
     font-style: italic;
-    color: var(--color-text-primary);
+    color: var(--text);
   }
 
   .hero-image {
@@ -51,23 +51,23 @@ article#pg-article-custom {
   }
 
   .article-content {
-    font-size: var(--font-size-body);
+    font-size: var(--body);
   }
 
   .article-content h2 {
-    font-size: var(--font-size-h2);
-    font-weight: var(--font-weight-bold);
-    color: var(--color-text-primary);
+    font-size: var(--h2);
+    font-weight: var(--bold);
+    color: var(--text);
   }
 
   .article-content p {
-    color: var(--color-text-secondary);
+    color: var(--text-2);
   }
 
   .article-content a {
-    color: var(--color-accent);
+    color: var(--accent);
     text-decoration: none;
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--bold);
   }
 
   .article-content a:hover {
@@ -75,17 +75,17 @@ article#pg-article-custom {
   }
 
   .article-footer {
-    padding-top: var(--spacing-lg);
-    border-top: 1px solid var(--color-border);
+    padding-top: var(--lg);
+    border-top: 1px solid var(--border);
     display: flex;
-    gap: var(--spacing-md);
+    gap: var(--md);
     align-items: center;
     justify-content: center;
   }
 
   /* Responsive */
   @media (max-width: 768px) {
-    padding: var(--spacing-lg) 0 var(--spacing-2xl);
+    padding: var(--lg) 0 var(--2xl);
 
     h1 {
       font-size: 2.25rem;
@@ -95,14 +95,14 @@ article#pg-article-custom {
     }
 
     .intro {
-      font-size: var(--font-size-body);
+      font-size: var(--body);
     }
 
     .hero-image {
     }
 
     .article-content h2 {
-      font-size: var(--font-size-h3);
+      font-size: var(--h3);
     }
 
     .article-content p {
@@ -113,7 +113,7 @@ article#pg-article-custom {
   }
 
   @media (max-width: 480px) {
-    padding: var(--spacing-md) 0 var(--spacing-xl);
+    padding: var(--md) 0 var(--xl);
 
     h1 {
       font-size: 1.875rem;

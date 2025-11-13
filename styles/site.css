@@ -59,51 +59,63 @@
 
 /* CSS Custom Properties - Design Tokens */
 :root {
-  /* Colors */
-  --color-bg-primary: #000;
-  --color-bg-secondary: rgba(255, 255, 255, 0.03);
-  --color-text-primary: #fff;
-  --color-text-secondary: #B3B3B3;
-  --color-text-tertiary: #808080;
-  --color-accent: #e22c3b;
-  --color-accent-hover: #c91f2e;
-  --color-success: #00ff88;
-  --color-border: rgba(255, 255, 255, 0.1);
+  /* Literal Colors - explicit values that don't change with themes */
+  --black: #000;
+  --white: #fff;
+  --red: #e22c3b;
+  --red-dark: #c91f2e;
+  --red-30: rgba(226, 44, 59, 0.3);
+  --green: #00ff88;
+  --light-grey: #B3B3B3;
+  --dark-grey: #808080;
+  --white-03: rgba(255, 255, 255, 0.03);
+  --white-10: rgba(255, 255, 255, 0.1);
+  --white-30: rgba(255, 255, 255, 0.3);
+
+  /* Semantic Colors - theme-aware, use these for layout/components */
+  --bg: var(--black);
+  --bg-2: var(--white-03);
+  --text: var(--white);
+  --text-2: var(--light-grey);
+  --text-3: var(--dark-grey);
+  --accent: var(--red);
+  --accent-hover: var(--red-dark);
+  --success: var(--green);
+  --border: var(--white-10);
 
   /* Typography */
-  --font-family-primary: 'Ubuntu', Ubuntu, system-ui, -apple-system, sans-serif;
-  --font-family-mono: 'Ubuntu Mono', 'Ubuntu Mono', ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
-  --font-size-h1: 3.5rem;
-  --font-size-h2: 2rem;
-  --font-size-h3: 1.5rem;
-  --font-size-h4: 1.25rem;
-  --font-size-medium: 1.325rem;
-  --font-size-body: 1rem;
-  --font-size-small: 0.9375rem;
+  --ubuntu: 'Ubuntu', Ubuntu, system-ui, -apple-system, sans-serif;
+  --mono: 'Ubuntu Mono', 'Ubuntu Mono', ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
 
-  --font-weight-normal: normal;
-  --font-weight-bold: bold;
+  --h1: 3.5rem;
+  --h2: 2rem;
+  --h3: 1.5rem;
+  --h4: 1.25rem;
+  --medium: 1.325rem;
+  --body: 1rem;
+  --small: 0.9375rem;
 
-  --line-height-tight: 1.1;
-  --line-height-normal: 1.6;
-  --line-height-relaxed: 1.7;
+  --bold: bold;
+
+  --tight: 1.1;
+  --relaxed: 1.7;
 
   /* Spacing */
-  --spacing-xs: 0.5rem;
-  --spacing-sm: 1rem;
-  --spacing-md: 1.5rem;
-  --spacing-lg: 2rem;
-  --spacing-xl: 3rem;
-  --spacing-2xl: 4rem;
+  --xs: 0.5rem;
+  --sm: 1rem;
+  --md: 1.5rem;
+  --lg: 2rem;
+  --xl: 3rem;
+  --2xl: 4rem;
 
   /* Container widths */
-  --width-narrow: 700px;
-  --width-medium: 965px;
-  --width-wide: 1200px;
+  --narrow: 700px;
+  --page: 965px;
+  --wide: 1200px;
 
   /* Transitions */
-  --transition-fast: 0.2s;
-  --transition-normal: 0.3s;
+  --fast: 0.2s;
+  --normal: 0.3s;
 }
 
 * {
@@ -122,11 +134,11 @@ body {
 /* Button Styles */
 .button {
   display: inline-block;
-  padding: var(--spacing-sm) 2.5rem;
-  font-size: var(--font-size-body);
-  font-weight: var(--font-weight-bold);
+  padding: var(--sm) 2.5rem;
+  font-size: var(--body);
+  font-weight: var(--bold);
   text-decoration: none;
-  transition: all var(--transition-normal);
+  transition: all var(--normal);
   cursor: pointer;
   border: none;
 }
@@ -136,44 +148,44 @@ body {
 }
 
 .button.primary {
-  background: var(--color-accent);
-  color: var(--color-text-primary);
+  background: var(--accent);
+  color: var(--text);
 }
 
 .button.primary:hover {
-  background: var(--color-accent-hover);
+  background: var(--accent-hover);
 }
 
 .button.secondary {
   background: transparent;
-  color: var(--color-text-primary);
-  border: 2px solid var(--color-accent);
-  padding: calc(var(--spacing-sm) - 2px) calc(2.5rem - 2px);
+  color: var(--text);
+  border: 2px solid var(--accent);
+  padding: calc(var(--sm) - 2px) calc(2.5rem - 2px);
 }
 
 .button.secondary:hover {
-  background: var(--color-accent);
-  color: var(--color-text-primary);
+  background: var(--accent);
+  color: var(--text);
 }
 
 .button.tertiary {
   background: transparent;
-  color: var(--color-text-secondary);
-  border: 2px solid var(--color-text-secondary);
-  padding: calc(var(--spacing-sm) - 2px) calc(2.5rem - 2px);
+  color: var(--text-2);
+  border: 2px solid var(--text-2);
+  padding: calc(var(--sm) - 2px) calc(2.5rem - 2px);
 }
 
 .button.tertiary:hover {
-  border-color: var(--color-text-primary);
-  color: var(--color-text-primary);
+  border-color: var(--text);
+  color: var(--text);
 }
 
 /* Global Typography */
 a {
-  color: var(--color-accent);
+  color: var(--accent);
   text-decoration: none;
-  font-weight: var(--font-weight-bold);
-  transition: color var(--transition-fast);
+  font-weight: var(--bold);
+  transition: color var(--fast);
 }
 
 a:hover {
@@ -184,45 +196,67 @@ h1,
 h2,
 h3,
 h4 {
-  line-height: var(--line-height-tight);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-text-primary);
-  margin-top: var(--spacing-lg);
-  margin-bottom: var(--spacing-sm);
+  line-height: var(--tight);
+  font-weight: var(--bold);
+  color: var(--text);
+  margin-top: var(--lg);
+  margin-bottom: var(--sm);
 }
 
 h1 {
-  font-size: var(--font-size-h1);
+  font-size: var(--h1);
 }
 
 h2 {
-  font-size: var(--font-size-h2);
+  font-size: var(--h2);
 }
 
 h3 {
-  font-size: var(--font-size-h3);
+  font-size: var(--h3);
 }
 
 h4 {
-  font-size: var(--font-size-h4);
+  font-size: var(--h4);
 }
 
 p,
 ul,
 ol {
-  color: var(--color-text-secondary);
-  margin-bottom: var(--spacing-sm);
+  color: var(--text-2);
+  margin-bottom: var(--sm);
 }
 
 li {
-  color: var(--color-text-secondary);
+  color: var(--text-2);
 }
 
 strong {
-  font-weight: var(--font-weight-bold);
-  color: var(--color-text-primary);
+  font-weight: var(--bold);
+  color: var(--text);
 }
 
 em {
   font-style: italic;
+}
+
+/* Responsive Typography - Global heading sizes */
+@media (max-width: 768px) {
+  h1 { font-size: 3rem; }
+  h2 { font-size: 1.875rem; }
+  h3 { font-size: 1.375rem; }
+  h4 { font-size: 1.125rem; }
+}
+
+@media (max-width: 480px) {
+  h1 { font-size: 2.5rem; }
+  h2 { font-size: 1.75rem; }
+  h3 { font-size: var(--h4); }
+  h4 { font-size: 1.125rem; }
+}
+
+@media (max-width: 320px) {
+  h1 { font-size: 2.25rem; }
+  h2 { font-size: var(--h3); }
+  h3 { font-size: var(--h4); }
+  h4 { font-size: 1.125rem; }
 }

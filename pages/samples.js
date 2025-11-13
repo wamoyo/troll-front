@@ -23,35 +23,25 @@ export default function page () {
       <link rel="stylesheet" href="/styles/pages/samples.css">
     `,
     body: html`
-      <section id="pg-samples">
-        <div class="container-medium">
-          <header class="page-header">
-            <h1>Get Samples Today</h1>
-          </header>
+      <section id="pg-samples" class="grid-container">
+        <h1>Get Samples Today</h1>
 
-          <div class="page-intro">
-            <p>Interested in testing out our carbon nanotubes, or carbon nanotube infused plastics? Email us at <a href="mailto:info@trollhair.com" target="_blank">info@trollhair.com</a> or call us directly at <a href="tel:+12126021401">(212) 602-1401</a>.</p>
-          </div>
+        <p>Interested in testing out our carbon nanotubes, or carbon nanotube infused plastics? Email us at <a href="mailto:info@trollhair.com" target="_blank">info@trollhair.com</a> or call us directly at <a href="tel:+12126021401">(212) 602-1401</a>.</p>
 
-          <div class="sample-image">
-            <img src="/images/carbon-nanotube-samples.png" alt="Troll Hair sample box containing carbon nanotube materials">
-          </div>
-
-          <div class="more-info">
-            <h2>More Information</h2>
-
-            <p>We provide samples primarily to interested <em>Injection Molders</em> and <em>3D Printers</em>. Researchers are welcome to test our material for various applications as well.</p>
-
-            <p>We'll happily provide our Material Safety Data Sheets (MSDS) ahead of sending samples, as well as share data and use cases over a video conference.</p>
-
-            <p>We look forward to building incredible things together!</p>
-
-            <div class="contact-details">
-              <p><strong>Email:</strong> <a href="mailto:info@trollhair.com" target="_blank">info@trollhair.com</a></p>
-              <p><strong>Phone:</strong> <a href="tel:+12126021401">(212) 602-1401</a></p>
-            </div>
-          </div>
+        <div class="sample-image">
+          <img src="/images/carbon-nanotube-samples.png" alt="Troll Hair sample box containing carbon nanotube materials">
         </div>
+
+        <h2>More Information</h2>
+
+        <p>We provide samples primarily to interested <em>Injection Molders</em> and <em>3D Printers</em>. Researchers are welcome to test our material for various applications as well.</p>
+
+        <p>We'll happily provide our Material Safety Data Sheets (MSDS) ahead of sending samples, as well as share data and use cases over a video conference.</p>
+
+        <p>We look forward to building incredible things together!</p>
+
+        <p><strong>Email:</strong> <a href="mailto:info@trollhair.com" target="_blank">info@trollhair.com</a></p>
+        <p><strong>Phone:</strong> <a href="tel:+12126021401">(212) 602-1401</a></p>
       </section>
     `
   })
