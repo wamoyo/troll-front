@@ -72,7 +72,7 @@
   --white-10: rgba(255, 255, 255, 0.1);
   --white-30: rgba(255, 255, 255, 0.3);
 
-  /* Semantic Colors - theme-aware, use these for layout/components */
+  /* Semantic Colors - DARK MODE (default) */
   --bg: var(--black);
   --bg-2: var(--white-03);
   --text: var(--white);

@@ -9,7 +9,7 @@ article#ly-article {
 
   .article-header {
     padding-bottom: var(--md);
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid var(--border);
 
     h1 {
       font-size: 2.5rem;
@@ -20,7 +20,7 @@ article#ly-article {
       display: flex;
       gap: var(--md);
       font-size: 0.875rem;
-      color: #666;
+      color: var(--text-3);
 
       .date, .author {
         display: inline-block;
@@ -30,12 +30,12 @@ article#ly-article {
 
   .article-content {
     font-size: var(--body);
-    color: #333;
+    color: var(--text-2);
 
     .lead {
       font-size: var(--h4);
       font-weight: var(--font-weight-medium);
-      color: #444;
+      color: var(--text-2);
     }
 
     h2 {
@@ -57,13 +57,13 @@ article#ly-article {
       li {
 
         strong {
-          color: #000;
+          color: var(--text);
         }
       }
     }
 
     a {
-      color: #0066cc;
+      color: var(--accent);
       text-decoration: none;
 
       &:hover {
@@ -74,10 +74,10 @@ article#ly-article {
 
   .article-footer {
     padding-top: var(--lg);
-    border-top: 1px solid #ddd;
+    border-top: 1px solid var(--border);
 
     .back-link {
-      color: #0066cc;
+      color: var(--accent);
       text-decoration: none;
       font-weight: var(--font-weight-medium);
 

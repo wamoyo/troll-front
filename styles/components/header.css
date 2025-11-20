@@ -152,7 +152,7 @@ header.cp-header {
       flex-direction: column;
       padding: 0;
       gap: 0;
-      border-top: 1px solid #333;
+      border-top: 1px solid var(--border);
       z-index: 1000;
       max-height: 0;
       overflow: hidden;
@@ -169,12 +169,12 @@ header.cp-header {
     nav a {
       padding: var(--sm) 1.25rem;
       width: 100%;
-      border-bottom: 1px solid #222;
+      border-bottom: 1px solid var(--border);
       text-align: center;
     }
 
     nav a.active {
-      background: #1a1a1a;
+      background: var(--bg-2);
     }
   }
 

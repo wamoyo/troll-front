@@ -10,7 +10,7 @@ section#pg-about {
 
   .spec-highlight {
     font-size: var(--medium);
-    color: white;
+    color: var(--text);
   }
 
   /* Responsive */
