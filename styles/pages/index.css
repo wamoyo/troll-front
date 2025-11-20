@@ -108,6 +108,25 @@ section#pg-index {
       gap: 1.5rem;
     }
   }
+
+  /* Wide desktop screens - expand hero container */
+  @media (min-width: 1440px) {
+    .hero .container {
+      max-width: 1400px;
+    }
+  }
+
+  @media (min-width: 1600px) {
+    .hero .container {
+      max-width: 1500px;
+    }
+  }
+
+  @media (min-width: 1920px) {
+    .hero .container {
+      max-width: 1600px;
+    }
+  }
 }
 
 @keyframes pg-index-hero-zoom {
