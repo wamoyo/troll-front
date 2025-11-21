@@ -5,8 +5,11 @@ Static site generator built with Deno and JavaScript template literals.
 ## Quick Start
 
 ```bash
-# Build the site
+# Build the site (development)
 deno task build
+
+# Build for production
+deno task build:prod
 
 # Start dev server
 deno task dev
@@ -112,6 +115,15 @@ data.team.map(member => teamCard(member))
 - CSS files are copied to `site/styles/`
 - Static assets (fonts, images, etc) copied to `site/`
 - Dev server runs at http://localhost:8700
+
+## Backend Integration
+
+A build generator makes `config.js` with backend URL. Client-side scripts import it:
+
+```javascript
+import { BACKEND } from '/config.js'
+fetch(`${BACKEND}/contact/send`, {...})
+```
 
 ## Deployment
 
