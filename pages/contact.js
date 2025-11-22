@@ -54,16 +54,6 @@ export default function page () {
               <textarea id="message" name="message" rows="6" placeholder="Message *" maxlength="5500" required></textarea>
             </div>
 
-          <!-- TEMPORARY: Mock messages for preview -->
-          <div class="cp-form-message cp-form-message-success">
-            Thank you! Your message has been sent. We'll get back to you soon.
-          </div>
-
-          <div class="cp-form-message cp-form-message-error">
-            Something went wrong. Please try again.
-          </div>
-          <!-- END TEMPORARY -->
-
           <button type="submit" class="button primary">Send</button>
         </form>
       </section>
