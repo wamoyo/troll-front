@@ -65,7 +65,10 @@
   --red: #e22c3b;
   --red-dark: #c91f2e;
   --red-30: rgba(226, 44, 59, 0.3);
+  --orange: #f2833b;
+  --orange-10: rgba(242, 131, 59, 0.1);
   --green: #00ff88;
+  --green-10: rgba(0, 255, 136, 0.1);
   --light-grey: #B3B3B3;
   --dark-grey: #808080;
   --white-03: rgba(255, 255, 255, 0.03);
@@ -177,6 +180,50 @@ body {
 
 .button.tertiary:hover {
   border-color: var(--text);
+  color: var(--text);
+}
+
+/* Form Elements - Base Styles */
+input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]),
+select,
+textarea {
+  background: transparent;
+  border: 1px solid var(--white-30);
+  padding: var(--sm);
+  color: var(--text);
+  font-family: var(--ubuntu);
+  font-size: 1rem;
+  transition: border-color var(--fast);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-3);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 150px;
+}
+
+select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='white' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--sm) center;
+  padding-right: 2.5rem;
+}
+
+select option {
+  background: var(--black);
   color: var(--text);
 }
 

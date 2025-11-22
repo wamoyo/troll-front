@@ -36,34 +36,9 @@ section#pg-contact label {
   border-width: 0;
 }
 
-section#pg-contact input[type="text"],
-section#pg-contact input[type="email"],
-section#pg-contact input[type="tel"],
+section#pg-contact input,
 section#pg-contact textarea {
   width: 100%;
-  padding: var(--sm);
-  background: transparent;
-  border: 1px solid var(--white-30);
-  color: var(--text);
-  font-family: var(--ubuntu);
-  font-size: 1rem;
-  transition: border-color var(--fast);
-}
-
-section#pg-contact input::placeholder,
-section#pg-contact textarea::placeholder {
-  color: var(--text-3);
-}
-
-section#pg-contact input:focus,
-section#pg-contact textarea:focus {
-  outline: none;
-  border-color: var(--accent);
-}
-
-section#pg-contact textarea {
-  resize: vertical;
-  min-height: 150px;
 }
 
 section#pg-contact .button {

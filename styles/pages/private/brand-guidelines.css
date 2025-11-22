@@ -120,6 +120,10 @@ section#pg-brand-guidelines .swatch-green {
   background: var(--success);
 }
 
+section#pg-brand-guidelines .swatch-orange {
+  background: var(--orange);
+}
+
 section#pg-brand-guidelines .swatch-grey {
   background: var(--text-2);
 }
@@ -185,6 +189,36 @@ section#pg-brand-guidelines .usage-note {
   background: rgba(226, 44, 59, 0.05);
   border-left: 3px solid var(--accent);
   margin: var(--md) 0;
+}
+
+/* Form Examples */
+section#pg-brand-guidelines .form-examples {
+  display: flex;
+  flex-direction: column;
+  gap: var(--md);
+  max-width: var(--narrow);
+  margin: var(--lg) 0;
+}
+
+section#pg-brand-guidelines .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--xs);
+}
+
+section#pg-brand-guidelines .form-group label {
+  font-size: var(--small);
+  color: var(--text-2);
+  font-weight: var(--bold);
+}
+
+section#pg-brand-guidelines input,
+section#pg-brand-guidelines textarea {
+  width: 100%;
+}
+
+section#pg-brand-guidelines .cp-form-message {
+  margin-bottom: var(--md);
 }
 
 /* Do's & Don'ts Grid */

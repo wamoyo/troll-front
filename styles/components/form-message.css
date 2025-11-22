@@ -1,0 +1,20 @@
+/* Form message component - success/error feedback */
+
+.cp-form-message {
+  padding: var(--md);
+  border-radius: 4px;
+  font-size: var(--body);
+  line-height: var(--relaxed);
+}
+
+.cp-form-message-success {
+  background: var(--green-10);
+  border: 1px solid var(--green);
+  color: var(--green);
+}
+
+.cp-form-message-error {
+  background: var(--orange-10);
+  border: 1px solid var(--orange);
+  color: var(--orange);
+}

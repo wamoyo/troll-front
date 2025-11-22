@@ -21,6 +21,7 @@ export default function page () {
     head: html`
       ${pageSeo(meta).head}
       <link rel="stylesheet" href="/styles/pages/private/brand-guidelines.css">
+      <link rel="stylesheet" href="/styles/components/form-message.css">
     `,
     body: html`
       <section id="pg-brand-guidelines" class="grid-container">
@@ -164,6 +165,12 @@ export default function page () {
               <p class="color-usage">Positive actions, success states, affirmative messaging. Bright and energetic.</p>
             </div>
             <div class="color-card">
+              <div class="color-swatch swatch-orange"></div>
+              <h4>Warning Orange</h4>
+              <p class="color-value">#f2833b</p>
+              <p class="color-usage">Form failures, warnings, caution states. Signals attention needed without being alarming.</p>
+            </div>
+            <div class="color-card">
               <div class="color-swatch swatch-grey"></div>
               <h4>Light Grey</h4>
               <p class="color-value">#B3B3B3</p>
@@ -203,6 +210,54 @@ export default function page () {
               <blockquote>
                 "Troll Hair's carbon nanotubes have revolutionized our manufacturing process, enabling us to create parts with unprecedented strength-to-weight ratios."
               </blockquote>
+            </div>
+          </section>
+
+          <section class="guide-section">
+            <h2 class="section-title">Form Elements</h2>
+
+            <div class="subsection">
+              <h3>Form Inputs</h3>
+              <p>All form inputs share a consistent visual style: transparent background, semi-transparent white border (30% opacity), brand red border on focus. Click into any field below to see the focus state.</p>
+
+              <div class="form-examples">
+                <div class="form-group">
+                  <label for="example-text">Text Input</label>
+                  <input type="text" id="example-text" placeholder="Name *">
+                </div>
+
+                <div class="form-group">
+                  <label for="example-email">Email Input</label>
+                  <input type="email" id="example-email" placeholder="Email *">
+                </div>
+
+                <div class="form-group">
+                  <label for="example-tel">Telephone Input</label>
+                  <input type="tel" id="example-tel" placeholder="Phone number">
+                </div>
+
+                <div class="form-group">
+                  <label for="example-textarea">Textarea</label>
+                  <textarea id="example-textarea" rows="6" placeholder="Message *"></textarea>
+                </div>
+              </div>
+
+              <p class="type-meta" style="margin-top: var(--md);">Background: transparent • Border: 1px solid var(--white-30) • Padding: var(--sm) • Focus: border-color var(--accent) • Transition: var(--fast)</p>
+            </div>
+
+            <div class="subsection">
+              <h3>Form Messages</h3>
+              <p>Form messages provide clear feedback for form submissions. Success messages use green, error messages use orange.</p>
+
+              <div class="cp-form-message cp-form-message-success">
+                Thank you! Your message has been sent. We'll get back to you soon.
+              </div>
+
+              <div class="cp-form-message cp-form-message-error">
+                Something went wrong. Please try again.
+              </div>
+
+              <p class="type-meta" style="margin-top: var(--md);">Success: background var(--green-10), border/text var(--green) • Error: background var(--orange-10), border/text var(--orange) • Padding: var(--md) • Border radius: 4px</p>
             </div>
           </section>
 
