@@ -28,7 +28,7 @@ export default function page () {
           <div class="container">
             <div class="hero-content">
               <h1>Titanium Strength Plastics</h1>
-              <p class="hero-description">Our <strong>Carbon Nanotubes</strong> enable ultra high strength plastics for 3D Printing, Injection Molding, Extrusion, and more...</p>
+              <p class="hero-description med">Our <strong>Carbon Nanotubes</strong> enable ultra high strength plastics for 3D Printing, Injection Molding, Extrusion, and more...</p>
               <a href="/samples" class="button primary">Get Samples</a>
             </div>
             <div class="hero-image">

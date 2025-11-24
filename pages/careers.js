@@ -58,7 +58,7 @@ export default function page () {
         <h1>Careers</h1>
 
         <p><strong>Troll Hair</strong> is receiving tremendous demand from the marketplace for our high strength carbon nanotube based materials. We're a fully funded tech startup growing rapidly, and we're looking to recruit talented, hard working, competent engineers and business people.</p>
-        <p class="tagline"><em><strong>Join our team and help craft Earth's strongest materials!</strong></em></p>
+        <p class="tagline"><strong>Join our team and help craft Earth's strongest materials!</strong></p>
 
         <ol>
           <li>View the open listings below.</li>

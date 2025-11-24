@@ -94,6 +94,7 @@
   --h2: 2rem;
   --h3: 1.5rem;
   --h4: 1.25rem;
+  --small: .9rem;
   --medium: 1.325rem;
   --body: 1rem;
   --small: 0.9375rem;
@@ -272,6 +273,9 @@ ol {
   color: var(--text-2);
   margin-bottom: var(--sm);
 }
+
+p.medium, p.med {font-size: var(--medium)}
+p.small {font-size: var(--small)}
 
 li {
   color: var(--text-2);

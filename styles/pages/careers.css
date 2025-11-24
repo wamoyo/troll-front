@@ -14,7 +14,6 @@ section#pg-careers {
 
   p.tagline {
     font-size: var(--medium);
-    font-style: italic;
     color: var(--text);
   }
 

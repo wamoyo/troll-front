@@ -26,7 +26,7 @@ export default function page () {
       <section id="pg-samples" class="grid-container">
         <h1>Get Samples Today</h1>
 
-        <p>Interested in testing out our carbon nanotubes, or carbon nanotube infused plastics? Email us at <a href="mailto:info@trollhair.com" target="_blank">info@trollhair.com</a> or call us directly at <a href="tel:+12126021401">(212) 602-1401</a>.</p>
+        <p class='med'>Interested in testing out our carbon nanotubes, or carbon nanotube infused plastics? Email us at <a href="mailto:info@trollhair.com" target="_blank">info@trollhair.com</a> or call us at <a href="tel:+12126021401">(212) 602-1401</a>.</p>
 
         <div class="sample-image">
           <img src="/images/carbon-nanotube-samples.png" alt="Troll Hair sample box containing carbon nanotube materials">
@@ -40,8 +40,8 @@ export default function page () {
 
         <p>We look forward to building incredible things together!</p>
 
-        <p><strong>Email:</strong> <a href="mailto:info@trollhair.com" target="_blank">info@trollhair.com</a></p>
-        <p><strong>Phone:</strong> <a href="tel:+12126021401">(212) 602-1401</a></p>
+        <p class="med"><strong>Email:</strong> <a href="mailto:info@trollhair.com" target="_blank">info@trollhair.com</a></p>
+        <p class="med"><strong>Phone:</strong> <a href="tel:+12126021401">(212) 602-1401</a></p>
       </section>
     `
   })
