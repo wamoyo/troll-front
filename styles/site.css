@@ -120,6 +120,9 @@
   /* Transitions */
   --fast: 0.2s;
   --normal: 0.3s;
+
+  /* Border radius */
+  --radius: 8px;
 }
 
 * {

@@ -1,4 +1,4 @@
-// CSS: styles/pages/articles.css
+// CSS: styles/pages/articles/index.css
 
 import html from '@utils/html.js'
 import standard from '@layouts/standard.js'
@@ -37,7 +37,7 @@ export default function page () {
     },
     head: html`
       ${pageSeo(meta).head}
-      <link rel="stylesheet" href="/styles/pages/articles.css">
+      <link rel="stylesheet" href="/styles/pages/articles/index.css">
     `,
     body: html`
       <section id="pg-articles" class="grid-container">

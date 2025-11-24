@@ -1,4 +1,4 @@
-// CSS: styles/pages/product-detail.css
+// CSS: styles/pages/products/product.css
 
 import html from '@utils/html.js'
 import standard from '@layouts/standard.js'
@@ -49,7 +49,7 @@ export default function page () {
     },
     head: html`
       ${productSeo(meta).head}
-      <link rel="stylesheet" href="/styles/pages/product-detail.css">
+      <link rel="stylesheet" href="/styles/pages/products/product.css">
     `,
     body: html`
       <section id="pg-product-detail">
@@ -66,10 +66,11 @@ export default function page () {
               sizes="(max-width: 768px) 100vw, 50vw"
               alt="Carbon Nanotube Additive - Black powder form"
             >
+            <p class="caption">1mm to 2mm multi-walled carbon nanotubes in powder form</p>
           </div>
 
           <div class="product-content">
-            <p>Every 1% concentration of our carbon nanotubes adds 1 <em>gigapascal</em> of tensile strength to your composite.</p>
+            <p class="med"><strong>Every 1% concentration of our carbon nanotubes adds 1 <em>gigapascal</em> of tensile strength to your composite.</strong></p>
 
             <p>In multiple case studies and tests with various polymers, our carbon nanotubes improve tensile strength and decrease brittleness.</p>
 

@@ -1,4 +1,4 @@
-// CSS: styles/pages/products.css
+// CSS: styles/pages/products/index.css
 
 import html from '@utils/html.js'
 import standard from '@layouts/standard.js'
@@ -47,7 +47,7 @@ export default function page () {
     },
     head: html`
       ${pageSeo(meta).head}
-      <link rel="stylesheet" href="/styles/pages/products.css">
+      <link rel="stylesheet" href="/styles/pages/products/index.css">
     `,
     body: html`
       <section id="pg-products" class="grid-container">
