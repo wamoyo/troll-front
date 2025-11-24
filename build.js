@@ -99,7 +99,7 @@ for await (var entry of Deno.readDir(`${srcDir}/styles/pages`)) {
 }
 
 // Copy static assets
-var assetDirs = ['fonts', 'images', 'audios', 'videos', 'scripts']
+var assetDirs = ['fonts', 'images', 'audios', 'videos', 'scripts', 'pdfs']
 
 for (var dir of assetDirs) {
   var srcPath = `${srcDir}/${dir}`
@@ -147,10 +147,10 @@ try {
 console.log('\nRunning generators...')
 try {
   for await (var entry of Deno.readDir(`${srcDir}/generators`)) {
-    if (entry.isFile && entry.name.endsWith('.js')) {
+    if (entry.isFile && entry.name.endsWith('.js') && entry.name !== 'config.js') {
       var generatorPath = `${srcDir}/generators/${entry.name}`
       var generator = await import(`./${generatorPath}`)
-      var result = generator.default()
+      var result = await generator.default() // Await in case generator is async
 
       await Deno.writeTextFile(
         `${siteDir}/${result.filename}`,

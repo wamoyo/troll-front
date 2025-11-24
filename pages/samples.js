@@ -34,7 +34,7 @@ export default function page () {
 
         <h2>More Information</h2>
 
-        <p>We provide samples primarily to interested <em>Injection Molders</em> and <em>3D Printers</em>. Researchers are welcome to test our material for various applications as well.</p>
+        <p>We provide samples primarily to interested <em>Plastics Makers</em>, <em>Injection Molders</em>, and <em>3D Printers</em>, but all interest is welcome. Researchers are welcome to test our material for various applications as well.</p>
 
         <p>We'll happily provide our Material Safety Data Sheets (MSDS) ahead of sending samples, as well as share data and use cases over a video conference.</p>
 

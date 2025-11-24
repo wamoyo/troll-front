@@ -3,8 +3,21 @@ import data from '@data/site.js'
 // Pure: generates RSS feed (feed.xml)
 // Returns { filename, content }
 export default function feed () {
-  // Placeholder - add your actual content/blog posts here
-  var items = []
+  // Current articles (will be expanded to include podcasts/videos later)
+  var items = [
+    {
+      title: 'Carbon Nanotubes: The Material Of The Future',
+      link: '/articles/carbon-nanotubes-material-of-future',
+      description: 'Carbon nanotubes (CNTs) are tubular molecules of carbon with incredible properties, including immense tensile strength, conduction, chemical resistance, and more.',
+      pubDate: 'Thu, 21 Nov 2024 00:00:00 GMT'
+    },
+    {
+      title: 'Long Carbon Nanotubes For Composites',
+      link: '/articles/long-carbon-nanotubes-composites',
+      description: 'Exploring the importance of length when using carbon nanotubes in composites to increase strength and toughness.',
+      pubDate: 'Thu, 21 Nov 2024 00:00:00 GMT'
+    }
+  ]
 
   var itemsXml = items.map(item => `    <item>
       <title>${item.title}</title>

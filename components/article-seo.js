@@ -17,7 +17,7 @@ export default function articleSeo (article) {
           "headline": "${article.title}",
           "description": "${article.description}",
           "url": "${article.url}",
-          "image": "${article.image || data.site.url + '/images/og-default.jpg'}",
+          "image": "${article.image || data.site.url + '/images/Troll-Hair-Website.jpg'}",
           "author": {
             "@type": "Person",
             "name": "${article.author}"
@@ -43,7 +43,7 @@ export default function articleSeo (article) {
       <meta property="og:title" content="${article.title}">
       <meta property="og:description" content="${article.description}">
       <meta property="og:url" content="${article.url}">
-      <meta property="og:image" content="${article.image || data.site.url + '/images/og-default.jpg'}">
+      <meta property="og:image" content="${article.image || data.site.url + '/images/Troll-Hair-Website.jpg'}">
       <meta property="og:site_name" content="${data.site.name}">
       <meta property="article:published_time" content="${article.date}">
       <meta property="article:modified_time" content="${article.updated || article.date}">
@@ -52,7 +52,7 @@ export default function articleSeo (article) {
       <meta name="twitter:site" content="@trollhair">
       <meta name="twitter:title" content="${article.title}">
       <meta name="twitter:description" content="${article.description}">
-      <meta name="twitter:image" content="${article.image || data.site.url + '/images/og-default.jpg'}">
+      <meta name="twitter:image" content="${article.image || data.site.url + '/images/Troll-Hair-Website.jpg'}">
     `
   }
 }

@@ -17,7 +17,7 @@ export default function pageSeo (page) {
           "name": "${page.title}",
           "description": "${page.description}",
           "url": "${page.url}",
-          "image": "${page.image || data.site.url + '/images/og-default.jpg'}",
+          "image": "${page.image || data.site.url + '/images/Troll-Hair-Website.jpg'}",
           "publisher": {
             "@type": "Organization",
             "name": "${data.site.company}",
@@ -29,14 +29,14 @@ export default function pageSeo (page) {
       <meta property="og:title" content="${page.title}">
       <meta property="og:description" content="${page.description}">
       <meta property="og:url" content="${page.url}">
-      <meta property="og:image" content="${page.image || data.site.url + '/images/og-default.jpg'}">
+      <meta property="og:image" content="${page.image || data.site.url + '/images/Troll-Hair-Website.jpg'}">
       <meta property="og:site_name" content="${data.site.name}">
       <meta property="og:locale" content="en_US">
       <meta name="twitter:card" content="summary_large_image">
       <meta name="twitter:site" content="@trollhair">
       <meta name="twitter:title" content="${page.title}">
       <meta name="twitter:description" content="${page.description}">
-      <meta name="twitter:image" content="${page.image || data.site.url + '/images/og-default.jpg'}">
+      <meta name="twitter:image" content="${page.image || data.site.url + '/images/Troll-Hair-Website.jpg'}">
     `
   }
 }
