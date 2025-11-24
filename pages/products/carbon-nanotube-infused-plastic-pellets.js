@@ -56,7 +56,10 @@ export default function page () {
               </p>
             </div>
 
-            <a href="/samples" class="button primary">Get Samples!</a>
+            <footer class="product-footer">
+              <a href="/products" class="button secondary">« All Products</a>
+              <span class="coming-soon">Coming Soon!</span>
+            </footer>
           </div>
         </div>
       </section>
