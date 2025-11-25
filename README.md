@@ -25,7 +25,7 @@ This is a custom static site generator that uses plain JavaScript template liter
 ### Structure
 
 ```
-src/
+frontend/
 ├── layouts/         # Page layouts (standard.js, etc)
 ├── components/      # Reusable components (header, footer, etc)
 ├── pages/           # Page files → HTML files
@@ -38,16 +38,20 @@ src/
 ├── audios/          # Audio files
 ├── videos/          # Video files
 ├── scripts/         # Client-side JavaScript
+│   ├── pages/       # Page-specific scripts
+│   ├── components/  # Component scripts
+│   ├── layouts/     # Layout scripts
+│   ├── utilities/   # Pure helper functions
+│   └── libraries/   # Third-party code
 ├── root/            # Static files for site root
 │   ├── robots.txt
 │   ├── manifest.json
 │   └── favicon.ico
-└── generators/      # Generate site root files
-    ├── sitemap.js   # → sitemap.xml
-    └── feed.js      # → feed.xml
-
-site/                # Built site (goes to S3)
-data.js              # Site data available to all pages/components
+├── generators/      # Generate site root files
+│   ├── sitemap.js   # → sitemap.xml
+│   └── feed.js      # → feed.xml
+├── data/            # Site-wide data (site.js)
+└── site/            # Built output (goes to S3)
 ```
 
 ### Creating Pages
@@ -55,26 +59,23 @@ data.js              # Site data available to all pages/components
 Pages are functions that return HTML using template literals:
 
 ```javascript
-import html from '../utils/html.js'
-import standardLayout from '../layouts/standard.js'
-import header from '../components/header.js'
+import html from '@utils/html.js'
+import standard from '@layouts/standard.js'
 
-function page () {
-  return standardLayout({
+export default function page () {
+  return standard({
+    options: { currentPath: '/my-page' },
     head: html`
       <title>My Page</title>
       <link rel="stylesheet" href="/styles/pages/my-page.css">
     `,
     body: html`
-      ${header('/my-page')}
-      <main>
+      <section id="pg-my-page" class="grid-container">
         <h1>Hello World</h1>
-      </main>
+      </section>
     `
   })
 }
-
-export default page
 ```
 
 ### Creating Components
@@ -82,24 +83,23 @@ export default page
 Components are pure functions that take parameters and return HTML:
 
 ```javascript
-import html from '../utils/html.js'
+import html from '@utils/html.js'
 
-function button ({ text, href, style = 'primary' }) {
-  return html`<a href="${href}" class="btn btn-${style}">
-  <link rel="stylesheet" href="/styles/components/button.css">
-  ${text}
-</a>`
+// Pure: returns button component with head, body
+export default function button ({ text, href, style = 'primary' }) {
+  return {
+    head: html`<link rel="stylesheet" href="/styles/components/button.css">`,
+    body: html`<a href="${href}" class="cp-button cp-button-${style}">${text}</a>`
+  }
 }
-
-export default button
 ```
 
 ### Using Data
 
-Import `data.js` to access site-wide data:
+Import from `@data/` to access site-wide data:
 
 ```javascript
-import data from '../../data.js'
+import data from '@data/site.js'
 
 // Use in templates
 html`<h1>${data.site.name}</h1>`
@@ -110,8 +110,8 @@ data.team.map(member => teamCard(member))
 
 ## Development
 
-- Pages in `src/pages/*.js` become HTML files in `site/`
-- Components load their own CSS inline
+- Pages in `pages/*.js` become HTML files in `site/`
+- Components return `{ head, body, scripts }` objects
 - CSS files are copied to `site/styles/`
 - Static assets (fonts, images, etc) copied to `site/`
 - Dev server runs at http://localhost:8700

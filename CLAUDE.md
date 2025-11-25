@@ -14,7 +14,7 @@ Custom Deno-based static site generator using JavaScript template literals.
 ## Directory Structure
 
 ```
-troll-front/
+frontend/
 ├── data/          # Site-wide data (site.js)
 ├── layouts/       # standard.js, article.js
 ├── components/    # header.js, footer.js, page-seo.js, article-seo.js
@@ -321,7 +321,7 @@ import data from '@data/site.js'
 
 // Front matter
 var meta = {
-  title: `About Us - ${data.site.name}`,
+  title: `About - ${data.site.name}`,
   description: `Learn about ${data.site.company}...`,
   url: 'https://trollhair.com/about'
 }
@@ -345,8 +345,8 @@ export default function page () {
       <link rel="stylesheet" href="/styles/pages/about.css">
     `,
     body: html`
-      <section id="pg-about">
-        <h1>${meta.title}</h1>
+      <section id="pg-about" class="grid-container">
+        <h1>About</h1>
         <div class="stats">
           ${pageData.stats.map(stat => html`
             <div class="stat">
