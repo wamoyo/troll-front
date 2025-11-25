@@ -48,11 +48,23 @@ section#pg-articles {
       color: var(--text);
     }
 
-    .article-meta {
-      display: flex;
-      gap: var(--sm);
-      font-size: 0.875rem;
-      color: var(--text-3);
+    .article-image {
+      margin-bottom: var(--sm);
+      overflow: hidden;
+      border-radius: 4px;
+
+      img {
+        display: block;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+        transition: transform var(--normal);
+      }
+    }
+
+    &:hover .article-image img {
+      transform: scale(1.03);
     }
 
     .excerpt {

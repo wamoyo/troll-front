@@ -52,6 +52,7 @@ export default function page () {
     head: html`
       ${pageSeo(meta).head}
       <link rel="stylesheet" href="/styles/pages/careers.css">
+      <link rel="stylesheet" href="/styles/components/form-message.css">
     `,
     body: html`
       <section id="pg-careers" class="grid-container">
@@ -77,6 +78,8 @@ export default function page () {
         <h2>Apply For A Job</h2>
 
         <form class="job-application-form" action="/api/careers" method="post">
+          <input type="text" name="website" id="website" autocomplete="off" style="left: -8975px; position: absolute;" aria-hidden="true" tabindex="-1">
+
           <div class="form-group">
             <label for="job-select">Select a Job</label>
             <select id="job-select" name="job" required>
@@ -99,23 +102,23 @@ export default function page () {
           </div>
 
           <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" placeholder="Name" required>
+            <label for="name">Name *</label>
+            <input type="text" id="name" name="name" placeholder="Name *" maxlength="350" required>
           </div>
 
           <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="Email" required>
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" placeholder="Email *" maxlength="450" required>
           </div>
 
           <div class="form-group">
             <label for="linkedin">LinkedIn Or Website Link</label>
-            <input type="url" id="linkedin" name="linkedin" placeholder="LinkedIn Or Website Link">
+            <input type="url" id="linkedin" name="linkedin" placeholder="LinkedIn Or Website Link" maxlength="500">
           </div>
 
           <div class="form-group">
-            <label for="statement">Application Statement</label>
-            <textarea id="statement" name="statement" rows="8" placeholder="Application Statement" required></textarea>
+            <label for="statement">Application Statement *</label>
+            <textarea id="statement" name="statement" rows="8" placeholder="Application Statement *" maxlength="10000" required></textarea>
           </div>
 
           <button type="submit" class="button primary">Submit Application</button>
@@ -140,6 +143,7 @@ export default function page () {
           });
         });
       </script>
+      <script type="module" src="/scripts/pages/careers.js"></script>
     `
   })
 }

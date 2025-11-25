@@ -17,7 +17,7 @@ section#pg-index {
   }
 
   .hero-content {
-    padding-right: var(--lg);
+    padding-left: var(--lg);
   }
 
   .hero-description {
@@ -49,7 +49,7 @@ section#pg-index {
     }
 
     .hero-content {
-      padding-right: 0;
+      padding-left: 0;
       text-align: center;
     }
 

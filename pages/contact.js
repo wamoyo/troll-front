@@ -59,7 +59,7 @@ export default function page () {
       </section>
     `,
     scripts: html`
-      <script type="module" src="/scripts/contact-form.js"></script>
+      <script type="module" src="/scripts/pages/contact.js"></script>
     `
   })
 }

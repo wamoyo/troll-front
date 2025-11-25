@@ -18,14 +18,24 @@ var articles = [
     url: '/articles/carbon-nanotubes-material-of-future',
     date: 'November 21, 2024',
     author: 'Troll Hair Team',
-    excerpt: 'Carbon nanotubes (CNTs) are tubular molecules of carbon with incredible properties, including immense tensile strength, conduction, chemical resistance, and more.'
+    excerpt: 'Carbon nanotubes (CNTs) are tubular molecules of carbon with incredible properties, including immense tensile strength, conduction, chemical resistance, and more.',
+    image: {
+      src: '/images/tubes-bg-400.jpg',
+      srcset: '/images/tubes-bg-400.jpg 400w, /images/tubes-bg-800.jpg 800w',
+      alt: 'Carbon nanotube molecular structure visualization'
+    }
   },
   {
     title: 'Long Carbon Nanotubes For Composites',
     url: '/articles/long-carbon-nanotubes-composites',
     date: 'November 21, 2024',
     author: 'Troll Hair Team',
-    excerpt: 'Exploring the importance of length when using carbon nanotubes in composites to increase strength and toughness.'
+    excerpt: 'Exploring the importance of length when using carbon nanotubes in composites to increase strength and toughness.',
+    image: {
+      src: '/images/short-cnts-pull-out-zoomed-400.jpg',
+      srcset: '/images/short-cnts-pull-out-zoomed-400.jpg 400w, /images/short-cnts-pull-out-zoomed-800.jpg 800w',
+      alt: 'Carbon nanotubes in composite material under microscope'
+    }
   }
 ]
 
@@ -50,9 +60,14 @@ export default function page () {
           ${articles.map(article => html`
             <a href="${article.url}" class="article-card">
               <h2>${article.title}</h2>
-              <div class="article-meta">
-                <span class="date">${article.date}</span>
-                <span class="author">By ${article.author}</span>
+              <div class="article-image">
+                <img
+                  src="${article.image.src}"
+                  srcset="${article.image.srcset}"
+                  sizes="(max-width: 500px) 100vw, 500px"
+                  alt="${article.image.alt}"
+                  loading="lazy"
+                >
               </div>
               <p class="excerpt">${article.excerpt}</p>
               <span class="read-more">Read more →</span>

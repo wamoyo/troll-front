@@ -20,12 +20,42 @@ troll-front/
 ├── components/    # header.js, footer.js, page-seo.js, article-seo.js
 ├── pages/         # Pages → HTML files (supports nesting)
 ├── styles/        # Mirrors: layouts/, components/, pages/
-├── scripts/       # Client-side JS
+├── scripts/       # Client-side JS (see Scripts Structure below)
 ├── root/          # Copied to site root
 ├── generators/    # sitemap.xml, feed.xml
 ├── archive/       # Development files (gitignored)
 ├── site/          # Built output
 └── build.js       # Recursively builds all pages
+```
+
+## Scripts Structure
+
+Client-side JavaScript organized by purpose:
+
+```
+scripts/
+├── components/    # Component scripts (mirrors components/ structure)
+├── layouts/       # Layout scripts (mirrors layouts/ structure)
+├── pages/         # Page-specific scripts (mirrors pages/ structure)
+├── utilities/     # Pure helper functions
+└── libraries/     # Third-party code or complex shared modules
+```
+
+### Page Scripts Naming
+
+- **Single script**: `pages/[page-name].js`
+- **Multiple scripts**: `pages/[page-name]-[purpose].js`
+- **Nested pages**: Mirror the `pages/` directory structure
+
+```
+scripts/pages/
+├── contact.js                        # Single script for contact page
+├── samples.js                        # General script for samples page
+├── samples-materials.js              # Additional script for samples page
+└── articles/                         # Nested directory mirrors pages/articles/
+    ├── index.js                      # Script for articles listing page
+    ├── index-filters.js              # Additional script for articles listing
+    └── carbon-nanotubes-material-of-future.js  # Script for specific article
 ```
 
 ## THE THREE SECTION RULE
