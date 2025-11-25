@@ -38,7 +38,7 @@ export default function page () {
               sizes="(max-width: 768px) 100vw, 50vw"
               alt="Carbon Nanotube Infused Plastic Pellets"
             >
-            <p class="caption">Carbon nanotube infused plastic pellets</p>
+            <p class="caption">Carbon nanotube infused plastic pellets (example image)</p>
           </div>
 
           <div class="product-content">

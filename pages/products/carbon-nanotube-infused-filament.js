@@ -38,7 +38,7 @@ export default function page () {
               sizes="(max-width: 768px) 100vw, 50vw"
               alt="Carbon Nanotube Infused Filament"
             >
-            <p class="caption">Carbon nanotube infused 3D printing filament</p>
+            <p class="caption">Carbon nanotube infused 3D printing filament (example image)</p>
           </div>
 
           <div class="product-content">
