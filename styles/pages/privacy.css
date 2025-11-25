@@ -1,0 +1,81 @@
+/* Privacy Policy page styles */
+
+section#pg-privacy {
+  background: var(--bg);
+  color: var(--text);
+
+  h1 {
+    font-size: var(--h1);
+    font-weight: var(--bold);
+  }
+
+  .effective-date {
+    font-size: 1rem;
+    color: var(--text-2);
+  }
+
+  p {
+    font-size: var(--body);
+  }
+
+  h2 {
+    font-size: 1.75rem;
+    font-weight: var(--bold);
+  }
+
+  ul {
+    font-size: var(--body);
+    padding-left: var(--lg);
+  }
+
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: var(--bold);
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    h2 {
+      font-size: var(--h3);
+    }
+
+    p,
+    ul {
+      font-size: 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    h1 {
+      font-size: var(--h2);
+    }
+
+    h2 {
+      font-size: 1.375rem;
+    }
+  }
+
+  @media (max-width: 320px) {
+    h1 {
+      font-size: 1.75rem;
+    }
+
+    h2 {
+      font-size: var(--h4);
+    }
+
+    p,
+    ul {
+      font-size: var(--small);
+    }
+  }
+}

@@ -1,4 +1,4 @@
-// CSS: styles/pages/legal.css
+// CSS: styles/pages/privacy.css
 
 import html from '@utils/html.js'
 import standard from '@layouts/standard.js'
@@ -20,14 +20,13 @@ export default function page () {
     },
     head: html`
       ${pageSeo(meta).head}
-      <link rel="stylesheet" href="/styles/pages/legal.css">
+      <link rel="stylesheet" href="/styles/pages/privacy.css">
     `,
     body: html`
-      <section id="pg-legal">
-        <div class="container">
+      <section id="pg-privacy" class="grid-container">
           <h1>Privacy Policy</h1>
 
-          <p class="effective-date"><strong>Effective Date: December 1st 2024</strong></p>
+          <p class="effective-date"><strong>Effective Date: November 25th, 2025</strong></p>
 
           <p>Troll Hair (Industrial CNT LLC) values your privacy and is committed to protecting your personal information. This Privacy Policy explains how we collect, use, and share your data.</p>
 
@@ -48,15 +47,16 @@ export default function page () {
 
           <h2>3. Sharing of Information</h2>
           <ul>
-            <li>We share your payment information with Shopify for order processing.</li>
+            <li>We share your payment information with secure third-party payment processors (e.g., <a href="https://stripe.com" target="_blank" rel="noopener noreferrer">Stripe</a>) to complete transactions.</li>
             <li>We may share data with service providers that assist in operations (e.g., shipping, hosting).</li>
             <li>We do not sell or rent your personal data to third parties.</li>
           </ul>
 
           <h2>4. Cookies and Tracking</h2>
           <ul>
-            <li>Our website may use cookies to enhance user experience. You can control cookie settings in your browser.</li>
-            <li>We currently do not use Google Analytics but may implement analytics tools in the future to improve our site.</li>
+            <li>We do not use tracking cookies or analytics tools.</li>
+            <li>We use essential cookies only for authentication purposes when you log in to your account.</li>
+            <li>We honor Do Not Track (DNT) browser signals.</li>
           </ul>
 
           <h2>5. Social Media and Third-Party Links</h2>
@@ -66,33 +66,39 @@ export default function page () {
           </ul>
 
           <h2>6. Security</h2>
-          <ul>
-            <li>We implement industry-standard measures to protect your personal information. However, no online system is completely secure.</li>
-          </ul>
+          <p>We implement industry-standard measures to protect your personal information. However, no online system is completely secure.</p>
 
           <h2>7. Your Rights</h2>
           <ul>
-            <li>You may request access, correction, or deletion of your personal data by contacting us at <a href="mailto:info@trollhair.com" target="_blank">info@trollhair.com</a>.</li>
+            <li>You may request access, correction, or deletion of your personal data by contacting us at <a href="mailto:info@trollhair.com" target="_blank" rel="noopener noreferrer">info@trollhair.com</a>.</li>
             <li>You can opt-out of marketing emails by clicking "unsubscribe" in our communications.</li>
           </ul>
 
-          <h2>8. Children's Privacy</h2>
+          <h2>8. Data Retention</h2>
+          <p>We retain your personal information for as long as necessary to fulfill the purposes outlined in this policy, maintain business records, and comply with legal obligations.</p>
+
+          <h2>9. International Users</h2>
           <ul>
-            <li>Our website is not intended for children under 13. We do not knowingly collect personal information from children.</li>
+            <li>Our services are operated from the United States. If you are located outside the U.S., your information will be transferred to and processed in the U.S.</li>
+            <li>We do not use tracking cookies, so no cookie consent is required under GDPR. You may request access to or deletion of your data at any time.</li>
           </ul>
 
-          <h2>9. Changes to Privacy Policy</h2>
+          <h2>10. California Privacy Rights</h2>
           <ul>
-            <li>We may update this policy periodically. Changes will be posted on this page with an updated effective date.</li>
+            <li>California residents have the right to know what personal information we collect and how it is used.</li>
+            <li>You may request deletion of your personal data.</li>
+            <li>We do not sell personal information to third parties.</li>
+            <li>To exercise these rights, contact us at <a href="mailto:info@trollhair.com" target="_blank" rel="noopener noreferrer">info@trollhair.com</a>.</li>
           </ul>
 
-          <h2>10. Contact Information</h2>
-          <ul>
-            <li>For questions about this policy, contact us at:</li>
-            <li>Email: <a href="mailto:info@trollhair.com" target="_blank">info@trollhair.com</a></li>
-            <li>Phone: <a href="tel:+12126021401">212-602-1401</a></li>
-          </ul>
-        </div>
+          <h2>11. Children's Privacy</h2>
+          <p>Our website is not intended for children under 13. We do not knowingly collect personal information from children.</p>
+
+          <h2>12. Changes to Privacy Policy</h2>
+          <p>We may update this policy periodically. Changes will be posted on this page with an updated effective date.</p>
+
+          <h2>13. Contact Information</h2>
+          <p>For questions about this policy, contact us at <a href="mailto:info@trollhair.com" target="_blank" rel="noopener noreferrer">info@trollhair.com</a> or call <a href="tel:+12126021401">(212) 602-1401</a>.</p>
       </section>
     `
   })

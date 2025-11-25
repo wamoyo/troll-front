@@ -1,13 +1,8 @@
-/* Legal pages styles (Terms & Privacy) */
+/* Terms & Conditions page styles */
 
-section#pg-legal {
+section#pg-terms {
   background: var(--bg);
   color: var(--text);
-  padding: var(--2xl) 0;
-
-  .container {
-    max-width: var(--page);
-  }
 
   h1 {
     font-size: var(--h1);
@@ -33,9 +28,6 @@ section#pg-legal {
     padding-left: var(--lg);
   }
 
-  li {
-  }
-
   a {
     color: var(--accent);
     text-decoration: none;
@@ -48,8 +40,6 @@ section#pg-legal {
 
   /* Responsive */
   @media (max-width: 768px) {
-    padding: var(--xl) 0;
-
     h1 {
       font-size: 2.5rem;
     }
@@ -65,8 +55,6 @@ section#pg-legal {
   }
 
   @media (max-width: 480px) {
-    padding: var(--lg) 0;
-
     h1 {
       font-size: var(--h2);
     }
@@ -77,8 +65,6 @@ section#pg-legal {
   }
 
   @media (max-width: 320px) {
-    padding: var(--md) 0;
-
     h1 {
       font-size: 1.75rem;
     }

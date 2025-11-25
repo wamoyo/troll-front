@@ -243,6 +243,17 @@ a:hover {
   text-decoration: underline;
 }
 
+/* External link indicator - arrow for offsite links */
+a[target="_blank"][href^="http"]::after {
+  content: "↗";
+  font-size: 0.75em;
+  position: relative;
+  top: -0.4rem;
+  left: 0.1rem;
+  text-decoration: none;
+  display: inline-block;
+}
+
 h1,
 h2,
 h3,
