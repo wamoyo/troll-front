@@ -11,6 +11,10 @@ Custom Deno-based static site generator using JavaScript template literals.
 - **Import maps** - `@utils/`, `@data/`, `@components/`, `@layouts/`
 - **Clean URLs** - Output as directory/index.html for extensionless URLs
 
+## Brand Guidelines
+
+Reference `pages/private/brand-guidelines.js` (or `/private/brand-guidelines` in browser) for colors, typography, voice/tone, and component examples.
+
 ## Directory Structure
 
 ```
@@ -849,5 +853,4 @@ Without handling `rename` events, the watcher won't detect most editor saves!
 
 - **Fix watch.js debouncing**: Sometimes misses component file changes (needs investigation of debounce window and atomic write handling)
 - **Dependency tracking**: Build dependency graph for incremental component rebuilds (currently rebuilds all pages)
-- **Create favicon**: Add proper favicon.ico to root/
 - **Image optimization**: WebP format with fallbacks, lazy loading

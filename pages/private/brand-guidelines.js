@@ -53,7 +53,7 @@ export default function page () {
             <div class="subsection">
               <h3>Primary Logo</h3>
               <div class="logo-display">
-                <img src="/images/logo-icon-200.png" alt="Troll Hair Logo" style="max-width: 150px; background: #000; padding: 2rem; border-radius: 8px;">
+                <img src="/images/logo-icon-200.png" alt="Troll Hair Logo" style="max-width: 150px; padding: 2rem; border-radius: 8px;">
               </div>
               <p class="usage-note"><strong>Usage:</strong> The troll hair icon combined with wordmark. Use on light backgrounds with sufficient contrast.</p>
             </div>
