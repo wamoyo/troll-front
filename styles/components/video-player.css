@@ -375,6 +375,29 @@ body.dragging {
 
 /* Override grid width-full margins - needs high specificity to beat standard.css */
 body#ly-standard .grid-container > .cp-video-player.width-full {
+  width: min(var(--wide), calc(100% - var(--md) * 2));
   margin-left: auto;
   margin-right: auto;
+}
+
+/* Mobile: edge-to-edge, no border radius */
+@media (max-width: 600px) {
+  body#ly-standard .grid-container > .cp-video-player.width-full {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .cp-video-player {
+    border-radius: 0;
+  }
+
+  .cp-video-player .video-wrapper {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  .cp-video-player .video-controls {
+    border-radius: 0;
+  }
 }

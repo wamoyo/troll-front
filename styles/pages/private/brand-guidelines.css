@@ -221,6 +221,11 @@ section#pg-brand-guidelines .cp-form-message {
   margin-bottom: var(--md);
 }
 
+section#pg-brand-guidelines .cp-video-player {
+  margin-top: var(--lg);
+  margin-bottom: var(--lg);
+}
+
 /* Do's & Don'ts Grid */
 section#pg-brand-guidelines .dos-donts-grid {
   display: grid;
