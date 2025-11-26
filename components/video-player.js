@@ -28,6 +28,9 @@ export default function videoPlayer (video) {
               <polygon points="40,30 40,70 72,50" fill="currentColor"/>
             </svg>
           </button>
+          <div class="loading-indicator hidden">
+            <span class="loading-text">Loading<span class="loading-dots"><span>.</span><span>.</span><span>.</span></span></span>
+          </div>
         </div>
         <div class="video-controls">
           <button class="play-pause" tabindex="0" aria-label="Play/Pause">
@@ -69,6 +72,27 @@ export default function videoPlayer (video) {
               <line x1="22" y1="9" x2="16" y2="15" stroke="currentColor" stroke-width="2"/>
             </svg>
           </button>
+          <div class="settings-wrapper">
+            <button class="settings" tabindex="0" aria-label="Settings">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="3"/>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+              </svg>
+            </button>
+            <div class="settings-panel">
+              <div class="settings-section">
+                <div class="settings-label">Speed</div>
+                <div class="speed-options">
+                  <button class="speed-option" data-speed="0.5">0.5x</button>
+                  <button class="speed-option" data-speed="0.75">0.75x</button>
+                  <button class="speed-option active" data-speed="1">1x</button>
+                  <button class="speed-option" data-speed="1.25">1.25x</button>
+                  <button class="speed-option" data-speed="1.5">1.5x</button>
+                  <button class="speed-option" data-speed="2">2x</button>
+                </div>
+              </div>
+            </div>
+          </div>
           <button class="fullscreen" tabindex="0" aria-label="Toggle fullscreen">
             <svg class="icon-fullscreen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <polyline points="4,14 4,20 10,20"/>

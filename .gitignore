@@ -5,7 +5,8 @@ site/
 archive/
 
 # Large media files
-videos/
+videos/*
+!videos/encode-hls.sh
 audios/
 
 # Deno cache

@@ -40,6 +40,10 @@
     var fullscreenButton = container.querySelector('.fullscreen')
     var iconFullscreen = container.querySelector('.icon-fullscreen')
     var iconExitFullscreen = container.querySelector('.icon-exit-fullscreen')
+    var settingsWrapper = container.querySelector('.settings-wrapper')
+    var settingsButton = container.querySelector('.settings')
+    var speedOptions = container.querySelectorAll('.speed-option')
+    var loadingIndicator = container.querySelector('.loading-indicator')
     var seekbar = container.querySelector('.seekbar')
     var bufferbar = container.querySelector('.bufferbar')
     var timebar = container.querySelector('.timebar')
@@ -411,14 +415,17 @@
         case ',':
           video.playbackRate = Math.max(0.25, video.playbackRate - 0.25)
           showNotification(video.playbackRate + 'x')
+          updateSpeedButtons()
           break
         case '.':
           video.playbackRate = Math.min(4, video.playbackRate + 0.25)
           showNotification(video.playbackRate + 'x')
+          updateSpeedButtons()
           break
         case '0':
           video.playbackRate = 1
           showNotification('1x')
+          updateSpeedButtons()
           break
         default:
           handled = false
@@ -448,6 +455,100 @@
         updateThumbTime()
       }, 100)
     }
+
+
+    /*
+     * Settings panel toggle
+     */
+
+    settingsButton.addEventListener('click', function (event) {
+      event.stopPropagation()
+      settingsWrapper.classList.toggle('open')
+    })
+
+    // Close settings when clicking outside
+    document.addEventListener('click', function (event) {
+      if (!settingsWrapper.contains(event.target)) {
+        settingsWrapper.classList.remove('open')
+      }
+    })
+
+
+    /*
+     * Speed selection
+     */
+
+    speedOptions.forEach(function (option) {
+      option.addEventListener('click', function () {
+        var speed = parseFloat(option.dataset.speed)
+        video.playbackRate = speed
+
+        // Update active state
+        speedOptions.forEach(function (opt) {
+          opt.classList.remove('active')
+        })
+        option.classList.add('active')
+
+        showNotification(speed + 'x')
+        settingsWrapper.classList.remove('open')
+      })
+    })
+
+    // Update speed buttons when changed via keyboard
+    function updateSpeedButtons () {
+      var currentSpeed = video.playbackRate
+      speedOptions.forEach(function (opt) {
+        var optSpeed = parseFloat(opt.dataset.speed)
+        if (optSpeed === currentSpeed) {
+          opt.classList.add('active')
+        } else {
+          opt.classList.remove('active')
+        }
+      })
+    }
+
+
+    /*
+     * Double-tap to seek on mobile
+     */
+
+    var lastTap = 0
+    var tapTimeout = null
+
+    videoWrapper.addEventListener('touchend', function (event) {
+      // Ignore if touching controls
+      if (event.target.closest('.video-controls')) return
+
+      var currentTime = Date.now()
+      var tapLength = currentTime - lastTap
+
+      if (tapLength < 300 && tapLength > 0) {
+        // Double tap detected
+        clearTimeout(tapTimeout)
+        event.preventDefault()
+
+        var rect = videoWrapper.getBoundingClientRect()
+        var tapX = event.changedTouches[0].clientX - rect.left
+        var halfWidth = rect.width / 2
+
+        if (tapX < halfWidth) {
+          // Left side - rewind 10s
+          video.currentTime = Math.max(0, video.currentTime - 10)
+          showNotification('−10s')
+        } else {
+          // Right side - forward 10s
+          video.currentTime = Math.min(video.duration, video.currentTime + 10)
+          showNotification('+10s')
+        }
+      } else {
+        // Single tap - wait to see if it becomes double tap
+        tapTimeout = setTimeout(function () {
+          // Single tap action (play/pause) handled by existing click handler
+        }, 300)
+      }
+
+      lastTap = currentTime
+    })
 
 
     /*
