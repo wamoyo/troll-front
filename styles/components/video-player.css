@@ -346,6 +346,16 @@
     cursor: pointer;
   }
 
+  /* Invisible expanded hit area for easier hover/click */
+  & .seekbar::before {
+    content: "";
+    position: absolute;
+    top: -1rem;
+    bottom: -1rem;
+    left: 0;
+    right: 0;
+  }
+
   /* Buffer bar */
   & .bufferbar {
     position: absolute;

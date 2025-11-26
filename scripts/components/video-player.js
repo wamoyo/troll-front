@@ -451,15 +451,35 @@
 
 
     /*
-     * Seekbar click to seek
+     * Seekbar mousedown to seek + drag
      */
 
-    seekbar.addEventListener('click', function (event) {
+    seekbar.addEventListener('mousedown', handleSeekbarDown)
+    seekbar.addEventListener('touchstart', handleSeekbarDown)
+
+    function handleSeekbarDown (event) {
+      // Ignore if clicking on thumb (it has its own handler)
+      if (event.target === thumb) return
+      // Ignore right-click
+      if (event.button && event.button !== 0) return
+
+      // Jump thumb to click/touch position and start drag
       var rect = seekbar.getBoundingClientRect()
-      var clickX = event.clientX - rect.left
+      var clientX = event.clientX || (event.touches && event.touches[0].clientX)
+      var clickX = clientX - rect.left
+
       var percent = clickX / rect.width
-      video.currentTime = percent * video.duration
-    })
+      var time = percent * video.duration
+
+      // Update thumb position immediately
+      thumb.style.left = clickX + 'px'
+      timebar.style.width = clickX + 'px'
+      thumb.textContent = formatTime(time)
+      video.currentTime = time
+
+      // Trigger drag mode
+      initiateThumbDrag(event)
+    }
 
 
     /*
@@ -513,6 +533,9 @@
     thumb.addEventListener('touchstart', initiateThumbDrag)
 
     function initiateThumbDrag (event) {
+      // Ignore right-click
+      if (event.button && event.button !== 0) return
+
       event.preventDefault()
       event.stopPropagation()
       seeking = true
