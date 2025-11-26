@@ -89,8 +89,19 @@ generate_sprites() {
   # Thumbnail settings
   local thumb_width=160
   local thumb_height=90
-  local interval=2  # Seconds between thumbnails
   local cols=10     # Thumbnails per row in sprite
+
+  # Dynamic interval based on video duration
+  # Shorter videos get more detail, longer videos need less
+  local interval
+  if [ $duration -lt 1800 ]; then
+    interval=2   # < 30 min: every 2 seconds
+  elif [ $duration -lt 3600 ]; then
+    interval=5   # 30-60 min: every 5 seconds
+  else
+    interval=10  # 1+ hours: every 10 seconds
+  fi
+  echo "  Using ${interval}s interval for ${duration}s video"
 
   # Calculate number of thumbnails and rows
   local num_thumbs=$((duration / interval + 1))

@@ -784,6 +784,81 @@ Always include `width` and `height` attributes on images to reserve space before
 
 The CSS can still scale the image with `max-height`, `max-width`, etc. The aspect ratio is preserved.
 
+## Video Player Component
+
+Custom video player with HLS streaming, thumbnail sprites, and full controls.
+
+### Files
+- `components/video-player.js` - HTML structure
+- `styles/components/video-player.css` - Styling
+- `scripts/components/video-player.js` - Client-side logic
+
+### Features
+- HLS adaptive streaming (hls.js for Chrome/Firefox, native Safari)
+- Quality selector (Auto + manual resolution)
+- Speed control (0.5x - 2x)
+- Keyboard shortcuts (Space, J/K/L, M, F, arrows)
+- Media Session API (OS-level controls)
+- Thumbnail sprite scrubbing (hover preview + drag overlay)
+- Captions support (WebVTT)
+
+### Usage
+```javascript
+import videoPlayer from '@components/video-player.js'
+
+var video = videoPlayer({
+  id: 'my-video',
+  src: '/videos/my-video/playlist.m3u8',
+  poster: '/images/my-video-poster.jpg',
+  title: 'Video Title',             // Optional: overlay heading
+  captions: '/videos/captions.vtt', // Optional
+  wide: true                        // Optional: full-width mode
+})
+
+// Returns { head, body, scripts }
+```
+
+## Video Encoding
+
+### Folder Structure
+```
+videos/
+├── encode-hls.sh     # Encoding script
+├── my-video.mp4      # Source files (gitignored)
+└── ...
+
+site/videos/
+├── my-video/
+│   ├── playlist.m3u8   # Master playlist
+│   ├── 1080p/          # Quality variants
+│   ├── 720p/
+│   ├── 480p/
+│   ├── 240p/
+│   ├── sprite.jpg      # Thumbnail sprite sheet
+│   └── thumbnails.vtt  # Sprite time mapping
+```
+
+### Encoding Workflow
+```bash
+# Encode all not-yet-encoded videos
+deno task videos
+
+# Encode specific video
+./videos/encode-hls.sh my-video.mp4
+```
+
+### What It Generates
+1. **HLS streams** - 4 quality levels (1080p, 720p, 480p, 240p)
+2. **Master playlist** - Adaptive bitrate switching
+3. **Thumbnail sprite** - Grid of preview images
+4. **VTT file** - Maps timestamps to sprite coordinates
+
+### Thumbnail Sprite Intervals
+Dynamic based on video duration (keeps sprite under browser size limits):
+- < 30 min → every 2 seconds
+- 30-60 min → every 5 seconds
+- 1+ hours → every 10 seconds
+
 ## Common Pitfalls
 
 ### 1. Media queries outside parent selector

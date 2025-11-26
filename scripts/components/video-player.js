@@ -462,6 +462,8 @@
       if (event.target === thumb) return
       // Ignore right-click
       if (event.button && event.button !== 0) return
+      // Prevent scrolling on touch
+      if (event.type === 'touchstart') event.preventDefault()
 
       // Jump thumb to click/touch position and start drag
       var rect = seekbar.getBoundingClientRect()
@@ -502,12 +504,11 @@
 
         var rect = seekbar.getBoundingClientRect()
         var mouseX = event.clientX - rect.left
-        var percent = mouseX / rect.width
+        var percent = Math.max(0, Math.min(1, mouseX / rect.width))
         var time = percent * video.duration
 
-        // Position the preview (constrain to seekbar bounds)
-        var previewLeft = Math.max(80, Math.min(mouseX, rect.width - 80))
-        hoverPreview.style.left = previewLeft + 'px'
+        // Position the preview (allow extending past seekbar edges)
+        hoverPreview.style.left = mouseX + 'px'
 
         // Update time display
         hoverTime.textContent = formatTime(time)
@@ -544,6 +545,8 @@
       // Show scrub sprite overlay if thumbnails available
       if (thumbnailCues.length > 0) {
         scrubSprite.classList.remove('hidden')
+        // Hide thumb during drag (hover preview shows the time)
+        thumb.style.opacity = '0'
       }
 
       var rect = seekbar.getBoundingClientRect()
@@ -574,8 +577,7 @@
         // Update hover preview (keep showing during drag)
         if (thumbnailCues.length > 0 && !isTouchDevice) {
           hoverPreview.classList.remove('hidden')
-          var previewLeft = Math.max(80, Math.min(position, rect.width - 80))
-          hoverPreview.style.left = previewLeft + 'px'
+          hoverPreview.style.left = position + 'px'
           hoverTime.textContent = formatTime(time)
         }
 
@@ -624,9 +626,10 @@
         seeking = false
         document.body.classList.remove('dragging')
 
-        // Hide scrub sprite and hover preview
+        // Hide scrub sprite and hover preview, restore thumb
         scrubSprite.classList.add('hidden')
         hoverPreview.classList.add('hidden')
+        thumb.style.opacity = '1'
 
         if (!wasMuted) video.muted = false
         if (!wasPaused) video.play()
