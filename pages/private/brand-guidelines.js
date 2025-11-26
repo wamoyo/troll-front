@@ -262,6 +262,131 @@ export default function page () {
           </section>
 
           <section class="guide-section">
+            <h2 class="section-title">Cards</h2>
+
+            <div class="subsection">
+              <h3>Article Cards</h3>
+              <p>Used on the Articles listing page. Cards are clickable links with hover state that highlights the border in red. Images use 16:9 aspect ratio with subtle zoom on hover.</p>
+
+              <div class="card-examples width-full">
+                <a href="#" class="article-card-example">
+                  <div class="card-image">
+                    <img src="/images/tubes-bg-400.jpg" alt="Example article image">
+                  </div>
+                  <h4>Article Title Goes Here</h4>
+                  <p class="excerpt">Brief description of the article content that gives readers a preview of what they'll learn...</p>
+                  <span class="read-more">Read more →</span>
+                </a>
+                <a href="#" class="article-card-example">
+                  <div class="card-image">
+                    <img src="/images/short-cnts-pull-out-zoomed-400.jpg" alt="Example article image">
+                  </div>
+                  <h4>Another Article Title</h4>
+                  <p class="excerpt">Another brief description showing how cards look when displayed side by side...</p>
+                  <span class="read-more">Read more →</span>
+                </a>
+              </div>
+
+              <p class="type-meta" style="margin-top: var(--md);">Background: var(--bg-2) • Border: 1px solid var(--border) • Padding: var(--lg) • Hover: background var(--white-10), border var(--accent) • Image: 16:9 aspect-ratio, scale(1.03) on hover</p>
+            </div>
+
+            <div class="subsection">
+              <h3>Product Cards</h3>
+              <p>Used on the Products listing page. Similar structure to article cards but with fixed-height image area and optional status badge for "Coming Soon" products.</p>
+
+              <div class="card-examples width-full">
+                <a href="#" class="product-card-example">
+                  <div class="card-image product-image-fixed">
+                    <img src="/images/powered-tubes-400.jpg" alt="Example product image">
+                  </div>
+                  <div class="card-content">
+                    <h4>Product Name</h4>
+                    <p class="description">Brief product description explaining what it is and its key benefit.</p>
+                    <span class="learn-more">Learn more →</span>
+                  </div>
+                </a>
+                <a href="#" class="product-card-example">
+                  <div class="card-image product-image-fixed">
+                    <img src="/images/cnt-filament-400.jpg" alt="Example product image">
+                  </div>
+                  <div class="card-content">
+                    <h4>Another Product</h4>
+                    <span class="status-badge">Coming Soon</span>
+                    <p class="description">Products not yet available show the status badge in brand red.</p>
+                    <span class="learn-more">Learn more →</span>
+                  </div>
+                </a>
+              </div>
+
+              <p class="type-meta" style="margin-top: var(--md);">Image height: 250px fixed • Status badge: var(--small), uppercase, var(--accent), letter-spacing 0.5px</p>
+            </div>
+          </section>
+
+          <section class="guide-section">
+            <h2 class="section-title">Download Links</h2>
+
+            <div class="subsection">
+              <h3>Document Downloads</h3>
+              <p>Used for downloadable files like PDFs (tech specs, MSDS sheets). Features an icon, clear label, and hover state matching our card pattern.</p>
+
+              <div class="download-examples">
+                <a href="#" class="download-link-example">
+                  <svg class="download-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                    <polyline points="10 9 9 9 8 9"></polyline>
+                  </svg>
+                  <span>Download Technical Data & Spec Sheet PDF</span>
+                </a>
+                <a href="#" class="download-link-example">
+                  <svg class="download-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                    <polyline points="10 9 9 9 8 9"></polyline>
+                  </svg>
+                  <span>Download Material Safety Data Sheet (MSDS) PDF</span>
+                </a>
+              </div>
+
+              <p class="type-meta" style="margin-top: var(--md);">Background: var(--bg-2) • Border: 1px solid var(--border) • Padding: var(--md) var(--lg) • Icon: 24x24px, var(--accent) • Hover: background var(--white-10), border var(--accent)</p>
+            </div>
+          </section>
+
+          <h2 class="section-title">Images</h2>
+
+          <h3>Hero/Wide Images</h3>
+          <p>Used for article hero images and other full-width visuals. Spans the full content width with a max-height to prevent overly tall images. Uses object-fit: cover to maintain aspect ratio.</p>
+
+          <div class="image-example-wide width-full">
+            <img src="/images/tubes-bg-800.jpg" alt="Example wide image">
+          </div>
+
+          <p class="type-meta">Width: 100% • Max-height: 500px • Max-width: 1200px • Object-fit: cover • Border-radius: var(--radius)</p>
+
+          <h3>Card Images</h3>
+          <p>Images within cards use consistent aspect ratios and subtle hover effects. Article cards use 16:9, product cards use fixed 250px height.</p>
+          <ul>
+            <li><strong>Article cards:</strong> aspect-ratio: 16/9, object-fit: cover, scale(1.03) on hover</li>
+            <li><strong>Product cards:</strong> height: 250px fixed, object-fit: cover, scale(1.03) on hover</li>
+            <li><strong>Overflow:</strong> hidden on container to clip zoom effect</li>
+            <li><strong>Transition:</strong> var(--normal) for smooth hover</li>
+          </ul>
+
+          <h3>Image Captions</h3>
+          <p>Captions appear below images on product detail pages and other contexts. They provide context about what's shown in the image.</p>
+
+          <div class="caption-example">
+            <img src="/images/powered-tubes-400.jpg" alt="Carbon nanotube powder">
+            <p class="image-caption">1mm to 2mm multi-walled carbon nanotubes in powder form</p>
+          </div>
+
+          <p class="type-meta">Font-size: var(--small) • Color: var(--text-3) • Font-style: italic • Text-align: center • Margin-top: var(--xs)</p>
+
+          <section class="guide-section">
             <h2 class="section-title">Spacing & Layout</h2>
             <div class="subsection">
               <h3>Container Width</h3>

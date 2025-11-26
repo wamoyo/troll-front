@@ -339,3 +339,250 @@ section#pg-brand-guidelines .dos-donts-card li {
     font-size: 1rem;
   }
 }
+
+/* ============================================
+   Cards Section
+   ============================================ */
+
+section#pg-brand-guidelines .card-examples {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--lg);
+  margin: var(--lg) 0;
+}
+
+/* Article Card Example */
+section#pg-brand-guidelines .article-card-example {
+  display: block;
+  background: var(--bg-2);
+  padding: var(--lg);
+  border: 1px solid var(--border);
+  transition: all var(--normal);
+  max-width: 400px;
+  flex: 1 1 300px;
+  text-decoration: none;
+  color: inherit;
+}
+
+section#pg-brand-guidelines .article-card-example:hover {
+  background: var(--white-10);
+  border-color: var(--accent);
+  text-decoration: none;
+}
+
+section#pg-brand-guidelines .article-card-example .card-image {
+  margin-bottom: var(--sm);
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+section#pg-brand-guidelines .article-card-example .card-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  transition: transform var(--normal);
+}
+
+section#pg-brand-guidelines .article-card-example:hover .card-image img {
+  transform: scale(1.03);
+}
+
+section#pg-brand-guidelines .article-card-example h4 {
+  margin: 0 0 var(--sm) 0;
+  font-size: var(--h3);
+  font-weight: var(--bold);
+  color: var(--text);
+}
+
+section#pg-brand-guidelines .article-card-example .excerpt {
+  color: var(--text-2);
+  font-size: 1rem;
+  font-weight: normal;
+  margin-bottom: var(--sm);
+}
+
+section#pg-brand-guidelines .article-card-example .read-more {
+  color: var(--accent);
+  font-weight: var(--bold);
+}
+
+/* Product Card Example */
+section#pg-brand-guidelines .product-card-example {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  transition: all var(--normal);
+  max-width: 350px;
+  flex: 1 1 280px;
+  text-decoration: none;
+  color: inherit;
+  overflow: hidden;
+}
+
+section#pg-brand-guidelines .product-card-example:hover {
+  background: var(--white-10);
+  border-color: var(--accent);
+  text-decoration: none;
+}
+
+section#pg-brand-guidelines .product-card-example .product-image-fixed {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  background: var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+section#pg-brand-guidelines .product-card-example .product-image-fixed img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+section#pg-brand-guidelines .product-card-example .card-content {
+  padding: var(--lg);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+section#pg-brand-guidelines .product-card-example .card-content h4 {
+  margin: 0 0 var(--sm) 0;
+  font-size: var(--h3);
+  font-weight: var(--bold);
+  color: var(--text);
+}
+
+section#pg-brand-guidelines .product-card-example .status-badge {
+  display: inline-block;
+  font-size: var(--small);
+  color: var(--accent);
+  font-weight: var(--bold);
+  margin-bottom: var(--sm);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+section#pg-brand-guidelines .product-card-example .description {
+  color: var(--text-2);
+  font-size: 1rem;
+  font-weight: normal;
+  flex: 1;
+}
+
+section#pg-brand-guidelines .product-card-example .learn-more {
+  color: var(--accent);
+  font-weight: var(--bold);
+  margin-top: var(--sm);
+}
+
+/* ============================================
+   Download Links Section
+   ============================================ */
+
+section#pg-brand-guidelines .download-examples {
+  display: flex;
+  flex-direction: column;
+  gap: var(--md);
+  margin: var(--lg) 0;
+  max-width: 500px;
+}
+
+section#pg-brand-guidelines .download-link-example {
+  display: flex;
+  align-items: center;
+  gap: var(--md);
+  background: var(--bg-2);
+  padding: var(--md) var(--lg);
+  border: 1px solid var(--border);
+  text-decoration: none;
+  color: var(--text);
+  transition: all var(--normal);
+}
+
+section#pg-brand-guidelines .download-link-example:hover {
+  background: var(--white-10);
+  border-color: var(--accent);
+  text-decoration: none;
+}
+
+section#pg-brand-guidelines .download-link-example .download-icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  color: var(--accent);
+}
+
+/* ============================================
+   Images Section
+   ============================================ */
+
+/* Wide/Hero Image Example */
+section#pg-brand-guidelines .image-example-wide {
+  margin: var(--lg) 0;
+}
+
+section#pg-brand-guidelines .image-example-wide img {
+  width: 100%;
+  max-height: 400px;
+  max-width: 1200px;
+  height: auto;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto;
+  border-radius: 8px;
+}
+
+/* Caption Example */
+section#pg-brand-guidelines .caption-example {
+  max-width: 400px;
+  margin: var(--lg) 0;
+}
+
+section#pg-brand-guidelines .caption-example img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+section#pg-brand-guidelines .image-caption {
+  font-size: var(--small);
+  color: var(--text-3);
+  font-style: italic;
+  text-align: center;
+  margin: var(--xs) 0 0 0;
+}
+
+/* Responsive for new sections */
+@media (max-width: 768px) {
+  section#pg-brand-guidelines .card-examples {
+    gap: var(--md);
+  }
+
+  section#pg-brand-guidelines .article-card-example,
+  section#pg-brand-guidelines .product-card-example {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+
+}
+
+@media (max-width: 480px) {
+  section#pg-brand-guidelines .article-card-example h4,
+  section#pg-brand-guidelines .product-card-example .card-content h4 {
+    font-size: 1.375rem;
+  }
+
+  section#pg-brand-guidelines .download-link-example {
+    padding: var(--sm) var(--md);
+    font-size: var(--small);
+  }
+
+}

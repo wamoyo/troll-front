@@ -28,8 +28,19 @@ export default function page () {
 
         <p class='med'>Interested in testing out our carbon nanotubes, or carbon nanotube infused plastics? Email us at <a href="mailto:info@trollhair.com" target="_blank">info@trollhair.com</a> or call us at <a href="tel:+12126021401">(212) 602-1401</a>.</p>
 
-        <div class="sample-image">
-          <img src="/images/carbon-nanotube-samples.png" alt="Troll Hair sample box containing carbon nanotube materials">
+        <div class="sample-image width-full">
+          <img
+            src="/images/carbon-nanotube-samples-1200.jpg"
+            srcset="/images/carbon-nanotube-samples-400.jpg 400w,
+                    /images/carbon-nanotube-samples-800.jpg 800w,
+                    /images/carbon-nanotube-samples-1200.jpg 1200w"
+            sizes="(max-width: 480px) 100vw,
+                   (max-width: 768px) 100vw,
+                   1200px"
+            alt="Troll Hair sample box containing carbon nanotube materials"
+            width="1200"
+            height="692"
+          >
         </div>
 
         <h2>More Information</h2>
