@@ -4,6 +4,10 @@ site/
 # Archive files
 archive/
 
+# Large media files
+videos/
+audios/
+
 # Deno cache
 .deno/
 

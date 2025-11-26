@@ -1,0 +1,380 @@
+/* Video Player Component */
+
+.cp-video-player {
+  display: flex;
+  flex-direction: column;
+  background: var(--black);
+  border-radius: var(--radius);
+  position: relative;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+  max-width: var(--wide);
+  margin-left: auto;
+  margin-right: auto;
+
+
+  /* Video wrapper - contains video and overlays */
+  & .video-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-top-right-radius: var(--radius);
+    border-top-left-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  /* Video element */
+  & .video {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  /* Hide native controls */
+  & .video::-webkit-media-controls {
+    display: none !important;
+  }
+
+  /* Disabled state */
+  &.disabled .big-play-button,
+  &.disabled .play-pause,
+  &.disabled .thumb,
+  &.disabled .cc,
+  &.disabled .speaker,
+  &.disabled .fullscreen {
+    cursor: not-allowed;
+  }
+
+  /* Video heading overlay */
+  & .video-heading {
+    position: absolute;
+    top: var(--md);
+    left: var(--md);
+    z-index: 2;
+    color: var(--text);
+    font-size: var(--h3);
+    text-shadow:
+      0 0 10px rgba(0, 0, 0, 0.9),
+      0 0 20px rgba(0, 0, 0, 0.7),
+      0 2px 4px rgba(0, 0, 0, 0.9);
+    margin: 0;
+    opacity: 1;
+    transition: all var(--normal) ease;
+    white-space: nowrap;
+  }
+
+  & .video-heading.hidden {
+    opacity: 0;
+    transform: translateY(-0.5rem);
+  }
+
+  @media (max-width: 480px) {
+    & .video-heading {
+      font-size: 1.1rem;
+      top: var(--sm);
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    & .video-heading.hidden {
+      transform: translateX(-50%) translateY(-0.5rem);
+    }
+  }
+
+  /* Big center play button */
+  & .big-play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 15%;
+    min-width: 70px;
+    max-width: 120px;
+    aspect-ratio: 1;
+    cursor: pointer;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: var(--text);
+    transition: transform var(--fast), opacity var(--fast);
+  }
+
+  & .big-play-button svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  & .big-play-button:hover {
+    outline: 0;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+
+  & .big-play-button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+  }
+
+  & .big-play-button.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, -50%) scale(1.5);
+  }
+
+  @media (max-width: 480px) {
+    & .big-play-button {
+      top: 55%;
+    }
+  }
+
+  /* Video controls bar - positioned below video */
+  & .video-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.5rem;
+    background: rgba(0, 0, 0, 0.85);
+    border-radius: 0 0 var(--radius) var(--radius);
+  }
+
+  /* Idle state - hide cursor */
+  & .video.idle {
+    cursor: none;
+  }
+
+  /* Control buttons */
+  & .play-pause,
+  & .speaker,
+  & .cc,
+  & .fullscreen {
+    background: transparent;
+    border: none;
+    padding: 0.25rem;
+    cursor: pointer;
+    color: var(--text);
+    transition: color var(--fast);
+    flex-shrink: 0;
+  }
+
+  & .play-pause:hover,
+  & .speaker:hover,
+  & .cc:hover,
+  & .fullscreen:hover {
+    color: var(--accent);
+  }
+
+  & .play-pause:focus-visible,
+  & .speaker:focus-visible,
+  & .cc:focus-visible,
+  & .fullscreen:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  & .play-pause:active,
+  & .speaker:active,
+  & .cc:active,
+  & .fullscreen:active {
+    opacity: 0.6;
+  }
+
+  & .play-pause svg,
+  & .speaker svg,
+  & .cc svg,
+  & .fullscreen svg {
+    display: block;
+    width: 24px;
+    height: 24px;
+  }
+
+  /* Hidden icon state - only for control button icons */
+  & .play-pause .hidden,
+  & .speaker .hidden,
+  & .cc .hidden,
+  & .fullscreen .hidden {
+    display: none;
+  }
+
+  /* Seekbar container */
+  & .seekbar {
+    position: relative;
+    background: var(--white-10);
+    border-radius: 4px;
+    height: 6px;
+    flex-grow: 1;
+    margin: 0 0.5rem;
+    cursor: pointer;
+  }
+
+  /* Buffer bar */
+  & .bufferbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: var(--white-30);
+    border-radius: 4px;
+    height: 100%;
+    width: 0;
+    pointer-events: none;
+  }
+
+  /* Time/progress bar */
+  & .timebar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background: var(--accent);
+    border-radius: 4px;
+    height: 100%;
+    width: 0;
+    pointer-events: none;
+  }
+
+  /* Draggable thumb with time display */
+  & .thumb {
+    position: absolute;
+    cursor: grab;
+    text-align: center;
+    z-index: 2;
+    top: -32px;
+    left: 0;
+    transform: translateX(-50%);
+    border-radius: 4px;
+    background: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--text);
+    padding: 0.2rem 0.5rem;
+    white-space: nowrap;
+    transition: transform 0.05s;
+  }
+
+  /* Triangle pointer on thumb */
+  & .thumb::after {
+    content: "";
+    position: absolute;
+    bottom: -7px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid var(--accent);
+  }
+
+  & .thumb:active {
+    cursor: grabbing;
+  }
+
+  /* Total time display */
+  & .total-time {
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    white-space: nowrap;
+    padding: 0 0.25rem;
+    flex-shrink: 0;
+  }
+
+  /* On-screen notification for keyboard actions */
+  & .video-notification {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--text);
+    opacity: 0.8;
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+    pointer-events: none;
+    z-index: 10;
+    transition: opacity var(--normal);
+  }
+
+  /* Captions styling */
+  & .video::cue {
+    color: var(--text);
+    background: rgba(0, 0, 0, 0.7);
+    font-family: var(--ubuntu);
+  }
+}
+
+/* Fullscreen states */
+.cp-video-player:fullscreen {
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+}
+
+.cp-video-player:-webkit-full-screen {
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+}
+
+.cp-video-player:-moz-full-screen {
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+}
+
+.cp-video-player:-ms-fullscreen {
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+}
+
+/* Fullscreen - video wrapper fills space, controls stay at bottom */
+.cp-video-player:fullscreen .video-wrapper {
+  flex: 1;
+}
+
+.cp-video-player:fullscreen .video-controls {
+  padding: 0.75rem 2rem;
+}
+
+/* Prevent body scroll while dragging thumb */
+body.dragging {
+  user-select: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .cp-video-player {
+    & .video-controls {
+      gap: 0.125rem;
+      padding: 0.375rem;
+    }
+
+    & .play-pause svg,
+    & .speaker svg,
+    & .cc svg,
+    & .fullscreen svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    & .thumb {
+      font-size: 0.65rem;
+      padding: 0.15rem 0.4rem;
+      top: -28px;
+    }
+
+    & .total-time {
+      font-size: 0.65rem;
+    }
+
+    & .seekbar {
+      margin: 0 0.25rem;
+    }
+  }
+}
+
+/* Override grid width-full margins - needs high specificity to beat standard.css */
+body#ly-standard .grid-container > .cp-video-player.width-full {
+  margin-left: auto;
+  margin-right: auto;
+}

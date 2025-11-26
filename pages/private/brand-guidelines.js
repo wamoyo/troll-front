@@ -4,6 +4,19 @@ import html from '@utils/html.js'
 import standard from '@layouts/standard.js'
 import pageSeo from '@components/page-seo.js'
 import data from '@data/site.js'
+import videoPlayer from '@components/video-player.js'
+
+// Front matter - demo video config
+var demoVideo = {
+  id: 'demo-video',
+  src: '/videos/thank-you-for-saving-coral-reefs-with-us.mp4',
+  poster: '/images/thank-you-for-saving-coral-reefs-with-us-poster.jpg',
+  title: 'Demo Video',
+  sessionTitle: 'Demo Video - Troll Hair',
+  artist: 'Troll Hair',
+  artwork: [{ src: '/images/logo-icon-200.png', sizes: '200x200', type: 'image/png' }],
+  wide: true
+}
 
 // Front matter
 var meta = {
@@ -22,6 +35,7 @@ export default function page () {
       ${pageSeo(meta).head}
       <link rel="stylesheet" href="/styles/pages/private/brand-guidelines.css">
       <link rel="stylesheet" href="/styles/components/form-message.css">
+      ${videoPlayer(demoVideo).head}
     `,
     body: html`
       <section id="pg-brand-guidelines" class="grid-container">
@@ -192,8 +206,16 @@ export default function page () {
             <li>Red should represent 10-15% of any design, not dominate</li>
           </ul>
 
+          <h2 class="section-title">Components</h2>
+
+          <h3>Video Player</h3>
+          <p>Custom video player with HLS streaming support (coming soon), keyboard controls, and Media Session API integration for OS-level controls.</p>
+
+          ${videoPlayer(demoVideo).body}
+
+          <p class="type-meta" style="margin-top: var(--md);">Controls: Play/pause, seek, mute, fullscreen, captions (optional) • Keyboard: Space/K=play, J/L=±10s, ←/→=±5s, M=mute, F=fullscreen, ,/.=speed • Progress bar: var(--accent)</p>
+
           <section class="guide-section">
-            <h2 class="section-title">Components</h2>
 
             <div class="subsection">
               <h3>Buttons</h3>
@@ -457,6 +479,9 @@ export default function page () {
             </div>
           </section>
       </section>
+    `,
+    scripts: html`
+      ${videoPlayer(demoVideo).scripts}
     `
   })
 }

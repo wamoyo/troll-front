@@ -87,19 +87,34 @@ for await (var entry of Deno.readDir(`${srcDir}/styles/components`)) {
   }
 }
 
-// Copy page CSS
-for await (var entry of Deno.readDir(`${srcDir}/styles/pages`)) {
-  if (entry.isFile && entry.name.endsWith('.css')) {
-    await Deno.copyFile(
-      `${srcDir}/styles/pages/${entry.name}`,
-      `${siteDir}/styles/pages/${entry.name}`
-    )
-    console.log(`  ✓ pages/${entry.name}`)
+// Recursive function to copy directory contents
+async function copyDirRecursive (src, dest, label) {
+  await ensureDir(dest)
+  for await (var entry of Deno.readDir(src)) {
+    var srcPath = `${src}/${entry.name}`
+    var destPath = `${dest}/${entry.name}`
+    if (entry.isDirectory) {
+      await copyDirRecursive(srcPath, destPath, `${label}/${entry.name}`)
+    } else if (entry.isFile) {
+      await Deno.copyFile(srcPath, destPath)
+      console.log(`  ✓ ${label}/${entry.name}`)
+    }
   }
 }
 
-// Copy static assets
-var assetDirs = ['fonts', 'images', 'audios', 'videos', 'scripts', 'pdfs']
+// Copy page CSS (including nested directories)
+await copyDirRecursive(`${srcDir}/styles/pages`, `${siteDir}/styles/pages`, 'pages')
+
+// Copy scripts (including nested directories like scripts/components/)
+console.log('\nCopying scripts...')
+try {
+  await copyDirRecursive(`${srcDir}/scripts`, `${siteDir}/scripts`, 'scripts')
+} catch {
+  // Directory doesn't exist, skip
+}
+
+// Copy static assets (flat directories only)
+var assetDirs = ['fonts', 'images', 'audios', 'videos', 'pdfs']
 
 for (var dir of assetDirs) {
   var srcPath = `${srcDir}/${dir}`
