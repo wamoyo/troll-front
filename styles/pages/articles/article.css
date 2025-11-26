@@ -48,6 +48,7 @@ article#pg-article-custom {
     object-fit: cover;
     display: block;
     margin: 0 auto;
+    border-radius: var(--radius);
   }
 
   .article-content {

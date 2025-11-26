@@ -21,7 +21,7 @@ export default function page () {
     },
     head: html`
       ${articleSeo(meta).head}
-      <link rel="stylesheet" href="/styles/pages/article-custom.css">
+      <link rel="stylesheet" href="/styles/pages/articles/article.css">
     `,
     body: html`
       <article id="pg-article-custom" class="grid-container">
