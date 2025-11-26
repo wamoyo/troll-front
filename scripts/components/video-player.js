@@ -21,6 +21,86 @@
     return minutes + ':' + secs
   }
 
+  // Pure: parses VTT timestamp to seconds
+  function parseVttTime (timestamp) {
+    var parts = timestamp.split(':')
+    var hours = 0
+    var minutes = 0
+    var seconds = 0
+
+    if (parts.length === 3) {
+      hours = parseInt(parts[0], 10)
+      minutes = parseInt(parts[1], 10)
+      seconds = parseFloat(parts[2])
+    } else if (parts.length === 2) {
+      minutes = parseInt(parts[0], 10)
+      seconds = parseFloat(parts[1])
+    }
+
+    return hours * 3600 + minutes * 60 + seconds
+  }
+
+  // Pure: parses VTT file content into array of cues
+  function parseVtt (vttContent) {
+    var cues = []
+    var lines = vttContent.split('\n')
+    var i = 0
+
+    // Skip header
+    while (i < lines.length && !lines[i].includes('-->')) {
+      i++
+    }
+
+    while (i < lines.length) {
+      var line = lines[i].trim()
+
+      if (line.includes('-->')) {
+        var timeParts = line.split('-->')
+        var startTime = parseVttTime(timeParts[0].trim())
+        var endTime = parseVttTime(timeParts[1].trim())
+
+        // Next line is the sprite reference
+        i++
+        if (i < lines.length && lines[i].trim()) {
+          var spriteRef = lines[i].trim()
+          cues.push({
+            start: startTime,
+            end: endTime,
+            sprite: spriteRef
+          })
+        }
+      }
+      i++
+    }
+
+    return cues
+  }
+
+  // Pure: finds the cue for a given time
+  function findCueForTime (cues, time) {
+    for (var i = 0; i < cues.length; i++) {
+      if (time >= cues[i].start && time < cues[i].end) {
+        return cues[i]
+      }
+    }
+    // Return last cue if time exceeds duration
+    return cues.length > 0 ? cues[cues.length - 1] : null
+  }
+
+  // Pure: parses sprite reference into background position values
+  function parseSpritePosition (spriteRef) {
+    var match = spriteRef.match(/#xywh=(\d+),(\d+),(\d+),(\d+)/)
+    if (match) {
+      return {
+        x: parseInt(match[1], 10),
+        y: parseInt(match[2], 10),
+        w: parseInt(match[3], 10),
+        h: parseInt(match[4], 10)
+      }
+    }
+    return null
+  }
+
   // Side effect: initializes a single video player instance
   function initPlayer (container) {
     // DOM elements
@@ -52,6 +132,10 @@
     var thumb = container.querySelector('.thumb')
     var totalTime = container.querySelector('.total-time')
     var heading = container.querySelector('.video-heading')
+    var hoverPreview = container.querySelector('.hover-preview')
+    var hoverThumbnail = container.querySelector('.hover-thumbnail')
+    var hoverTime = container.querySelector('.hover-time')
+    var scrubSprite = container.querySelector('.scrub-sprite')
 
     // Config from data attributes
     var src = video.dataset.src
@@ -69,6 +153,9 @@
     var seeking = false
     var idleCount = 0
     var hlsInstance = null
+    var thumbnailCues = []
+    var spriteUrl = ''
+    var isTouchDevice = 'ontouchstart' in window
 
     // Load video source (HLS or direct MP4)
     if (src.endsWith('.m3u8')) {
@@ -138,6 +225,26 @@
       video.src = src
     }
     if (video.readyState < 1) video.load()
+
+    // Load thumbnail sprites if available (for HLS streams)
+    if (src.endsWith('.m3u8')) {
+      var basePath = src.replace('playlist.m3u8', '')
+      var vttUrl = basePath + 'thumbnails.vtt'
+      spriteUrl = basePath + 'sprite.jpg'
+
+      fetch(vttUrl)
+        .then(function (response) {
+          if (response.ok) return response.text()
+          throw new Error('VTT not found')
+        })
+        .then(function (vttContent) {
+          thumbnailCues = parseVtt(vttContent)
+        })
+        .catch(function () {
+          // Thumbnails not available, that's okay
+          thumbnailCues = []
+        })
+    }
 
     // Enable player (remove disabled state)
     container.classList.remove('disabled')
@@ -356,6 +463,49 @@
 
 
     /*
+     * Hover thumbnail preview (desktop only)
+     */
+
+    if (!isTouchDevice) {
+      seekbar.addEventListener('mouseenter', function () {
+        if (thumbnailCues.length > 0) {
+          hoverPreview.classList.remove('hidden')
+        }
+      })
+
+      seekbar.addEventListener('mouseleave', function () {
+        hoverPreview.classList.add('hidden')
+      })
+
+      seekbar.addEventListener('mousemove', function (event) {
+        if (thumbnailCues.length === 0 || seeking) return
+
+        var rect = seekbar.getBoundingClientRect()
+        var mouseX = event.clientX - rect.left
+        var percent = mouseX / rect.width
+        var time = percent * video.duration
+
+        // Position the preview (constrain to seekbar bounds)
+        var previewLeft = Math.max(80, Math.min(mouseX, rect.width - 80))
+        hoverPreview.style.left = previewLeft + 'px'
+
+        // Update time display
+        hoverTime.textContent = formatTime(time)
+
+        // Find and show the correct sprite thumbnail
+        var cue = findCueForTime(thumbnailCues, time)
+        if (cue) {
+          var pos = parseSpritePosition(cue.sprite)
+          if (pos) {
+            hoverThumbnail.style.backgroundImage = 'url(' + spriteUrl + ')'
+            hoverThumbnail.style.backgroundPosition = '-' + pos.x + 'px -' + pos.y + 'px'
+          }
+        }
+      })
+    }
+
+
+    /*
      * Thumb dragging
      */
 
@@ -368,7 +518,13 @@
       seeking = true
       document.body.classList.add('dragging')
 
+      // Show scrub sprite overlay if thumbnails available
+      if (thumbnailCues.length > 0) {
+        scrubSprite.classList.remove('hidden')
+      }
+
       var rect = seekbar.getBoundingClientRect()
+      var videoRect = video.getBoundingClientRect()
       var duration = video.duration
       var wasMuted = video.muted
       var wasPaused = video.paused
@@ -392,6 +548,38 @@
         var time = (position / rect.width) * duration
         thumb.textContent = formatTime(time)
 
+        // Update hover preview (keep showing during drag)
+        if (thumbnailCues.length > 0 && !isTouchDevice) {
+          hoverPreview.classList.remove('hidden')
+          var previewLeft = Math.max(80, Math.min(position, rect.width - 80))
+          hoverPreview.style.left = previewLeft + 'px'
+          hoverTime.textContent = formatTime(time)
+        }
+
+        // Update scrub sprite to cover video
+        if (thumbnailCues.length > 0) {
+          var cue = findCueForTime(thumbnailCues, time)
+          if (cue) {
+            var pos = parseSpritePosition(cue.sprite)
+            if (pos) {
+              // Calculate scale to fill video area
+              var scaleX = videoRect.width / pos.w
+              var scaleY = videoRect.height / pos.h
+              var scale = Math.max(scaleX, scaleY)
+
+              scrubSprite.style.backgroundImage = 'url(' + spriteUrl + ')'
+              scrubSprite.style.backgroundPosition = '-' + (pos.x * scale) + 'px -' + (pos.y * scale) + 'px'
+              scrubSprite.style.backgroundSize = (pos.w * 10 * scale) + 'px auto'
+
+              // Also update hover thumbnail
+              if (!isTouchDevice) {
+                hoverThumbnail.style.backgroundImage = 'url(' + spriteUrl + ')'
+                hoverThumbnail.style.backgroundPosition = '-' + pos.x + 'px -' + pos.y + 'px'
+              }
+            }
+          }
+        }
+
         // Throttled seek using requestAnimationFrame
         requestAnimationFrame(function () {
           video.currentTime = time
@@ -412,6 +600,10 @@
         video.currentTime = time
         seeking = false
         document.body.classList.remove('dragging')
+
+        // Hide scrub sprite and hover preview
+        scrubSprite.classList.add('hidden')
+        hoverPreview.classList.add('hidden')
 
         if (!wasMuted) video.muted = false
         if (!wasPaused) video.play()

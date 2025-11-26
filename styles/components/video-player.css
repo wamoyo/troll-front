@@ -416,6 +416,61 @@
     flex-shrink: 0;
   }
 
+  /* Hover thumbnail preview (tooltip above seekbar) */
+  & .hover-preview {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    transform: translateX(-50%);
+    margin-bottom: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  & .hover-preview.hidden {
+    display: none;
+  }
+
+  & .hover-thumbnail {
+    width: 160px;
+    height: 90px;
+    background-color: var(--black);
+    background-size: auto;
+    background-repeat: no-repeat;
+    border: 2px solid var(--accent);
+    border-radius: 4px;
+  }
+
+  & .hover-time {
+    margin-top: 4px;
+    padding: 2px 8px;
+    background: var(--accent);
+    border-radius: 4px;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--text);
+  }
+
+  /* Scrub sprite overlay (covers video during drag) */
+  & .scrub-sprite {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--black);
+    background-repeat: no-repeat;
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  & .scrub-sprite.hidden {
+    display: none;
+  }
+
   /* On-screen notification for keyboard actions */
   & .video-notification {
     position: absolute;

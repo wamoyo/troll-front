@@ -71,6 +71,70 @@ encode_video() {
 EOF
 
   echo "Done: $output_dir/playlist.m3u8"
+
+  # Generate thumbnail sprites for scrubbing preview
+  echo "Generating thumbnail sprites..."
+  generate_sprites "$input" "$output_dir"
+}
+
+# Pure: generates thumbnail sprite sheet and VTT file
+generate_sprites() {
+  local input="$1"
+  local output_dir="$2"
+
+  # Get video duration in seconds
+  local duration=$(ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "$input")
+  duration=${duration%.*}  # Remove decimal
+
+  # Thumbnail settings
+  local thumb_width=160
+  local thumb_height=90
+  local interval=2  # Seconds between thumbnails
+  local cols=10     # Thumbnails per row in sprite
+
+  # Calculate number of thumbnails and rows
+  local num_thumbs=$((duration / interval + 1))
+  local rows=$(( (num_thumbs + cols - 1) / cols ))
+
+  # Generate sprite sheet
+  ffmpeg -i "$input" \
+    -vf "fps=1/$interval,scale=${thumb_width}:${thumb_height},tile=${cols}x${rows}" \
+    -frames:v 1 \
+    -y \
+    "$output_dir/sprite.jpg"
+
+  # Generate VTT file
+  local vtt_file="$output_dir/thumbnails.vtt"
+  echo "WEBVTT" > "$vtt_file"
+  echo "" >> "$vtt_file"
+
+  local i=0
+  while [ $i -lt $num_thumbs ]; do
+    local start_time=$((i * interval))
+    local end_time=$(( (i + 1) * interval ))
+    if [ $end_time -gt $duration ]; then
+      end_time=$duration
+    fi
+
+    # Calculate sprite position
+    local col=$((i % cols))
+    local row=$((i / cols))
+    local x=$((col * thumb_width))
+    local y=$((row * thumb_height))
+
+    # Format times as HH:MM:SS.mmm
+    local start_fmt=$(printf "%02d:%02d:%02d.000" $((start_time/3600)) $(((start_time%3600)/60)) $((start_time%60)))
+    local end_fmt=$(printf "%02d:%02d:%02d.000" $((end_time/3600)) $(((end_time%3600)/60)) $((end_time%60)))
+
+    echo "${start_fmt} --> ${end_fmt}" >> "$vtt_file"
+    echo "sprite.jpg#xywh=${x},${y},${thumb_width},${thumb_height}" >> "$vtt_file"
+    echo "" >> "$vtt_file"
+
+    i=$((i + 1))
+  done
+
+  echo "  ✓ sprite.jpg (${cols}x${rows} grid)"
+  echo "  ✓ thumbnails.vtt ($num_thumbs cues)"
 }
 
 # Main logic

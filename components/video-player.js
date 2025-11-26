@@ -31,6 +31,7 @@ export default function videoPlayer (video) {
           <div class="loading-indicator hidden">
             <span class="loading-text">Loading<span class="loading-dots"><span>.</span><span>.</span><span>.</span></span></span>
           </div>
+          <div class="scrub-sprite hidden"></div>
         </div>
         <div class="video-controls">
           <button class="play-pause" tabindex="0" aria-label="Play/Pause">
@@ -46,6 +47,10 @@ export default function videoPlayer (video) {
             <div class="bufferbar"></div>
             <div class="timebar"></div>
             <div class="thumb" draggable="true">0:00</div>
+            <div class="hover-preview hidden">
+              <div class="hover-thumbnail"></div>
+              <div class="hover-time"></div>
+            </div>
           </div>
           <div class="total-time">0:00</div>
           ${video.captions ? html`
