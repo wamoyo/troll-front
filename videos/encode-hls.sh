@@ -4,29 +4,29 @@
 #
 # Usage: ./encode-hls.sh [filename.mp4]
 #   - With argument: Encodes only that file
-#   - Without argument: Encodes all MP4s in sources/ that don't have HLS output yet
+#   - Without argument: Encodes all MP4s that don't have HLS output yet
 #
-# Output structure:
-#   hls/video-name/
-#     ├── playlist.m3u8 (master)
-#     ├── 1080p/playlist.m3u8 + segments
-#     ├── 720p/playlist.m3u8 + segments
-#     ├── 480p/playlist.m3u8 + segments
-#     └── 240p/playlist.m3u8 + segments
+# Source: videos/*.mp4
+# Output: site/videos/video-name/
+#           ├── playlist.m3u8 (master)
+#           ├── 1080p/playlist.m3u8 + segments
+#           ├── 720p/playlist.m3u8 + segments
+#           ├── 480p/playlist.m3u8 + segments
+#           └── 240p/playlist.m3u8 + segments
 
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-SOURCES_DIR="$SCRIPT_DIR/sources"
-HLS_DIR="$SCRIPT_DIR/hls"
+FRONTEND_DIR="$(dirname "$SCRIPT_DIR")"
+OUTPUT_DIR="$FRONTEND_DIR/site/videos"
 
-# Create hls directory if it doesn't exist
-mkdir -p "$HLS_DIR"
+# Create output directory if it doesn't exist
+mkdir -p "$OUTPUT_DIR"
 
 encode_video() {
   local input="$1"
   local basename=$(basename "$input" .mp4)
-  local output_dir="$HLS_DIR/$basename"
+  local output_dir="$OUTPUT_DIR/$basename"
 
   # Skip if already encoded
   if [ -d "$output_dir" ] && [ -f "$output_dir/playlist.m3u8" ]; then
@@ -76,8 +76,8 @@ EOF
 # Main logic
 if [ -n "$1" ]; then
   # Encode specific file
-  if [ -f "$SOURCES_DIR/$1" ]; then
-    encode_video "$SOURCES_DIR/$1"
+  if [ -f "$SCRIPT_DIR/$1" ]; then
+    encode_video "$SCRIPT_DIR/$1"
   elif [ -f "$1" ]; then
     encode_video "$1"
   else
@@ -85,16 +85,16 @@ if [ -n "$1" ]; then
     exit 1
   fi
 else
-  # Encode all unencoded videos in sources/
+  # Encode all unencoded videos
   found=0
-  for video in "$SOURCES_DIR"/*.mp4; do
+  for video in "$SCRIPT_DIR"/*.mp4; do
     [ -f "$video" ] || continue
     found=1
     encode_video "$video"
   done
 
   if [ $found -eq 0 ]; then
-    echo "No MP4 files found in $SOURCES_DIR"
+    echo "No MP4 files found in $SCRIPT_DIR"
   fi
 fi
 

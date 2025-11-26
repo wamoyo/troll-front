@@ -195,7 +195,7 @@ async function copyAllCSS () {
 
 // Side effect: copies all static assets
 async function copyAllAssets () {
-  var assetDirs = ['fonts', 'images', 'audios', 'videos', 'scripts']
+  var assetDirs = ['fonts', 'images', 'scripts']
 
   for (var dir of assetDirs) {
     var srcPath = `${srcDir}/${dir}`
@@ -279,6 +279,34 @@ async function fullBuild () {
   console.log('\n✨ Build complete!\n')
 }
 
+// Pure: returns MIME type for HLS files (.ts is video, not TypeScript!)
+function getHlsMimeType (path) {
+  if (path.endsWith('.m3u8')) return 'application/vnd.apple.mpegurl'
+  if (path.endsWith('.ts')) return 'video/MP2T'
+  return null
+}
+
+// Side effect: serves an HLS file with correct MIME type
+async function serveHlsFile (filePath) {
+  try {
+    var content = await Deno.readFile(filePath)
+    var mimeType = getHlsMimeType(filePath)
+
+    return new Response(content, {
+      headers: {
+        'Content-Type': mimeType,
+        'Access-Control-Allow-Origin': '*',
+        'Cache-Control': 'no-cache'
+      }
+    })
+  } catch (err) {
+    if (err instanceof Deno.errors.NotFound) {
+      return new Response('Not Found', { status: 404 })
+    }
+    return new Response('Internal Server Error', { status: 500 })
+  }
+}
+
 // Side effect: starts dev server
 async function startDevServer () {
   console.log('🚀 Starting dev server on http://localhost:8700\n')
@@ -287,7 +315,17 @@ async function startDevServer () {
   Deno.serve({
     port: 8700,
     onListen: () => {} // Suppress default listen message
-  }, (req) => {
+  }, async (req) => {
+    var url = new URL(req.url)
+    var pathname = url.pathname
+
+    // Handle HLS files with correct MIME types (.ts = video, not TypeScript)
+    if (pathname.startsWith('/videos/') && (pathname.endsWith('.m3u8') || pathname.endsWith('.ts'))) {
+      var hlsPath = siteDir + pathname
+      return await serveHlsFile(hlsPath)
+    }
+
+    // Default: serve from site/ directory
     return serveDir(req, {
       fsRoot: siteDir,
       enableCors: true,
@@ -372,8 +410,8 @@ async function handleFileChange (path, kind) {
     return
   }
 
-  // Handle asset changes (images, fonts, audios, videos, scripts)
-  var assetDirs = ['images', 'fonts', 'audios', 'videos', 'scripts']
+  // Handle asset changes (images, fonts, scripts)
+  var assetDirs = ['images', 'fonts', 'scripts']
   for (var dir of assetDirs) {
     if (path.startsWith(`${dir}/`)) {
       var destPath = path.replace(`${dir}/`, `site/${dir}/`)
@@ -435,8 +473,6 @@ var watcher = Deno.watchFs([
   'styles',
   'images',
   'fonts',
-  'audios',
-  'videos',
   'scripts',
   'root',
   'generators'

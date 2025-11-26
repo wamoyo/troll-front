@@ -4,7 +4,7 @@ site/
 # Archive files
 archive/
 
-# Large media files
+# Large media files (keep encode script)
 videos/*
 !videos/encode-hls.sh
 audios/

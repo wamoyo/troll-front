@@ -114,7 +114,7 @@ try {
 }
 
 // Copy static assets (flat directories only)
-var assetDirs = ['fonts', 'images', 'audios', 'videos', 'pdfs']
+var assetDirs = ['fonts', 'images', 'pdfs']
 
 for (var dir of assetDirs) {
   var srcPath = `${srcDir}/${dir}`

@@ -10,6 +10,7 @@
     "dev": "deno run --allow-read --allow-write --allow-net --allow-env watch.js",
     "build": "deno run --allow-read --allow-write --allow-env build.js",
     "build:prod": "PRODUCTION=true deno run --allow-read --allow-write --allow-env build.js",
-    "deploy": "deno run --allow-read --allow-write --allow-net --allow-env --allow-run deploy.js"
+    "deploy": "deno run --allow-read --allow-write --allow-net --allow-env --allow-run deploy.js",
+    "videos": "./videos/encode-hls.sh"
   }
 }

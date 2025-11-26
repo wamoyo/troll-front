@@ -43,6 +43,8 @@
     var settingsWrapper = container.querySelector('.settings-wrapper')
     var settingsButton = container.querySelector('.settings')
     var speedOptions = container.querySelectorAll('.speed-option')
+    var qualitySection = container.querySelector('.quality-section')
+    var qualityOptionsContainer = container.querySelector('.quality-options')
     var loadingIndicator = container.querySelector('.loading-indicator')
     var seekbar = container.querySelector('.seekbar')
     var bufferbar = container.querySelector('.bufferbar')
@@ -66,13 +68,90 @@
     var mediaPlayerRunning = false
     var seeking = false
     var idleCount = 0
+    var hlsInstance = null
 
-    // Load video source
-    video.src = src
+    // Load video source (HLS or direct MP4)
+    if (src.endsWith('.m3u8')) {
+      // HLS stream
+      if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        // Safari/iOS - native HLS support
+        video.src = src
+      } else if (window.Hls && Hls.isSupported()) {
+        // Chrome/Firefox/Edge - use hls.js
+        hlsInstance = new Hls()
+        hlsInstance.loadSource(src)
+        hlsInstance.attachMedia(video)
+
+        // Populate quality options when manifest is parsed
+        hlsInstance.on(Hls.Events.MANIFEST_PARSED, function (event, data) {
+          if (data.levels.length > 1) {
+            qualitySection.classList.remove('hidden')
+
+            // Add quality options (sorted highest to lowest)
+            var levels = data.levels.slice().sort(function (a, b) {
+              return b.height - a.height
+            })
+
+            levels.forEach(function (level, sortedIndex) {
+              // Find original index for this level
+              var originalIndex = data.levels.findIndex(function (l) {
+                return l.height === level.height
+              })
+
+              var button = document.createElement('button')
+              button.className = 'quality-option'
+              button.dataset.level = originalIndex
+              button.textContent = level.height + 'p'
+              qualityOptionsContainer.appendChild(button)
+            })
+
+            // Add click handlers for quality options
+            qualityOptionsContainer.querySelectorAll('.quality-option').forEach(function (option) {
+              option.addEventListener('click', function () {
+                var level = parseInt(option.dataset.level)
+                hlsInstance.currentLevel = level
+
+                // Update active state
+                qualityOptionsContainer.querySelectorAll('.quality-option').forEach(function (opt) {
+                  opt.classList.remove('active')
+                })
+                option.classList.add('active')
+
+                showNotification(level === -1 ? 'Auto' : option.textContent)
+                settingsWrapper.classList.remove('open')
+              })
+            })
+          }
+        })
+
+        // Handle HLS errors
+        hlsInstance.on(Hls.Events.ERROR, function (event, data) {
+          if (data.fatal) {
+            console.error('HLS error:', data.type, data.details)
+          }
+        })
+      } else {
+        console.error('HLS not supported in this browser')
+      }
+    } else {
+      // Regular MP4
+      video.src = src
+    }
     if (video.readyState < 1) video.load()
 
     // Enable player (remove disabled state)
     container.classList.remove('disabled')
+
+    // Show/hide loading indicator on buffering
+    video.addEventListener('waiting', function () {
+      loadingIndicator.classList.remove('hidden')
+    })
+    video.addEventListener('playing', function () {
+      loadingIndicator.classList.add('hidden')
+    })
+    video.addEventListener('canplay', function () {
+      loadingIndicator.classList.add('hidden')
+    })
 
     // Start with captions off
     if (track) track.mode = 'hidden'

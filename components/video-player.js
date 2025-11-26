@@ -80,6 +80,12 @@ export default function videoPlayer (video) {
               </svg>
             </button>
             <div class="settings-panel">
+              <div class="settings-section quality-section hidden">
+                <div class="settings-label">Quality</div>
+                <div class="quality-options">
+                  <button class="quality-option active" data-level="-1">Auto</button>
+                </div>
+              </div>
               <div class="settings-section">
                 <div class="settings-label">Speed</div>
                 <div class="speed-options">
@@ -111,6 +117,7 @@ export default function videoPlayer (video) {
       </div>
     `,
     scripts: html`
+      <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
       <script src="/scripts/components/video-player.js" defer></script>
     `
   }

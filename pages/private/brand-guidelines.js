@@ -9,7 +9,7 @@ import videoPlayer from '@components/video-player.js'
 // Front matter - demo video config
 var demoVideo = {
   id: 'demo-video',
-  src: '/videos/thank-you-for-saving-coral-reefs-with-us.mp4',
+  src: '/videos/thank-you-for-saving-coral-reefs-with-us/playlist.m3u8',
   poster: '/images/thank-you-for-saving-coral-reefs-with-us-poster.jpg',
   title: 'Demo Video',
   sessionTitle: 'Demo Video - Troll Hair',
@@ -209,7 +209,7 @@ export default function page () {
           <h2 class="section-title">Components</h2>
 
           <h3>Video Player</h3>
-          <p>Custom video player with HLS streaming support (coming soon), keyboard controls, and Media Session API integration for OS-level controls.</p>
+          <p>Custom video player with HLS adaptive streaming, keyboard controls, and Media Session API integration for OS-level controls.</p>
 
           ${videoPlayer(demoVideo).body}
 

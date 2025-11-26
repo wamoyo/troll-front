@@ -262,11 +262,16 @@
     background: rgba(0, 0, 0, 0.95);
     border-radius: var(--radius) var(--radius) 0 0;
     padding: var(--sm);
-    min-width: 140px;
+    display: flex;
+    gap: var(--sm);
     opacity: 0;
     visibility: hidden;
     transform: translateY(10px);
     transition: all var(--fast) ease;
+  }
+
+  & .settings-section {
+    min-width: 90px;
   }
 
   & .settings-wrapper.open .settings-panel {
@@ -282,13 +287,15 @@
     font-weight: bold;
   }
 
-  & .speed-options {
+  & .speed-options,
+  & .quality-options {
     display: flex;
     flex-direction: column;
     gap: 2px;
   }
 
-  & .speed-option {
+  & .speed-option,
+  & .quality-option {
     background: transparent;
     border: none;
     color: var(--text);
@@ -300,13 +307,24 @@
     transition: background var(--fast);
   }
 
-  & .speed-option:hover {
+  & .speed-option:hover,
+  & .quality-option:hover {
     background: var(--white-10);
   }
 
-  & .speed-option.active {
+  & .speed-option.active,
+  & .quality-option.active {
     background: var(--accent);
     color: var(--text);
+  }
+
+  & .quality-section.hidden {
+    display: none;
+  }
+
+  & .quality-section {
+    padding-right: var(--sm);
+    border-right: 1px solid var(--white-10);
   }
 
   /* Hidden icon state - only for control button icons */
