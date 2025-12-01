@@ -10,7 +10,7 @@ var nav = [
   { label: "Products", href: "/products" },
   { label: "Samples", href: "/samples" },
   { label: "Careers", href: "/careers" },
-  { label: "Articles", href: "/articles" },
+  { label: "Resources", href: "/resources" },
   { label: "Contact", href: "/contact" }
 ]
 

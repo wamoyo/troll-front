@@ -1,4 +1,4 @@
-// CSS: styles/pages/articles/article.css
+// CSS: styles/pages/resources/article.css
 
 import html from '@utils/html.js'
 import standard from '@layouts/standard.js'
@@ -10,18 +10,18 @@ var meta = {
   date: 'November 21, 2024',
   author: 'Troll Hair Team',
   description: 'Exploring the importance of length when using carbon nanotubes in composites to increase strength and toughness.',
-  url: 'https://trollhair.com/articles/long-carbon-nanotubes-composites'
+  url: 'https://trollhair.com/resources/long-carbon-nanotubes-composites'
 }
 
 // Pure: returns complete article page
 export default function page () {
   return standard({
     options: {
-      currentPath: '/articles'
+      currentPath: '/resources'
     },
     head: html`
       ${articleSeo(meta).head}
-      <link rel="stylesheet" href="/styles/pages/articles/article.css">
+      <link rel="stylesheet" href="/styles/pages/resources/article.css">
     `,
     body: html`
       <article id="pg-article-custom" class="grid-container">
@@ -51,7 +51,7 @@ export default function page () {
         </div>
 
         <footer class="article-footer">
-          <a href="/articles" class="button secondary">« Back to Articles</a>
+          <a href="/resources" class="button secondary">« Back to Resources</a>
           <a href="/samples" class="button primary">Get Samples »</a>
         </footer>
       </article>

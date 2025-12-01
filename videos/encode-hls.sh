@@ -49,13 +49,13 @@ encode_video() {
       [v3]scale=854:480[v3out]; \
       [v4]scale=426:240[v4out]" \
     -map "[v1out]" -map 0:a -c:v libx264 -b:v 5000k -preset veryslow -c:a aac -b:a 192k \
-      -hls_time 6 -hls_list_size 0 -hls_segment_filename "$output_dir/1080p/segment%03d.ts" "$output_dir/1080p/playlist.m3u8" \
+      -hls_time 6 -hls_list_size 0 -hls_segment_filename "$output_dir/1080p/segment%04d.ts" "$output_dir/1080p/playlist.m3u8" \
     -map "[v2out]" -map 0:a -c:v libx264 -b:v 2800k -preset veryslow -c:a aac -b:a 128k \
-      -hls_time 6 -hls_list_size 0 -hls_segment_filename "$output_dir/720p/segment%03d.ts" "$output_dir/720p/playlist.m3u8" \
+      -hls_time 6 -hls_list_size 0 -hls_segment_filename "$output_dir/720p/segment%04d.ts" "$output_dir/720p/playlist.m3u8" \
     -map "[v3out]" -map 0:a -c:v libx264 -b:v 1400k -preset veryslow -c:a aac -b:a 128k \
-      -hls_time 6 -hls_list_size 0 -hls_segment_filename "$output_dir/480p/segment%03d.ts" "$output_dir/480p/playlist.m3u8" \
+      -hls_time 6 -hls_list_size 0 -hls_segment_filename "$output_dir/480p/segment%04d.ts" "$output_dir/480p/playlist.m3u8" \
     -map "[v4out]" -map 0:a -c:v libx264 -b:v 400k -preset veryslow -c:a aac -b:a 64k \
-      -hls_time 6 -hls_list_size 0 -hls_segment_filename "$output_dir/240p/segment%03d.ts" "$output_dir/240p/playlist.m3u8"
+      -hls_time 6 -hls_list_size 0 -hls_segment_filename "$output_dir/240p/segment%04d.ts" "$output_dir/240p/playlist.m3u8"
 
   # Create master playlist
   cat > "$output_dir/playlist.m3u8" << 'EOF'

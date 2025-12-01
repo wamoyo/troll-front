@@ -56,10 +56,10 @@ scripts/pages/
 ├── contact.js                        # Single script for contact page
 ├── samples.js                        # General script for samples page
 ├── samples-materials.js              # Additional script for samples page
-└── articles/                         # Nested directory mirrors pages/articles/
-    ├── index.js                      # Script for articles listing page
-    ├── index-filters.js              # Additional script for articles listing
-    └── carbon-nanotubes-material-of-future.js  # Script for specific article
+└── resources/                        # Nested directory mirrors pages/resources/
+    ├── index.js                      # Script for resources listing page
+    ├── index-filters.js              # Additional script for resources listing
+    └── carbon-nanotubes-material-of-future.js  # Script for specific resource
 ```
 
 ## THE THREE SECTION RULE
@@ -236,7 +236,7 @@ export default function article (meta, { options = {}, head = '', body, scripts 
           </header>
           <div class="article-content">${body}</div>
           <footer class="article-footer">
-            <a href="/articles" class="back-link">← Back to Articles</a>
+            <a href="/resources" class="back-link">← Back to Resources</a>
           </footer>
         </div>
       </article>
@@ -267,7 +267,7 @@ var nav = [
   { label: "Products", href: "/products" },
   { label: "Samples", href: "/samples" },
   { label: "Careers", href: "/careers" },
-  { label: "Articles", href: "/articles" },
+  { label: "Resources", href: "/resources" },
   { label: "Contact", href: "/contact" }
 ]
 
@@ -377,11 +377,11 @@ import article from '@layouts/article.js'
 
 // Front matter
 var meta = {
-  title: 'Breakthrough in CNT Synthesis',
+  title: 'Breakthrough in Carbon Nanotube Manufacturing',
   date: '2025-10-15',
-  author: 'Dr. Sarah Chen',
-  description: 'Our new CVD process achieves 99.9% purity...',
-  url: 'https://trollhair.com/articles/breakthrough-cnt-synthesis'
+  author: 'Dr. Bradley Edwards',
+  description: 'Our carbon nanotuebs achieve over 100 gigapascals of tensile strength...',
+  url: 'https://trollhair.com/resources/breakthrough-cnt-synthesis'
 }
 
 // Pure: returns complete article page
@@ -395,6 +395,8 @@ export default function page () {
   })
 }
 ```
+
+**Adding new content types** (podcast, video, etc.): Create a new page in `pages/resources/` with appropriate `meta` and consider whether `article-seo.js` fits or a new SEO component is needed (e.g., `VideoObject` schema for videos).
 
 ## Key Patterns
 
@@ -441,10 +443,10 @@ deno task build
 **Clean URL Structure:**
 - `pages/index.js` → `site/index.html`
 - `pages/about.js` → `site/about/index.html`
-- `pages/articles/index.js` → `site/articles/index.html`
-- `pages/articles/foo.js` → `site/articles/foo/index.html`
+- `pages/resources/index.js` → `site/resources/index.html`
+- `pages/resources/foo.js` → `site/resources/foo/index.html`
 
-**Result:** Clean URLs without .html extensions (`/about`, `/articles/foo`)
+**Result:** Clean URLs without .html extensions (`/about`, `/resources/foo`)
 
 ## SEO Components
 
@@ -715,13 +717,13 @@ This creates a visually pleasing vertical alignment between the logo text and pa
 
 **Breaking Out to Full Width:**
 ```html
-<section id="pg-articles" class="grid-container">
-  <h1>Articles</h1>
+<section id="pg-resources" class="grid-container">
+  <h1>Resources</h1>
   <p class="subtitle">This stays in page lane</p>
 
   <!-- This breaks out to full viewport width -->
-  <div class="articles-list width-full">
-    <!-- Article cards can spread across full width -->
+  <div class="resources-list width-full">
+    <!-- Resource cards can spread across full width -->
   </div>
 </section>
 ```

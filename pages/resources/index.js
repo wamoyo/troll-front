@@ -1,4 +1,4 @@
-// CSS: styles/pages/articles/index.css
+// CSS: styles/pages/resources/index.css
 
 import html from '@utils/html.js'
 import standard from '@layouts/standard.js'
@@ -7,15 +7,15 @@ import data from '@data/site.js'
 
 // Front matter
 var meta = {
-  title: `Articles - ${data.site.name}`,
-  description: `News, updates, and insights from ${data.site.company} about carbon nanotube technology and applications.`,
-  url: 'https://trollhair.com/articles'
+  title: `Resources - ${data.site.name}`,
+  description: `Articles, videos, podcasts, and insights from ${data.site.company} about carbon nanotube technology and applications.`,
+  url: 'https://trollhair.com/resources'
 }
 
-var articles = [
+var resources = [
   {
     title: 'Carbon Nanotubes: The Material Of The Future',
-    url: '/articles/carbon-nanotubes-material-of-future',
+    url: '/resources/carbon-nanotubes-material-of-future',
     date: 'November 21, 2024',
     author: 'Troll Hair Team',
     excerpt: 'Carbon nanotubes (CNTs) are tubular molecules of carbon with incredible properties, including immense tensile strength, conduction, chemical resistance, and more.',
@@ -27,7 +27,7 @@ var articles = [
   },
   {
     title: 'Long Carbon Nanotubes For Composites',
-    url: '/articles/long-carbon-nanotubes-composites',
+    url: '/resources/long-carbon-nanotubes-composites',
     date: 'November 21, 2024',
     author: 'Troll Hair Team',
     excerpt: 'Exploring the importance of length when using carbon nanotubes in composites to increase strength and toughness.',
@@ -39,37 +39,37 @@ var articles = [
   }
 ]
 
-// Pure: returns complete articles index page HTML
+// Pure: returns complete resources index page HTML
 export default function page () {
   return standard({
     options: {
-      currentPath: '/articles'
+      currentPath: '/resources'
     },
     head: html`
       ${pageSeo(meta).head}
-      <link rel="stylesheet" href="/styles/pages/articles/index.css">
+      <link rel="stylesheet" href="/styles/pages/resources/index.css">
     `,
     body: html`
-      <section id="pg-articles" class="grid-container">
-        <header class="articles-header">
-          <h1>Articles</h1>
-          <p class="subtitle">News, updates, and insights about carbon nanotube technology</p>
+      <section id="pg-resources" class="grid-container">
+        <header class="resources-header">
+          <h1>Resources</h1>
+          <p class="subtitle">Learn how <strong>Troll Hair</strong> is transforming the advanced materials industry...</p>
         </header>
 
-        <div class="articles-list width-full">
-          ${articles.map(article => html`
-            <a href="${article.url}" class="article-card">
-              <h2>${article.title}</h2>
-              <div class="article-image">
+        <div class="resources-list width-full">
+          ${resources.map(resource => html`
+            <a href="${resource.url}" class="resource-card">
+              <h2>${resource.title}</h2>
+              <div class="resource-image">
                 <img
-                  src="${article.image.src}"
-                  srcset="${article.image.srcset}"
+                  src="${resource.image.src}"
+                  srcset="${resource.image.srcset}"
                   sizes="(max-width: 500px) 100vw, 500px"
-                  alt="${article.image.alt}"
+                  alt="${resource.image.alt}"
                   loading="lazy"
                 >
               </div>
-              <p class="excerpt">${article.excerpt}</p>
+              <p class="excerpt">${resource.excerpt}</p>
               <span class="read-more">Read more →</span>
             </a>
           `).join('\n')}

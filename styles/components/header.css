@@ -196,6 +196,13 @@ header.cp-header {
     }
   }
 
+  /* Tighten nav gap just above mobile breakpoint */
+  @media (max-width: 950px) and (min-width: 901px) {
+    nav {
+      gap: var(--md);
+    }
+  }
+
   /* Hide Menu text below 450px */
   @media (max-width: 449px) {
     .menu-text {
