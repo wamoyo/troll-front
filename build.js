@@ -30,8 +30,8 @@ console.log(`Building ${pages.length} pages...`)
 for (var pagePath of pages) {
   var fullPagePath = `${srcDir}/pages/${pagePath}`
 
-  // Import the page module
-  var pageModule = await import(`./${fullPagePath}`)
+  // Import the page module (cache bust for fresh imports)
+  var pageModule = await import(`./${fullPagePath}?t=${Date.now()}`)
   var pageFunction = pageModule.default
 
   // Generate HTML
@@ -164,7 +164,7 @@ try {
   for await (var entry of Deno.readDir(`${srcDir}/generators`)) {
     if (entry.isFile && entry.name.endsWith('.js') && entry.name !== 'config.js') {
       var generatorPath = `${srcDir}/generators/${entry.name}`
-      var generator = await import(`./${generatorPath}`)
+      var generator = await import(`./${generatorPath}?t=${Date.now()}`)
       var result = await generator.default() // Await in case generator is async
 
       await Deno.writeTextFile(

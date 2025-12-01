@@ -122,7 +122,7 @@ export default function videoPlayer (video) {
       </div>
     `,
     scripts: html`
-      <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+      <script src="/scripts/libraries/hls.min.js"></script>
       <script src="/scripts/components/video-player.js" defer></script>
     `
   }
