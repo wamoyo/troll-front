@@ -5,17 +5,21 @@ Static site generator built with Deno and JavaScript template literals.
 ## Quick Start
 
 ```bash
-# Build the site (development)
-deno task build
-
-# Build for production
-deno task build:prod
-
-# Start dev server
+# Start dev server (builds + watches + serves on localhost:8700)
 deno task dev
 
+# Build only
+deno task build
+
+# Build for production (sets PRODUCTION=true for config.js)
+deno task build:prod
+
+# Build and clean orphaned files
+deno task build --clean
+
 # Deploy to S3
-deno task deploy
+deno task build:prod --clean -y
+aws s3 sync site/ s3://trollhair.com --delete
 ```
 
 ## How It Works

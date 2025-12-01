@@ -430,15 +430,31 @@ Options are optional with sensible defaults.
 
 ## Build Process
 
+Manifest-based build system that tracks all output files, enables incremental builds, and detects orphaned files.
+
 ```bash
-deno task build
+deno task build              # Build, show orphans (if any)
+deno task build --clean      # Build, prompt to delete orphans
+deno task build --clean -y   # Build, delete orphans without prompt (CI/CD)
 ```
 
-1. Recursively find all `pages/**/*.js` files
-2. Import and call each page function
-3. Write HTML to `site/` as directory/index.html for clean URLs
-4. Copy CSS, assets, root files
-5. Run generators
+**How it works:**
+1. Load existing manifest (`site/.build.json`)
+2. Generate HTML pages (always run, write only if content changed)
+3. Copy assets (skip if source mtime unchanged since last build)
+4. Scan existing encoded videos into manifest
+5. Run generators (always run, write only if content changed)
+6. Compare old manifest to new → detect orphans
+7. Report orphans, optionally delete with `--clean`
+8. Save new manifest
+
+**Incremental behavior:**
+- **HTML/generators**: Always regenerate, but only write to disk if content differs (preserves mtime)
+- **CSS/JS/images/fonts/PDFs**: Compare source mtime to manifest, skip copy if unchanged
+- **Videos**: Scanned from `site/videos/`, not rebuilt (use `deno task videos` separately)
+
+**Orphan detection:**
+When source files are renamed or deleted, the old output becomes an "orphan" (in old manifest but not new). Build reports these and `--clean` removes them.
 
 **Clean URL Structure:**
 - `pages/index.js` → `site/index.html`
@@ -447,6 +463,12 @@ deno task build
 - `pages/resources/foo.js` → `site/resources/foo/index.html`
 
 **Result:** Clean URLs without .html extensions (`/about`, `/resources/foo`)
+
+**Deploy workflow:**
+```bash
+deno task build --clean -y
+aws s3 sync site/ s3://trollhair.com --delete
+```
 
 ## SEO Components
 
