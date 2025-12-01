@@ -464,13 +464,6 @@ When source files are renamed or deleted, the old output becomes an "orphan" (in
 
 **Result:** Clean URLs without .html extensions (`/about`, `/resources/foo`)
 
-**Deploy workflow:**
-```bash
-deno task deploy test    # Build + deploy to test.trollhair.com
-deno task deploy prod    # Build + deploy to trollhair.com (prompts for confirmation)
-deno task deploy prod -y # Skip confirmation (for CI/CD)
-```
-
 ## Deployment Infrastructure
 
 Static files hosted on S3 + CloudFront CDN.
@@ -484,7 +477,22 @@ Static files hosted on S3 + CloudFront CDN.
 - Test: `d3mzgog5m5apba.cloudfront.net`
 - Prod: `d19bwekdwm3tl0.cloudfront.net`
 
-**Note:** Videos and audios are deployed separately due to size. Use `deno task deploy:media test|prod`.
+**Deploy commands:**
+
+| Command | What it does |
+|---------|--------------|
+| `deno task deploy test` | Build → Sync site → Invalidate cache |
+| `deno task deploy test --media` | Sync videos/audios → Invalidate cache |
+| `deno task deploy prod` | Build → Sync site → Invalidate cache (with confirmation) |
+| `deno task deploy prod -y` | Same, skip confirmation |
+| `deno task deploy prod --media` | Sync videos/audios → Invalidate cache (with confirmation) |
+| `deno task deploy prod --media -y` | Same, skip confirmation |
+| `deno task deploy prod --invalidate` | Invalidate cache only (no confirmation) |
+
+**Notes:**
+- All deploys invalidate `/*` (entire cache) - simple and consistent
+- `--invalidate` is for rare cache debugging, doesn't change files so no confirmation needed
+- Site deploys exclude videos/audios; use `--media` to deploy those separately
 
 ## SEO Components
 

@@ -1,5 +1,5 @@
 // Deploy frontend to S3 + CloudFront
-// Usage: deno task deploy test|prod [-y|--yes] [--media]
+// Usage: deno task deploy test|prod [-y|--yes] [--media|--invalidate]
 
 var environments = {
   test: {
@@ -21,21 +21,23 @@ var args = Deno.args
 var env = args[0]
 var skipConfirm = args.includes('-y') || args.includes('--yes')
 var mediaOnly = args.includes('--media')
+var invalidateOnly = args.includes('--invalidate')
 
 // Validate environment
 if (!env || !environments[env]) {
-  console.error('\nUsage: deno task deploy test|prod [-y|--yes] [--media]\n')
-  console.error('  test    Deploy to test.trollhair.com')
-  console.error('  prod    Deploy to trollhair.com (requires confirmation)')
-  console.error('  -y      Skip confirmation prompt')
-  console.error('  --media Only sync videos/ and audios/ (no build, no cache invalidation)\n')
+  console.error('\nUsage: deno task deploy test|prod [-y|--yes] [--media|--invalidate]\n')
+  console.error('  test        Deploy to test.trollhair.com')
+  console.error('  prod        Deploy to trollhair.com (requires confirmation)')
+  console.error('  -y          Skip confirmation prompt')
+  console.error('  --media     Sync videos/ and audios/ only (no build)')
+  console.error('  --invalidate  Invalidate cache only (no build, no sync)\n')
   Deno.exit(1)
 }
 
 var config = environments[env]
 
-// Confirm production deployment
-if (env === 'prod' && !skipConfirm) {
+// Confirm production deployment (only for operations that change files)
+if (env === 'prod' && !skipConfirm && !invalidateOnly) {
   console.log('\n⚠️  You are about to deploy to PRODUCTION (trollhair.com)\n')
   var answer = prompt('Type "yes" to confirm:')
   if (answer !== 'yes') {
@@ -66,16 +68,36 @@ async function run (cmd, args, description) {
   return true
 }
 
+// Pure: invalidate CloudFront cache
+async function invalidateCache () {
+  var success = await run('aws', [
+    'cloudfront', 'create-invalidation',
+    '--distribution-id', config.distributionId,
+    '--paths', '/*'
+  ], 'Invalidating CloudFront cache')
+  if (!success) {
+    Deno.exit(1)
+  }
+}
+
 // Main deployment flow
 async function deploy () {
-  var mode = mediaOnly ? 'MEDIA' : 'SITE'
+  var mode = invalidateOnly ? 'INVALIDATE' : (mediaOnly ? 'MEDIA' : 'SITE')
   console.log(`\n========================================`)
-  console.log(`  Deploying ${mode} to ${env.toUpperCase()}`)
+  console.log(`  ${mode} → ${env.toUpperCase()}`)
   console.log(`  ${config.url}`)
   console.log(`========================================`)
 
-  if (mediaOnly) {
-    // Media-only deployment: sync videos/ and audios/ only
+  if (invalidateOnly) {
+    // Invalidate cache only
+    await invalidateCache()
+
+    console.log(`\n========================================`)
+    console.log(`  ✓ Cache invalidated for ${config.url}`)
+    console.log(`========================================\n`)
+
+  } else if (mediaOnly) {
+    // Media deployment: sync videos/ and audios/, then invalidate
     var videosSuccess = await run('aws', [
       's3', 'sync',
       'site/videos/',
@@ -92,20 +114,19 @@ async function deploy () {
       Deno.exit(1)
     }
 
+    await invalidateCache()
+
     console.log(`\n========================================`)
     console.log(`  ✓ Media deployed to ${config.url}`)
-    console.log(`  (No cache invalidation - media files are immutable)`)
     console.log(`========================================\n`)
-  } else {
-    // Full site deployment
 
-    // Step 1: Build
+  } else {
+    // Full site deployment: build, sync, invalidate
     var buildSuccess = await run('deno', ['task', config.buildTask, '--clean', '-y'], `Building (${config.buildTask})`)
     if (!buildSuccess) {
       Deno.exit(1)
     }
 
-    // Step 2: Sync to S3 (excluding videos and audios)
     var syncSuccess = await run('aws', [
       's3', 'sync',
       'site/',
@@ -118,15 +139,7 @@ async function deploy () {
       Deno.exit(1)
     }
 
-    // Step 3: Invalidate CloudFront cache
-    var invalidateSuccess = await run('aws', [
-      'cloudfront', 'create-invalidation',
-      '--distribution-id', config.distributionId,
-      '--paths', '/*'
-    ], 'Invalidating CloudFront cache')
-    if (!invalidateSuccess) {
-      Deno.exit(1)
-    }
+    await invalidateCache()
 
     console.log(`\n========================================`)
     console.log(`  ✓ Deployed to ${config.url}`)
