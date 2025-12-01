@@ -411,7 +411,7 @@ async function handleFileChange (path, kind) {
   }
 
   // Handle asset changes (images, fonts, scripts)
-  var assetDirs = ['images', 'fonts', 'scripts']
+  var assetDirs = ['images', 'fonts', 'scripts', 'audios']
   for (var dir of assetDirs) {
     if (path.startsWith(`${dir}/`)) {
       var destPath = path.replace(`${dir}/`, `site/${dir}/`)
@@ -474,6 +474,7 @@ var watcher = Deno.watchFs([
   'images',
   'fonts',
   'scripts',
+  'audios',
   'root',
   'generators'
 ])

@@ -544,17 +544,27 @@ section#pg-brand-guidelines .image-example-wide img {
   border-radius: 8px;
 }
 
-/* Caption Example */
+/* Caption Examples */
+section#pg-brand-guidelines .caption-examples {
+  display: flex;
+  gap: var(--lg);
+  margin: var(--lg) 0;
+}
+
 section#pg-brand-guidelines .caption-example {
   max-width: 400px;
-  margin: var(--lg) 0;
 }
 
 section#pg-brand-guidelines .caption-example img {
   width: 100%;
-  height: auto;
+  height: 280px;
+  object-fit: cover;
   display: block;
   border-radius: 8px;
+}
+
+section#pg-brand-guidelines .caption-example .cp-audio-player-compact {
+  margin-top: var(--xs);
 }
 
 section#pg-brand-guidelines .image-caption {
@@ -577,6 +587,9 @@ section#pg-brand-guidelines .image-caption {
     max-width: 100%;
   }
 
+  section#pg-brand-guidelines .caption-examples {
+    flex-direction: column;
+  }
 }
 
 @media (max-width: 480px) {

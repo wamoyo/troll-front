@@ -5,6 +5,8 @@ import standard from '@layouts/standard.js'
 import pageSeo from '@components/page-seo.js'
 import data from '@data/site.js'
 import videoPlayer from '@components/video-player.js'
+import audioPlayer from '@components/audio-player.js'
+import audioPlayerCompact from '@components/audio-player-compact.js'
 
 // Front matter - demo video config
 var demoVideo = {
@@ -16,6 +18,30 @@ var demoVideo = {
   artist: 'Troll Hair',
   artwork: [{ src: '/images/logo-icon-200.png', sizes: '200x200', type: 'image/png' }],
   wide: true
+}
+
+// Front matter - demo audio config
+var demoAudio = {
+  id: 'demo-audio',
+  src: '/audios/what-is-innovation.mp3',
+  title: 'What is Innovation?',
+  avatar: '/images/Costa-Michailidis-120-120.jpg',
+  sessionTitle: 'What is Innovation? - Troll Hair',
+  artist: 'Costa Michailidis',
+  artwork: [{ src: '/images/logo-icon-200.png', sizes: '200x200', type: 'image/png' }],
+  // wide: true
+}
+
+// Front matter - compact audio config
+var demoAudioCompact = {
+  id: 'demo-audio-compact',
+  src: '/audios/what-is-innovation.mp3'
+}
+
+// Front matter - compact audio for caption example
+var demoAudioCaption = {
+  id: 'demo-audio-caption',
+  src: '/audios/what-is-innovation.mp3'
 }
 
 // Front matter
@@ -36,6 +62,8 @@ export default function page () {
       <link rel="stylesheet" href="/styles/pages/private/brand-guidelines.css">
       <link rel="stylesheet" href="/styles/components/form-message.css">
       ${videoPlayer(demoVideo).head}
+      ${audioPlayer(demoAudio).head}
+      ${audioPlayerCompact(demoAudioCompact).head}
     `,
     body: html`
       <section id="pg-brand-guidelines" class="grid-container">
@@ -207,6 +235,20 @@ export default function page () {
           </ul>
 
           <h2 class="section-title">Components</h2>
+
+          <h3>Audio Player</h3>
+          <p>Custom audio player for podcasts, article narrations, and audio content. Features optional avatar, skip buttons, and Media Session API integration.</p>
+
+          ${audioPlayer(demoAudio).body}
+
+          <p class="type-meta" style="margin-top: var(--md);">Controls: Play/pause, ±15s skip, seek, mute, speed settings • Keyboard: Space/K=play, J/L=±15s, ←/→=±5s, M=mute, ,/.=speed • Optional: avatar, title</p>
+
+          <h3>Compact Audio Player</h3>
+          <p>Minimal inline player for short clips, article narrations, or anywhere space is tight. No background, fits seamlessly with content.</p>
+
+          ${audioPlayerCompact(demoAudioCompact).body}
+
+          <p class="type-meta" style="margin-top: var(--md);">Controls: Play/pause, ±15s skip, seekbar click • No settings, no mute, no thumb • Accent color on play button and progress bar</p>
 
           <h3>Video Player</h3>
           <p>Custom video player with HLS adaptive streaming, keyboard controls, and Media Session API integration for OS-level controls.</p>
@@ -399,14 +441,20 @@ export default function page () {
           </ul>
 
           <h3>Image Captions</h3>
-          <p>Captions appear below images on product detail pages and other contexts. They provide context about what's shown in the image.</p>
+          <p>Captions appear below images on product detail pages and other contexts. They provide context about what's shown in the image. Can be text or a compact audio player.</p>
 
-          <div class="caption-example">
-            <img src="/images/powered-tubes-400.jpg" alt="Carbon nanotube powder">
-            <p class="image-caption">1mm to 2mm multi-walled carbon nanotubes in powder form</p>
+          <div class="caption-examples">
+            <div class="caption-example">
+              <img src="/images/powered-tubes-400.jpg" alt="Carbon nanotube powder">
+              <p class="image-caption">1mm to 2mm multi-walled carbon nanotubes in powder form</p>
+            </div>
+            <div class="caption-example">
+              <img src="/images/short-cnts-pull-out-zoomed-400.jpg" alt="Carbon nanotubes under microscope">
+              ${audioPlayerCompact(demoAudioCaption).body}
+            </div>
           </div>
 
-          <p class="type-meta">Font-size: var(--small) • Color: var(--text-3) • Font-style: italic • Text-align: center • Margin-top: var(--xs)</p>
+          <p class="type-meta">Text caption: var(--small), var(--text-3), italic, center • Audio caption: compact player fits naturally below image</p>
 
           <section class="guide-section">
             <h2 class="section-title">Spacing & Layout</h2>
@@ -482,6 +530,8 @@ export default function page () {
     `,
     scripts: html`
       ${videoPlayer(demoVideo).scripts}
+      ${audioPlayer(demoAudio).scripts}
+      ${audioPlayerCompact(demoAudioCompact).scripts}
     `
   })
 }

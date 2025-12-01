@@ -546,7 +546,7 @@ if (scriptStats.copied + scriptStats.unchanged > 0) {
 console.log('\nCopying assets...')
 var assetStats = { copied: 0, unchanged: 0 }
 
-for (var assetDir of ['fonts', 'images', 'pdfs']) {
+for (var assetDir of ['fonts', 'images', 'pdfs', 'audios']) {
   var stats = await copyAssetsIncremental(
     `${srcDir}/${assetDir}`,
     `${siteDir}/${assetDir}`,

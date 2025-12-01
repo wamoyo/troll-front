@@ -251,6 +251,8 @@
   /* Settings wrapper and panel */
   & .settings-wrapper {
     position: relative;
+    display: flex;
+    align-items: center;
   }
 
   & .settings-panel {
@@ -266,6 +268,7 @@
     gap: var(--sm);
     opacity: 0;
     visibility: hidden;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
     transform: translateY(10px);
     transition: all var(--fast) ease;
   }
