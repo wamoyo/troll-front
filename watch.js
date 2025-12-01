@@ -143,7 +143,7 @@ async function runGenerator (generatorPath) {
 
     // Import with cache busting
     var generator = await import(`./${fullPath}?t=${Date.now()}`)
-    var result = generator.default()
+    var result = await generator.default()
 
     await Deno.writeTextFile(`${siteDir}/${result.filename}`, result.content)
 

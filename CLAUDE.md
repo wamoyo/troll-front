@@ -466,9 +466,25 @@ When source files are renamed or deleted, the old output becomes an "orphan" (in
 
 **Deploy workflow:**
 ```bash
-deno task build --clean -y
-aws s3 sync site/ s3://trollhair.com --delete
+deno task deploy test    # Build + deploy to test.trollhair.com
+deno task deploy prod    # Build + deploy to trollhair.com (prompts for confirmation)
+deno task deploy prod -y # Skip confirmation (for CI/CD)
 ```
+
+## Deployment Infrastructure
+
+Static files hosted on S3 + CloudFront CDN.
+
+| Environment | Domain | S3 Bucket | CloudFront ID |
+|-------------|--------|-----------|---------------|
+| Test | test.trollhair.com | test.trollhair.com | E1AAWB5YT2L06L |
+| Production | trollhair.com | trollhair.com | E30W92P5BYVD4T |
+
+**CloudFront URLs (for debugging):**
+- Test: `d3mzgog5m5apba.cloudfront.net`
+- Prod: `d19bwekdwm3tl0.cloudfront.net`
+
+**Note:** Videos and audios are deployed separately due to size. Use `deno task deploy:media test|prod`.
 
 ## SEO Components
 
