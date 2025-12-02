@@ -78,7 +78,7 @@ section#pg-product-detail {
     transition: all var(--normal);
   }
 
-  .download-link:hover {
+  & .download-link:hover {
     background: var(--white-10);
     border-color: var(--accent);
     text-decoration: none;
