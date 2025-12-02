@@ -26,6 +26,12 @@ export default function audioPlayer (audio) {
           ${audio.title ? html`<div class="audio-title">${audio.title}</div>` : ''}
           <audio class="audio" preload="metadata" data-src="${audio.src}"></audio>
           <div class="audio-controls">
+            <button class="skip-back" tabindex="0" aria-label="Skip back 15 seconds">
+              <svg viewBox="0 0 24 28" fill="currentColor">
+                <text x="12" y="12" text-anchor="middle" font-size="12" font-weight="bold">15</text>
+                <path d="M17 20H7l4-4-4 4 4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
             <button class="play-pause" tabindex="0" aria-label="Play/Pause">
               <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor">
                 <polygon points="5,3 19,12 5,21"/>
@@ -35,10 +41,10 @@ export default function audioPlayer (audio) {
                 <rect x="15" y="3" width="4" height="18"/>
               </svg>
             </button>
-            <button class="skip-back" tabindex="0" aria-label="Skip back 15 seconds">
+            <button class="skip-forward" tabindex="0" aria-label="Skip forward 15 seconds">
               <svg viewBox="0 0 24 28" fill="currentColor">
                 <text x="12" y="12" text-anchor="middle" font-size="12" font-weight="bold">15</text>
-                <path d="M17 20H7l4-4-4 4 4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M7 20h10l-4-4 4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </button>
             <div class="seekbar">
@@ -47,12 +53,6 @@ export default function audioPlayer (audio) {
               <div class="thumb">0:00</div>
             </div>
             <div class="total-time">0:00</div>
-            <button class="skip-forward" tabindex="0" aria-label="Skip forward 15 seconds">
-              <svg viewBox="0 0 24 28" fill="currentColor">
-                <text x="12" y="12" text-anchor="middle" font-size="12" font-weight="bold">15</text>
-                <path d="M7 20h10l-4-4 4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </button>
             <button class="speaker" tabindex="0" aria-label="Mute/Unmute">
               <svg class="icon-speaker" viewBox="0 0 24 24" fill="currentColor">
                 <polygon points="3,9 7,9 12,4 12,20 7,15 3,15"/>

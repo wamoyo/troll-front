@@ -21,20 +21,14 @@ export default function audioPlayerCompact (audio) {
             <rect x="15" y="3" width="4" height="18"/>
           </svg>
         </button>
-        <button class="skip-back" tabindex="0" aria-label="Skip back 15 seconds">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="15,18 9,12 15,6"/>
-            <polyline points="9,18 3,12 9,6"/>
-          </svg>
-        </button>
         <div class="seekbar">
           <div class="bufferbar"></div>
           <div class="timebar"></div>
         </div>
-        <button class="skip-forward" tabindex="0" aria-label="Skip forward 15 seconds">
+        <button class="skip-back" tabindex="0" aria-label="Skip back 15 seconds">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="9,6 15,12 9,18"/>
-            <polyline points="15,6 21,12 15,18"/>
+            <polyline points="15,18 9,12 15,6"/>
+            <polyline points="9,18 3,12 9,6"/>
           </svg>
         </button>
         <div class="time-display">
@@ -42,6 +36,12 @@ export default function audioPlayerCompact (audio) {
           <span class="separator">/</span>
           <span class="total-time">0:00</span>
         </div>
+        <button class="skip-forward" tabindex="0" aria-label="Skip forward 15 seconds">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9,6 15,12 9,18"/>
+            <polyline points="15,6 21,12 15,18"/>
+          </svg>
+        </button>
       </div>
     `,
     scripts: html`

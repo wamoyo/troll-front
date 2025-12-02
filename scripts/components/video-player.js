@@ -160,11 +160,8 @@
     // Load video source (HLS or direct MP4)
     if (src.endsWith('.m3u8')) {
       // HLS stream
-      if (video.canPlayType('application/vnd.apple.mpegurl')) {
-        // Safari/iOS - native HLS support
-        video.src = src
-      } else if (window.Hls && Hls.isSupported()) {
-        // Chrome/Firefox/Edge - use hls.js
+      if (window.Hls && Hls.isSupported()) {
+        // Use hls.js (Chrome/Firefox/Edge/Android) - provides quality controls
         hlsInstance = new Hls()
         hlsInstance.loadSource(src)
         hlsInstance.attachMedia(video)
@@ -196,6 +193,13 @@
             qualityOptionsContainer.querySelectorAll('.quality-option').forEach(function (option) {
               option.addEventListener('click', function () {
                 var level = parseInt(option.dataset.level)
+
+                // Don't reload if already at this level
+                if (hlsInstance.currentLevel === level) {
+                  settingsWrapper.classList.remove('open')
+                  return
+                }
+
                 hlsInstance.currentLevel = level
 
                 // Update active state
@@ -217,6 +221,9 @@
             console.error('HLS error:', data.type, data.details)
           }
         })
+      } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        // Fallback to native HLS (iOS Safari only - no quality control API)
+        video.src = src
       } else {
         console.error('HLS not supported in this browser')
       }
