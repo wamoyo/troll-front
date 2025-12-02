@@ -37,7 +37,7 @@
   /* Audio title */
   & .audio-title {
     color: var(--text);
-    font-size: var(--small);
+    font-size: var(--body);
     font-weight: bold;
     white-space: nowrap;
     overflow: hidden;
@@ -60,7 +60,7 @@
     display: flex;
     align-items: center;
     gap: 0.25rem;
-    margin-top: var(--xs); /* Space for thumb above seekbar */
+    margin-top: var(--sm); /* Space for thumb above seekbar */
   }
 
   /* Control buttons */
@@ -76,6 +76,11 @@
     color: var(--text);
     transition: color var(--fast);
     flex-shrink: 0;
+  }
+
+  /* Play-pause has no padding - size increased to compensate */
+  & .play-pause {
+    padding: 0;
   }
 
   & .play-pause:hover,
@@ -105,8 +110,8 @@
 
   & .play-pause svg {
     display: block;
-    width: 28px;
-    height: 28px;
+    width: 36px;
+    height: 36px;
   }
 
   & .skip-back svg,
@@ -201,7 +206,7 @@
     position: relative;
     background: var(--white-10);
     border-radius: 4px;
-    height: 6px;
+    height: 10px;
     flex-grow: 1;
     margin: 0 0.5rem;
     cursor: pointer;
@@ -249,13 +254,13 @@
     cursor: grab;
     text-align: center;
     z-index: 2;
-    top: -32px;
+    top: -42px;
     left: 0;
     transform: translateX(-50%);
     border-radius: 4px;
     background: var(--accent);
     font-family: var(--mono);
-    font-size: 0.75rem;
+    font-size: var(--body);
     color: var(--text);
     padding: 0.2rem 0.5rem;
     white-space: nowrap;
@@ -282,7 +287,7 @@
   & .total-time {
     color: var(--text);
     font-family: var(--mono);
-    font-size: 0.75rem;
+    font-size: var(--body);
     white-space: nowrap;
     padding: 0 0.25rem;
     flex-shrink: 0;
@@ -323,8 +328,8 @@
     }
 
     & .play-pause svg {
-      width: 24px;
-      height: 24px;
+      width: 32px;
+      height: 32px;
     }
 
     & .speaker svg {

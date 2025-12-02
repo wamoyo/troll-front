@@ -208,6 +208,11 @@
     flex-shrink: 0;
   }
 
+  /* Play-pause has no padding - size increased to compensate */
+  & .play-pause {
+    padding: 0;
+  }
+
   & .play-pause:hover,
   & .speaker:hover,
   & .cc:hover,
@@ -233,7 +238,12 @@
     opacity: 0.6;
   }
 
-  & .play-pause svg,
+  & .play-pause svg {
+    display: block;
+    width: 32px;
+    height: 32px;
+  }
+
   & .speaker svg,
   & .cc svg,
   & .fullscreen svg {
@@ -343,7 +353,7 @@
     position: relative;
     background: var(--white-10);
     border-radius: 4px;
-    height: 6px;
+    height: 10px;
     flex-grow: 1;
     margin: 0 0.5rem;
     cursor: pointer;
@@ -391,13 +401,13 @@
     cursor: grab;
     text-align: center;
     z-index: 2;
-    top: -32px;
+    top: -38px;
     left: 0;
     transform: translateX(-50%);
     border-radius: 4px;
     background: var(--accent);
     font-family: var(--mono);
-    font-size: 0.75rem;
+    font-size: var(--body);
     color: var(--text);
     padding: 0.2rem 0.5rem;
     white-space: nowrap;
@@ -424,7 +434,7 @@
   & .total-time {
     color: var(--text);
     font-family: var(--mono);
-    font-size: 0.75rem;
+    font-size: var(--body);
     white-space: nowrap;
     padding: 0 0.25rem;
     flex-shrink: 0;
@@ -556,7 +566,11 @@ body.dragging {
       padding: 0.375rem;
     }
 
-    & .play-pause svg,
+    & .play-pause svg {
+      width: 28px;
+      height: 28px;
+    }
+
     & .speaker svg,
     & .cc svg,
     & .fullscreen svg {

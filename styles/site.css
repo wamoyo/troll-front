@@ -205,7 +205,7 @@ textarea::placeholder {
   color: var(--text-3);
 }
 
-input:focus,
+input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]):focus,
 textarea:focus,
 select:focus {
   outline: none;
