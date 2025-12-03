@@ -321,46 +321,71 @@ async function runGenerators (oldManifest, newManifest) {
   return stats
 }
 
-// Side effect: scans existing video directories into manifest
-async function scanVideos (newManifest) {
-  var videoCount = 0
-
+// Pure: checks if source file exists for encoded video
+async function videoSourceExists (videoName) {
   try {
-    for await (var entry of Deno.readDir(`${siteDir}/videos`)) {
-      if (entry.isDirectory) {
-        var videoDir = `${siteDir}/videos/${entry.name}`
-        var playlistPath = `${videoDir}/playlist.m3u8`
+    await Deno.stat(`${srcDir}/videos/${videoName}.mp4`)
+    return true
+  } catch {
+    return false
+  }
+}
 
-        // Check if this is an encoded video directory
-        try {
-          await Deno.stat(playlistPath)
+// Pure: checks if video directory is properly encoded
+async function isEncodedVideo (videoDir) {
+  try {
+    await Deno.stat(`${videoDir}/playlist.m3u8`)
+    return true
+  } catch {
+    return false
+  }
+}
 
-          // Find corresponding source file
-          var sourcePath = `videos/${entry.name}.mp4`
-          var sourceExists = false
-          try {
-            await Deno.stat(`${srcDir}/${sourcePath}`)
-            sourceExists = true
-          } catch {
-            // Source doesn't exist - video is orphaned
-          }
-
-          if (sourceExists) {
-            // Scan all files in video directory into manifest
-            var videoFiles = await findAllFiles(videoDir, `videos/${entry.name}`)
-            for (var file of videoFiles) {
-              newManifest.files[file] = {
-                source: sourcePath,
-                type: 'encoded'
-              }
-            }
-            videoCount++
-          }
-          // If source doesn't exist, don't add to manifest (will be orphaned)
-        } catch {
-          // Not a valid video directory
+// Pure: finds all source videos that haven't been encoded
+async function findUnencodedVideos (encodedVideos) {
+  var unencoded = []
+  try {
+    for await (var entry of Deno.readDir(`${srcDir}/videos`)) {
+      if (entry.isFile && entry.name.endsWith('.mp4')) {
+        var videoName = entry.name.replace('.mp4', '')
+        if (!encodedVideos.has(videoName)) {
+          unencoded.push(entry.name)
         }
       }
+    }
+  } catch {
+    // videos directory doesn't exist
+  }
+  return unencoded
+}
+
+// Side effect: scans existing video directories into manifest, detects unencoded sources
+async function scanVideos (newManifest) {
+  var videoCount = 0
+  var encodedVideos = new Set()
+
+  // Scan encoded videos in site/videos/
+  try {
+    for await (var entry of Deno.readDir(`${siteDir}/videos`)) {
+      if (!entry.isDirectory) continue
+
+      var videoDir = `${siteDir}/videos/${entry.name}`
+      var isEncoded = await isEncodedVideo(videoDir)
+      if (!isEncoded) continue
+
+      var hasSource = await videoSourceExists(entry.name)
+      if (!hasSource) continue  // Orphaned - will be handled by orphan detection
+
+      // Add all encoded files to manifest
+      var videoFiles = await findAllFiles(videoDir, `videos/${entry.name}`)
+      for (var file of videoFiles) {
+        newManifest.files[file] = {
+          source: `videos/${entry.name}.mp4`,
+          type: 'encoded'
+        }
+      }
+      encodedVideos.add(entry.name)
+      videoCount++
     }
   } catch {
     // videos directory doesn't exist
@@ -368,6 +393,16 @@ async function scanVideos (newManifest) {
 
   if (videoCount > 0) {
     console.log(`  ✓ Scanned ${videoCount} encoded video(s)`)
+  }
+
+  // Check for unencoded source videos
+  var unencodedVideos = await findUnencodedVideos(encodedVideos)
+  if (unencodedVideos.length > 0) {
+    console.log(`\n  \x1b[1m\x1b[33m⚠️  Found ${unencodedVideos.length} unencoded video(s):\x1b[0m`)
+    for (var video of unencodedVideos) {
+      console.log(`    \x1b[33m- ${video}\x1b[0m`)
+    }
+    console.log(`  \x1b[1mRun: deno task videos\x1b[0m`)
   }
 
   return videoCount
