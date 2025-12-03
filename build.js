@@ -543,10 +543,8 @@ if (scriptStats.copied + scriptStats.unchanged > 0) {
 }
 
 // Copy static assets
-console.log('\nCopying assets...')
-var assetStats = { copied: 0, unchanged: 0 }
-
 for (var assetDir of ['fonts', 'images', 'pdfs', 'audios']) {
+  console.log(`\nCopying ${assetDir}...`)
   var stats = await copyAssetsIncremental(
     `${srcDir}/${assetDir}`,
     `${siteDir}/${assetDir}`,
@@ -554,12 +552,9 @@ for (var assetDir of ['fonts', 'images', 'pdfs', 'audios']) {
     oldManifest,
     newManifest
   )
-  assetStats.copied += stats.copied
-  assetStats.unchanged += stats.unchanged
-}
-
-if (assetStats.copied + assetStats.unchanged > 0) {
-  console.log(`  (${assetStats.copied} copied, ${assetStats.unchanged} unchanged)`)
+  if (stats.copied + stats.unchanged > 0) {
+    console.log(`  (${stats.copied} copied, ${stats.unchanged} unchanged)`)
+  }
 }
 
 // Copy root files
