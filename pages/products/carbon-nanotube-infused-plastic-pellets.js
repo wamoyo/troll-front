@@ -46,7 +46,7 @@ export default function page () {
 
             <p>Our carbon nanotubes are not harsh to extruders, mixers, and are suitable for almost all nozzles and narrow mold areas.</p>
 
-            <p>If you're an Injection Molding building high strength parts, reach out to us. We'd love to learn about your use cases!</p>
+            <p>If you're an Injection Molder building high strength parts, reach out to us. We'd love to learn about your use cases!</p>
 
             <div class="contact-info">
               <h2>Contact Us For More Info:</h2>

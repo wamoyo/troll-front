@@ -58,7 +58,6 @@ section#pg-brand-guidelines .type-meta {
 section#pg-brand-guidelines ul,
 section#pg-brand-guidelines ol {
   font-size: var(--body);
-  padding-left: var(--lg);
   color: rgba(255, 255, 255, 0.9);
 }
 

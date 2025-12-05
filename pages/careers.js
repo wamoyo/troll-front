@@ -58,7 +58,7 @@ export default function page () {
       <section id="pg-careers" class="grid-container">
         <h1>Careers</h1>
 
-        <p><strong>Troll Hair</strong> is receiving tremendous demand from the marketplace for our high strength carbon nanotube based materials. We're a fully funded tech startup growing rapidly, and we're looking to recruit talented, hard working, competent engineers and business people.</p>
+        <p>We are receiving tremendous demand from the marketplace for <strong>Troll Hair</strong>, our new high strength carbon nanotube based materials. We're a fully funded tech startup growing rapidly, and we're looking to recruit talented, hard working, competent engineers and business people.</p>
         <p class="tagline"><strong>Join our team and help craft Earth's strongest materials!</strong></p>
 
         <ol>
@@ -67,11 +67,11 @@ export default function page () {
           <li>Submit an application with the form below.</li>
         </ol>
 
-        <p>At Troll Hair we are building our organization for massive scale and impact.</p>
+        <p>At Industrial CNT (makers of Troll Hair) we are building our organization for massive scale and impact.</p>
         <p>As such, the job descriptions are extremely focused, each with a singular top priority and a few high level metrics of success.</p>
         <p>Every job contributes to growth, and we expect candidates to be hyper focused on driving growth through their roles.</p>
-        <p>We are a team of extremely mission driven, passionate, material science and startup business nerds. We get really excited about the nitty gritty details. Make sure to tell us why you'd be a great fit for our team in your application. We aim to fill the company with extremely smart, capable individuals and mold them into an incredibly high performing team that will do nothing short of crafting literally the strongest materials on Earth and beyond. Be certain to tell us how you can contribute to that, what unique competence you bring to the team.</p>
-        <p><strong>Alright, let's go!</strong></p>
+        <p>We are a team of extremely mission driven, passionate, material science and startup business nerds. We get really excited about the nitty gritty details. Make sure to tell us why you'd be a great fit for our team in your application. We aim to fill the company with extremely smart, capable individuals and empower them to be an incredibly high performing team that will do nothing short of crafting literally the strongest materials on Earth and beyond... Ask us about beyond, sometime ; ) Be certain to tell us how you can contribute and what unique competence you bring to the team.</p>
+        <p class="medium"><strong>Alright... Let's go!</strong></p>
         <p>Select the position you're interested in and complete the form below. And, please share this web page with friends and colleagues suited for the roles.</p>
         <p class="compensation"><em>Compensation is, of course, very competitive.</em></p>
 

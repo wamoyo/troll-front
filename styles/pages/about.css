@@ -13,6 +13,32 @@ section#pg-about {
     color: var(--text);
   }
 
+  .team-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--lg);
+    margin: var(--lg) 0;
+  }
+
+  .team-member {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--md);
+  }
+
+  .team-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    object-fit: cover;
+  }
+
+  .team-member p {
+    margin: 0;
+    flex: 1;
+  }
+
   /* Responsive */
   @media (max-width: 768px) {
     h2 {
@@ -21,6 +47,15 @@ section#pg-about {
 
     .spec-highlight {
       font-size: var(--body);
+    }
+
+    .team-list {
+      gap: var(--md);
+    }
+
+    .team-avatar {
+      width: 60px;
+      height: 60px;
     }
   }
 

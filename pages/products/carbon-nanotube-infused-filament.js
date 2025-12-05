@@ -42,9 +42,9 @@ export default function page () {
           </div>
 
           <div class="product-content">
-            <p>A 0.2% concentration of our carbon nanotubes produced a 40% boost in tensile strength, including across the z-axis (showing interlayer adhesion).</p>
+            <p>A 0.2% concentration of our carbon nanotubes produced a 40% boost in tensile strength above baseline, including across the z-axis (showing interlayer adhesion) for 3D printing (Fused Deposition Modeling).</p>
 
-            <p>We are testing and adding various concentrations to different base polymers. Ideas from 3D Printers are welcome!</p>
+            <p>We are testing and adding various concentrations to different base polymers. If you're a 3D printer, contact us and tell us what materials, properties, and effects would be most valuable to you!</p>
 
             <div class="contact-info">
               <h2>Contact Us For More Info:</h2>

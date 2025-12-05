@@ -288,6 +288,11 @@ ol {
   margin-bottom: var(--sm);
 }
 
+ul,
+ol {
+  padding-left: var(--lg);
+}
+
 p.medium, p.med {font-size: var(--medium)}
 p.small {font-size: var(--small)}
 

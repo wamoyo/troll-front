@@ -15,21 +15,25 @@ var meta = {
 var team = [
   {
     name: 'Brad Edwards',
+    image: '/images/Bradley-Edwards-200.jpg',
     linkedin: 'https://www.linkedin.com/in/drbradedwards/',
-    bio: 'is our founder and CEO. He was commissioned by NASA to conduct the original feasibility study on the Space Elevator. Here he is on <a href="https://www.bloomberg.com/news/articles/2022-02-17/building-a-space-elevator-may-be-getting-closer-to-reality" target="_blank" rel="noopener">Bloomberg</a>. This project set him on a path to study and innovate the manufacturing and application of carbon nanotubes with...'
+    bio: 'is our founder and CEO. He was commissioned by NASA to conduct the original feasibility study on the Space Elevator. Here he is on <a href="https://www.bloomberg.com/news/articles/2022-02-17/building-a-space-elevator-may-be-getting-closer-to-reality" target="_blank" rel="noopener">Bloomberg</a>. This project set him on a path to study and innovate the manufacturing and application of carbon nanotubes with Rick Beed.'
   },
   {
     name: 'Rick Beed',
+    image: '/images/Rick-Beed-200.jpg',
     linkedin: 'https://www.linkedin.com/in/rick-beed-379722119/',
     bio: ', our chief engineer. Rick is a prolific engineer. He has worked on autonomous underwater drones, a variety of state-of-the-art sensors and tools, and dozens of applications of carbon nanotubes including for the F35 stealth aircraft.'
   },
   {
     name: 'Lee Nolan',
+    image: '/images/Lee-Nolan-200.jpg',
     linkedin: 'https://www.linkedin.com/in/leland-nolan-803451/',
     bio: 'is our Chief Operations Officer. Lee has built companies across Europe and the US, gone public on NASDAQ, and leads the effort to expand our business to serve an array of industries.'
   },
   {
     name: 'Constantinos Michailidis',
+    image: '/images/Constantinos-Michailidis-200.jpg',
     linkedin: 'https://www.linkedin.com/in/costamichailidis/',
     bio: 'is our Chief Revenue Officer. An AI expert and scientific innovation consultant, Constantinos serves as a champion for our customers, here to make sure our business adds as much value to yours as possible.'
   }
@@ -55,11 +59,22 @@ export default function page () {
         <p>That's roughly 27 times stronger than Kevlar (carbon fiber). This signals a transformational shift and enables entirely new use cases. Imagine stronger construction materials, dramatically lighter vehicles, new space craft, and more.</p>
 
         <h2>Our Team</h2>
-        ${team.map(member => html`
-          <p><a href="${member.linkedin}" target="_blank" rel="noopener">${member.name}</a> ${member.bio}</p>
-        `).join('\n        ')}
+        <div class="team-list">
+          ${team.map(member => html`
+            <div class="team-member">
+              ${member.image ? html`
+                <img src="${member.image}" alt="${member.name}" width="80" height="80" class="team-avatar">
+              ` : ''}
+              <p><a href="${member.linkedin}" target="_blank" rel="noopener">${member.name}</a> ${member.bio}</p>
+            </div>
+          `).join('\n          ')}
+        </div>
 
-        <p>We cannot wait to see what you can build with our incredible new material! Learn all about it in <a href="/articles">our articles</a>, or visit <a href="/products">our shop</a>.</p>
+        <p class="med">We can't wait to see what you build with Troll Hair! Learn all about it in the <a href="/resources">resources</a> section of our website or check out our <a href="/products">products</a>.</p>
+
+        <div style="margin-top: var(--xl); text-align: center;">
+          <a href="/samples" class="button primary">Get Samples</a>
+        </div>
       </section>
     `
   })

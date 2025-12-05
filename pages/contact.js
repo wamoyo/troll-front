@@ -27,7 +27,7 @@ export default function page () {
       <section id="pg-contact" class="grid-container">
         <h1>Contact</h1>
 
-        <p>Troll Hair is a new company bringing breakthroughs in carbon nanotube manufacturing and application to the market. We cannot wait to build incredible new things with you! Reach out to us using the form below, or email us at <a href="mailto:info@trollhair.com" target="_blank">info@trollhair.com</a> or call <a href="tel:+12126021401">(212) 602-1401</a>.</p>
+        <p>We are bringing breakthroughs in carbon nanotube manufacturing and application to the market. We cannot wait to build incredible new things with you! Reach out to us using the form below, or email us at <a href="mailto:info@trollhair.com" target="_blank">info@trollhair.com</a> or call <a href="tel:+12126021401">(212) 602-1401</a>.</p>
 
         <form action="/api/contact" method="post" class="contact-form">
             <input type="text" name="website" id="website" autocomplete="off" style="left: -8975px; position: absolute;" aria-hidden="true" tabindex="-1">

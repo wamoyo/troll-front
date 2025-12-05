@@ -53,7 +53,7 @@ export default function page () {
       <section id="pg-resources" class="grid-container">
         <header class="resources-header">
           <h1>Resources</h1>
-          <p class="subtitle">Learn how <strong>Troll Hair</strong> is transforming the advanced materials industry...</p>
+          <p class="subtitle">Learn how <strong>Troll Hair</strong> is transforming the advanced materials industry.</p>
         </header>
 
         <div class="resources-list width-full">

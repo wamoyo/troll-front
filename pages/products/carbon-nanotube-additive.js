@@ -70,7 +70,7 @@ export default function page () {
           </div>
 
           <div class="product-content">
-            <p class="med"><strong>Every 1% concentration of our carbon nanotubes adds 1 <em>gigapascal</em> of tensile strength to your composite.</strong></p>
+            <p class="med"><strong>Every 1% concentration of our carbon nanotubes adds 1 <a href="/resources/carbon-nanotubes-material-of-future/">gigapascal</a> of tensile strength to your composite.</strong></p>
 
             <p>In multiple case studies and tests with various polymers, our carbon nanotubes improve tensile strength and decrease brittleness.</p>
 
