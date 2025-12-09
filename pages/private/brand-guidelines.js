@@ -25,7 +25,7 @@ var demoAudio = {
   id: 'demo-audio',
   src: '/audios/what-is-innovation.mp3',
   title: 'What is Innovation?',
-  avatar: '/images/Costa-Michailidis-120-120.jpg',
+  avatar: '/images/Constantinos-Michailidis-200.jpg',
   sessionTitle: 'What is Innovation? - Troll Hair',
   artist: 'Costa Michailidis',
   artwork: [{ src: '/images/logo-icon-200.png', sizes: '200x200', type: 'image/png' }],
