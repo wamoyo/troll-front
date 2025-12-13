@@ -1,6 +1,6 @@
 // CSS: None (meta tags only)
 
-import html from '@utils/html.js'
+import html from '@utilities/html.js'
 import data from '@data/site.js'
 
 // Pure: returns SEO meta tags for articles (including title, description, canonical)

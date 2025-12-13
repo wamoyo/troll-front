@@ -1,6 +1,6 @@
 // CSS: styles/components/video-player.css
 
-import html from '@utils/html.js'
+import html from '@utilities/html.js'
 
 // Pure: returns video player component with head, body, scripts
 // video object: { id, src, poster, captions?, title?, sessionTitle?, artist?, artwork?, wide? }

@@ -8,7 +8,7 @@ Custom Deno-based static site generator using JavaScript template literals.
 - **No templating engine** - JS template literals with `html` tag
 - **Three sections** - imports → front matter (optional) → function
 - **Split CSS** - One file per layout/component/page
-- **Import maps** - `@utils/`, `@data/`, `@components/`, `@layouts/`
+- **Import maps** - `@utilities/`, `@data/`, `@components/`, `@layouts/`
 - **Clean URLs** - Output as directory/index.html for extensionless URLs
 
 ## Brand Guidelines
@@ -174,7 +174,7 @@ Includes header/footer automatically. Uses **options pattern** for customization
 ```javascript
 // CSS: styles/layouts/standard.css
 
-import html from '@utils/html.js'
+import html from '@utilities/html.js'
 import header from '@components/header.js'
 import footer from '@components/footer.js'
 
@@ -210,7 +210,7 @@ Extends standard layout, wraps content in article structure. Automatically inclu
 ```javascript
 // CSS: styles/layouts/article.css
 
-import html from '@utils/html.js'
+import html from '@utilities/html.js'
 import standard from '@layouts/standard.js'
 import articleSeo from '@components/article-seo.js'
 
@@ -257,7 +257,7 @@ Shows mobile menu toggle pattern with checkbox/hamburger icon.
 ```javascript
 // CSS: styles/components/header.css
 
-import html from '@utils/html.js'
+import html from '@utilities/html.js'
 import data from '@data/site.js'
 
 // Front matter - nav links
@@ -318,7 +318,7 @@ Use **options** to pass `currentPath` for nav highlighting. Use `meta` for SEO d
 ```javascript
 // CSS: styles/pages/about.css
 
-import html from '@utils/html.js'
+import html from '@utilities/html.js'
 import standard from '@layouts/standard.js'
 import pageSeo from '@components/page-seo.js'
 import data from '@data/site.js'
@@ -372,7 +372,7 @@ Pass `meta` object with article metadata. Layout handles title, date, author, SE
 ```javascript
 // No dedicated CSS file - uses article layout's CSS
 
-import html from '@utils/html.js'
+import html from '@utilities/html.js'
 import article from '@layouts/article.js'
 
 // Front matter

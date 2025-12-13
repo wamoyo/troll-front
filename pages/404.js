@@ -1,6 +1,6 @@
 // CSS: styles/pages/404.css
 
-import html from '@utils/html.js'
+import html from '@utilities/html.js'
 import standard from '@layouts/standard.js'
 import data from '@data/site.js'
 

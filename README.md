@@ -63,7 +63,7 @@ frontend/
 Pages are functions that return HTML using template literals:
 
 ```javascript
-import html from '@utils/html.js'
+import html from '@utilities/html.js'
 import standard from '@layouts/standard.js'
 
 export default function page () {
@@ -87,7 +87,7 @@ export default function page () {
 Components are pure functions that take parameters and return HTML:
 
 ```javascript
-import html from '@utils/html.js'
+import html from '@utilities/html.js'
 
 // Pure: returns button component with head, body
 export default function button ({ text, href, style = 'primary' }) {

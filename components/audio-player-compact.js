@@ -1,6 +1,6 @@
 // CSS: styles/components/audio-player-compact.css
 
-import html from '@utils/html.js'
+import html from '@utilities/html.js'
 
 // Pure: returns compact audio player component with head, body, scripts
 // audio object: { id, src }

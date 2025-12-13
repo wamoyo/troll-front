@@ -1,6 +1,6 @@
 // CSS: styles/components/header.css
 
-import html from '@utils/html.js'
+import html from '@utilities/html.js'
 import data from '@data/site.js'
 
 // Front matter

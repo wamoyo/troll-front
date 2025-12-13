@@ -1,6 +1,6 @@
 // CSS: styles/components/team-card.css
 
-import html from '@utils/html.js'
+import html from '@utilities/html.js'
 
 // Pure: returns team member card component with head and body
 export default function teamCard ({ name = '', title = '', bio = '', image = '' } = {}) {

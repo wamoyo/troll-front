@@ -1,6 +1,6 @@
 // CSS: styles/layouts/article.css
 
-import html from '@utils/html.js'
+import html from '@utilities/html.js'
 import standard from '@layouts/standard.js'
 import articleSeo from '@components/article-seo.js'
 

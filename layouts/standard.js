@@ -1,6 +1,6 @@
 // CSS: styles/layouts/standard.css
 
-import html from '@utils/html.js'
+import html from '@utilities/html.js'
 import header from '@components/header.js'
 import footer from '@components/footer.js'
 

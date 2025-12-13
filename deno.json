@@ -2,7 +2,7 @@
   "imports": {
     "@/": "./",
     "@data/": "./data/",
-    "@utils/": "./utils/",
+    "@utilities/": "./utilities/",
     "@components/": "./components/",
     "@layouts/": "./layouts/"
   },

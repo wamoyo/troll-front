@@ -1,6 +1,6 @@
 // CSS: styles/components/footer.css
 
-import html from '@utils/html.js'
+import html from '@utilities/html.js'
 import data from '@data/site.js'
 
 // Pure: returns footer component with head, body

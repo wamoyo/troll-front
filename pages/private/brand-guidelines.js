@@ -1,6 +1,6 @@
 // CSS: styles/pages/private/brand-guidelines.css
 
-import html from '@utils/html.js'
+import html from '@utilities/html.js'
 import standard from '@layouts/standard.js'
 import pageSeo from '@components/page-seo.js'
 import data from '@data/site.js'

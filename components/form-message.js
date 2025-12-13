@@ -1,6 +1,6 @@
 // CSS: styles/components/form-message.css
 
-import html from '@utils/html.js'
+import html from '@utilities/html.js'
 
 // Pure: returns form message component (success or error)
 export default function formMessage ({ type, text }) {
