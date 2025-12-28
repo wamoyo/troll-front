@@ -53,7 +53,7 @@ export default function page () {
       <section id="pg-about" class="grid-container">
         <h1>About Us</h1>
 
-        <p>We created Troll Hair here at Industrial CNT with the purpose of bringing the world's strongest material, <a href="/articles/carbon-nanotubes-material-of-future">carbon nanotubes</a>, out of the lab and into the marketplace.</p>
+        <p>We created Troll Hair here at Industrial CNT with the purpose of bringing the world's strongest material, <a href="/resources/carbon-nanotubes-material-of-future">carbon nanotubes</a>, out of the lab and into the marketplace.</p>
 
         <p class="med"><strong>Troll Hair clocks in at over 100 gigapascals of tensile strength.</strong></p>
         <p>That's roughly 27 times stronger than Kevlar (carbon fiber). This signals a transformational shift and enables entirely new use cases. Imagine stronger construction materials, dramatically lighter vehicles, new space craft, and more.</p>
